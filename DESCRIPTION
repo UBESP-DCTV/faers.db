@@ -1,0 +1,40 @@
+Package: faers.db
+Title: FAERS database in R
+Version: 0.0.0.9000
+Authors@R: 
+    c(person(given = "Corrado",
+             family = "Lanera",
+             role = c("aut", "cre"),
+             email = "corrado.lanera@unipd.it",
+             comment = c(ORCID = "0000-0002-0520-7428")),
+      person(given = "Pietro",
+             family = "Belloni",
+             role = "aut",
+             email = "pietro.belloni.1@phd.unipd.it"),
+      person(given = "Nicola",
+             family = "Guidone",
+             role = "aut",
+             email = "nicola.guidone@unipd.it"),
+      person(given = "Giulia",
+             family = "Lorenzoni",
+             role = "ctb",
+             email = "giulia.lorenzoni@unipd.it"),
+      person(given = "Dario",
+             family = "Gregori",
+             role = "cph",
+             email = "dario.gregori@unipd.it"),
+      person(given = "UBESP",
+             role = "cph"))
+Description: Provide an R interface to retrieve, merge, and tidy
+    the FAERS database.
+License: GPL-3
+Imports: 
+    magrittr
+Suggests: 
+    spelling,
+    testthat
+Encoding: UTF-8
+Language: en-US
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
