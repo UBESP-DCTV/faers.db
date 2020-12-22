@@ -1,2 +1,12 @@
+CMD
+FAERS
 Lifecycle
+ORCID
+dependences
 faers
+https
+reprex
+roxygen
+styler
+testthat
+tidyverse

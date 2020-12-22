@@ -235,10 +235,7 @@ usethis::git_vaccinate()
 #' Commit everything before to continue!
 #'
 # remember to open and activate PuTTY
-usethis::use_github(
-  # "<organization>", # eg, "UBESP-DCTV"
-  # private = TRUE # is a private repo?
-)
+usethis::use_github("UBESP-DCTV")
 
 #'
 #' > NOTE: If required set the upstream using your preferred
@@ -279,16 +276,6 @@ renv::status() # just to check
 #' Package website documentation
 #' ====================================================================
 #'
-#' > Disclaimer (2020-06-22): This and the following actions are mine
-#' modification of the ones you can find in
-#' https://github.com/r-lib/actions/blob/master/examples/pkgdown.yaml
-#' The changes are made to made the action able to be used with `{renv}`
-#' as suggested in
-#' https://rstudio.github.io/renv/articles/ci.html#github-actions
-#'
-#' As soon/if there will be implemented _official_ Actions, I will
-#' substitute these with those ones.
-#'
 usethis::use_github_action(
   url = "https://raw.githubusercontent.com/CorradoLanera/actions/master/pkgdown.yaml"
 )
@@ -298,7 +285,7 @@ usethis::use_github_actions_badge("pkgdown")
 #' Bonus:
 #'
 renv::install("GuangchuangYu/badger")
-badger::badge_custom("WEBsite", "click-me", "orange", "http://corradolanera.github.io/<packagename>/")
+badger::badge_custom("WEBsite", "click-me", "orange", "http://ubesp-dctv.github.io/faers.db/")
 #'
 #' And add it between title and logo in the README and knit it.
 #'
@@ -336,23 +323,6 @@ usethis::use_github_action(
   url = "https://raw.githubusercontent.com/CorradoLanera/actions/master/covr-renv.yaml"
 )
 usethis::use_github_actions_badge("test-coverage")
-
-
-#'
-#' WARNING: if you do not use {renv} for your project, call
-#'
-#'
-#'     usethis::use_github_action("check-full",
-#'       save_as = "R-CMD-check.yaml"
-#'     )
-#'     usethis::use_github_actions_badge("R-CMD-check")
-#'
-#'     usethis::use_github_action("test-coverage",
-#'       save_as = "covr.yaml"
-#'     )
-#'     usethis::use_github_actions_badge("covr")
-#'
-
 
 
 
