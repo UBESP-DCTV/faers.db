@@ -6,6 +6,7 @@ dependences
 faers
 https
 reprex
+reproducibility
 roxygen
 styler
 testthat

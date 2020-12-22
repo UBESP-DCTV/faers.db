@@ -343,7 +343,7 @@ devtools::check()
 #'
 #' > Update and knit the `README.Rmd`
 #'
-usethis::use_version("dev")
+usethis::use_dev_version()
 
 
 

@@ -1,0 +1,45 @@
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
+
+name: test-coverage
+# updated (cache@v1 to cache@v2) from https://github.com/r-lib/actions/blob/master/examples/test-coverage.yaml
+# updated (to support {renv}) from https://rstudio.github.io/renv/articles/ci.html#github-actions
+
+jobs:
+  test-coverage:
+    runs-on: macOS-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      RENV_PATHS_ROOT: ~/.local/share/renv
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-r@master
+
+      - uses: r-lib/actions/setup-pandoc@master
+
+      - name: Cache R packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.RENV_PATHS_ROOT }}
+          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-renv-
+
+      - name: Install dependencies
+        run: |
+          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
+          renv::restore()
+          renv::install("covr")
+        shell: Rscript {0}
+
+      - name: Test coverage
+        run: covr::codecov()
+        shell: Rscript {0}
