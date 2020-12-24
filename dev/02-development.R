@@ -26,8 +26,8 @@
 
 # usethis::use_test("<function_name>")
 usethis::use_r("read_faers")
-
-
+usethis::use_package("utils")
+usethis::use_package("tidyverse")
 # ...
 # ...
 # ...
