@@ -5,6 +5,7 @@ ORCID
 dependences
 faers
 https
+linters
 reprex
 reproducibility
 roxygen
