@@ -25,7 +25,7 @@
 #'
 
 # usethis::use_test("<function_name>")
-# usethis::use_r("<function_name>")
+usethis::use_r("read_faers")
 
 
 # ...
