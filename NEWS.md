@@ -1,5 +1,6 @@
 # faers.db (development version)
 
+* added the draft of the function for downloading FARS data
 * added development skeleton `dev/02-development.R`
 
 # faers.db 0.0.0.9000
