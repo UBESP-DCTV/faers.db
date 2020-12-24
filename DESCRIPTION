@@ -33,8 +33,12 @@ BugReports: https://github.com/UBESP-DCTV/faers.db/issues
 Imports: 
     magrittr
 Suggests: 
+    devtools,
+    goodpractice,
+    lintr,
     spelling,
-    testthat
+    testthat,
+    usethis
 Encoding: UTF-8
 Language: en-US
 LazyData: true
