@@ -7,16 +7,14 @@
 read_demo(path)
 }
 \arguments{
-\item{path}{refers to the file's path}
+\item{path}{refers to the dataset's path,}
 }
 \value{
-import DB read_*
+import DB read_* already trasformed
 }
 \description{
 Title
 }
 \examples{
-read_demo <- function(path) {
- utils::read.csv(path, sep = "$")
-   }
+x <- read_demo(insert/path)
 }

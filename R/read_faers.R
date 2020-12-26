@@ -1,13 +1,13 @@
 #' Title
 #'
-#' @param path  refers to the dataset's path
+#' @param path  refers to the dataset's path,
 #'
-#' @return import DB read_*
+#' @return import DB read_* already trasformed
 #' @export
 #'
-#' @examples read_demo <- function(path) {
-#'  utils::read.csv(path, sep = "$")
-#'    }
+#' @examples x <- read_demo("C:/Users/nicola/Desktop/DEMO20Q3.txt")
+#'           x <- read_demo("C:/Users/nicola/Desktop/DRUG20Q3.txt")
+
 
 read_demo <- function(path) {
   x <- readr::read_delim(path, delim = "$")
@@ -19,3 +19,12 @@ read_demo <- function(path) {
   x
 }
 
+read_drug <- function(path) {
+  x <- readr::read_delim(path, delim = "$")
+  x <- x %>%
+    dplyr::mutate(across(c("role_cod",  "dechal", "rechal") , as.factor), #transform to factor
+                  across(c("primaryid", "caseid", "nda_num", "dose_amt"), as.integer),
+                  across(c("cum_dose_chr"), as.numeric)) %>%
+    parse_date_time(exp_dt, c("Ymd", "Ym", "Y"))
+  x
+}
