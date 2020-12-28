@@ -27,10 +27,10 @@ retrieve_qde <- function(path = getwd(),
   faers_path <- compose_faers_path(path, year, quarter, type)
   create_faers_folders(path, year, quarter, type)
   filename <- paste0("faers_", type, "_", year, quarter, ".zip")
-  if(file.exists(paste0(faers_path, "/", filename))) {
+  if (file.exists(paste0(faers_path, "/", filename))) {
     stop(paste0("file ", filename, " already exists"))
   } else {
-    if(utils::askYesNo(paste0("The file\n",
+    if (utils::askYesNo(paste0("The file\n",
                               filename,
                               "\n will be downloaded at the path\n",
                               faers_path,

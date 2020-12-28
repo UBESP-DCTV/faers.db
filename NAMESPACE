@@ -2,5 +2,6 @@
 
 export("%>%")
 export(checkyear)
+export(compose_faers_link)
 export(retrieve_qde)
 importFrom(magrittr,"%>%")

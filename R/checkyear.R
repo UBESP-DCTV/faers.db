@@ -11,7 +11,6 @@
 #'
 #' @examples
 #'checkyear(2018)
-#'
 checkyear <- function(year) {
   if (year %% 1L != 0L) {
     stop("use an integer for the 'year' argument")
