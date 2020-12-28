@@ -31,10 +31,10 @@ License: GPL-3
 URL: https://github.com/UBESP-DCTV/faers.db
 BugReports: https://github.com/UBESP-DCTV/faers.db/issues
 Imports: 
-    magrittr,
-    readr,
     dplyr,
-    lubridate
+    lubridate,
+    magrittr,
+    readr
 Suggests: 
     devtools,
     goodpractice,
