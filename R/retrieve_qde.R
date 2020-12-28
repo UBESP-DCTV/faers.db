@@ -10,7 +10,7 @@
 #' @param type (char) The format of the data to download,
 #' ("ascii" or "xml", default: "ascii")
 #'
-#' @return The function download the selected data
+#' @return Download the selected FAERS data in the chosen folder
 #' @export
 #'
 #' @examples

@@ -18,5 +18,4 @@ This function check if the year selected for FAERS download is fine
 }
 \examples{
 checkyear(2018)
-
 }
