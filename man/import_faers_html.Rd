@@ -5,8 +5,7 @@
 \title{Import FAERS html}
 \usage{
 import_faers_html(
- 
-    faers_url = "https://fis.fda.gov/extensions/\\n                              FPD-QDE-FAERS/FPD-QDE-FAERS.html"
+  faers_url = "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html"
 )
 }
 \arguments{

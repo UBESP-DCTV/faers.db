@@ -10,7 +10,6 @@
 #'
 #' @examples
 #' import_faers_html()
-import_faers_html <- function(faers_url = "https://fis.fda.gov/extensions/
-                              FPD-QDE-FAERS/FPD-QDE-FAERS.html") {
+import_faers_html <- function(faers_url = "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html") {
   return(xml2::read_html(faers_url))
 }
