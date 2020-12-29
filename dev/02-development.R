@@ -27,9 +27,6 @@
 # usethis::use_test("<function_name>")
 usethis::use_r("read_faers")
 
-usethis::use_package("readr")
-usethis::use_package("dplyr")
-usethis::use_package("lubridate")
 
 # ...
 # ...
