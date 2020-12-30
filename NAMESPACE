@@ -3,3 +3,4 @@
 export("%>%")
 export(read_demo)
 importFrom(magrittr,"%>%")
+importFrom(tibble,tibble)

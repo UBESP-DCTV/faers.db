@@ -1,13 +1,19 @@
-#' Title
+#' Read faers data
 #'
-#' @param path  refers to the dataset's path,
+#' The `read_*()` functions read FAERS data into a well formatted
+#' tibble.
 #'
-#' @return import DB read_* already trasformed
+#' @param path (chr) path to the FAERS `.txt` to read.
+#'
+#' @return a [tibble][tibble::tibble-package] for the FAERS table in `path`.
 #' @export
 #'
 #' @examples
-#'  x <- read_demo("C:/Users/nicola/Desktop/faers data/DEMO20Q3.txt")
-#'  x <- read_demo("C:/Users/nicola/Desktop/DRUG20Q3.txt")
+#'   \dontrun{
+#'       # require q3-2020 FAERS raw data in the working directory
+#'       read_demo("DEMO20Q3.txt")
+#'       read_drug("DRUG20Q3.txt")
+#'   }
 read_demo <- function(path) {
   x <- readr::read_delim(path, delim = "$")
   x <- x %>%
