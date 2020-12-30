@@ -18,8 +18,10 @@ tibble.
 }
 \examples{
   \dontrun{
-      # require q3-2020 FAERS raw data in the working directory
-      read_demo("DEMO20Q3.txt")
-      read_drug("DRUG20Q3.txt")
+    demo_path <- system.file(
+      "testing-data/DEMO20Q3-10.txt",
+       package = "faers.db"
+    )
+    read_demo(demo_path)
   }
 }

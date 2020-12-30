@@ -10,22 +10,33 @@
 #'
 #' @examples
 #'   \dontrun{
-#'       # require q3-2020 FAERS raw data in the working directory
-#'       read_demo("DEMO20Q3.txt")
-#'       read_drug("DRUG20Q3.txt")
+#'     demo_path <- system.file(
+#'       "testing-data/DEMO20Q3-10.txt",
+#'        package = "faers.db"
+#'     )
+#'     read_demo(demo_path)
 #'   }
 read_demo <- function(path) {
-  x <- readr::read_delim(path, delim = "$")
-  x <- x %>%
-    dplyr::mutate(dplyr::across(c("i_f_code", "rept_cod",
-                                  "mfr_sndr", "sex", "e_sub", "to_mfr","occp_cod") , as.factor),
-                  dplyr::across(c("primaryid", "caseid", "caseversion" ,"age"), as.integer))
-  x[[5]] <- lubridate::parse_date_time(x[[5]], orders = c("%Y%m%d", "%Y%m", "%Y"))
-  x[[6]] <- lubridate::parse_date_time(x[[6]], orders = c("%Y%m%d", "%Y%m", "%Y"))
-  x[[7]] <- lubridate::parse_date_time(x[[7]], orders = c("%Y%m%d", "%Y%m", "%Y"))
-  x[[8]] <- lubridate::parse_date_time(x[[8]], orders = c("%Y%m%d", "%Y%m", "%Y"))
-  x[[21]] <- lubridate::parse_date_time(x[[21]], orders = c("%Y%m%d", "%Y%m", "%Y"))
-  x
+  readr::read_delim(path, delim = "$") %>%
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(c(
+          "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
+          "occp_cod"
+        )),
+        as.factor
+      ),
+      dplyr::across(
+        dplyr::all_of(c("primaryid", "caseid", "caseversion" ,"age")),
+        as.integer
+      ),
+      dplyr::across(
+        dplyr::ends_with("dt"),
+        ~lubridate::parse_date_time(.x,
+           orders = c("%Y%m%d", "%Y%m", "%Y")
+        )
+      )
+    )
 }
 
 read_drug <- function(path) {
