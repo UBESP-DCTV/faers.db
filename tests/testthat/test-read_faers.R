@@ -34,7 +34,7 @@ test_that("read_demo works", {
   )
 
   expect_equal(
-    purrr::map_chr(res, ~class(.x)[[1]]),
+    purrr::map_chr(res, ~class(.x)[[1L]]),
     expected_class_names
   )
 
