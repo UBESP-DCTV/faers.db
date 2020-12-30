@@ -25,17 +25,17 @@ list_of_faers_data <- function(faers_url = "https://fis.fda.gov/extensions/FPD-Q
     year_fine <- as.data.frame(sub("posted.*", "",
                                    year_raw[, 1L]))
     colnames(year_fine) <- "period"
-    year_fine$quarter <- rep("q4", NROW(year_fine))
-    year_fine$quarter[year_fine$period == paste0("July - September ",
+    year_fine[["quarter"]] <- rep("q4", NROW(year_fine))
+    year_fine[["quarter"]][year_fine[["period"]] == paste0("July - September ",
                                                  i)] <- "q3"
-    year_fine$quarter[year_fine$period == paste0("April - June ",
+    year_fine[["quarter"]][year_fine[["period"]] == paste0("April - June ",
                                                  i)] <- "q2"
-    year_fine$quarter[year_fine$period == paste0("January - March ",
+    year_fine[["quarter"]][year_fine[["period"]] == paste0("January - March ",
                                                  i)] <- "q1"
-    year_fine$dimension <- gsub("\n      ", " ",
+    year_fine[["dimension"]] <- gsub("\n      ", " ",
                                 year_raw[, 2L])
-    year_fine$dimension <- gsub("\n     ", "   ",
-                                year_fine$dimension)
+    year_fine[["dimension"]] <- gsub("\n     ", "   ",
+                                year_fine[["dimension"]])
     out[[paste0("year: ", i)]] <- year_fine
   }
   return(out)
