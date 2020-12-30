@@ -1,8 +1,8 @@
 # faers.db (development version)
 
 * I have created a seven function, different function for every table.
-* Those function allow me to import data and automaticaly convert each 
-* coloums in in the right way.
+  Those function allow me to import data and automaticaly convert each 
+  coloums in in the right way.
 * added `.lintr` to set the default linters
 * added development skeleton `dev/02-development.R`
 
