@@ -34,7 +34,9 @@ Imports:
     dplyr,
     lubridate,
     magrittr,
-    readr
+    readr,
+    tibble,
+    purrr
 Suggests: 
     devtools,
     goodpractice,
