@@ -5,10 +5,9 @@
 #' @return import DB read_* already trasformed
 #' @export
 #'
-#' @examples x <- read_demo("C:/Users/nicola/Desktop/faers data/DEMO20Q3.txt")
-#'           x <- read_demo("C:/Users/nicola/Desktop/DRUG20Q3.txt")
-
-
+#' @examples
+#'  x <- read_demo("C:/Users/nicola/Desktop/faers data/DEMO20Q3.txt")
+#'  x <- read_demo("C:/Users/nicola/Desktop/DRUG20Q3.txt")
 read_demo <- function(path) {
   x <- readr::read_delim(path, delim = "$")
   x <- x %>%
