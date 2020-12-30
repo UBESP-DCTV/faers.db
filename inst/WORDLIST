@@ -2,6 +2,7 @@ CMD
 FAERS
 Lifecycle
 ORCID
+chr
 dependences
 faers
 https
@@ -11,4 +12,6 @@ reproducibility
 roxygen
 styler
 testthat
+tibble
+tibbles
 tidyverse
