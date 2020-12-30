@@ -1,6 +1,6 @@
 # faers.db (development version)
 
-* added the draft of the function for downloading FAERS data
+* added a function to download FAERS data
 * added `.lintr` to set the default linters
 * added development skeleton `dev/02-development.R`
 

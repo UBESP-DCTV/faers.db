@@ -6,6 +6,7 @@ dependences
 faers
 https
 linters
+qde
 reprex
 reproducibility
 roxygen
