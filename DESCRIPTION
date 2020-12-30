@@ -35,15 +35,15 @@ Imports:
     lubridate,
     magrittr,
     readr,
-    tibble,
-    purrr
+    tibble
 Suggests: 
     devtools,
     goodpractice,
     lintr,
     spelling,
     testthat,
-    usethis
+    usethis,
+    purrr
 Encoding: UTF-8
 Language: en-US
 LazyData: true
