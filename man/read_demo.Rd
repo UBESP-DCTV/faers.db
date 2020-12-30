@@ -16,5 +16,6 @@ import DB read_* already trasformed
 Title
 }
 \examples{
-x <- read_demo(insert/path)
+x <- read_demo("C:/Users/nicol/Desktop/faers data/DEMO20Q3.txt")
+          x <- read_demo("C:/Users/nicola/Desktop/DRUG20Q3.txt")
 }
