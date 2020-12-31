@@ -2,20 +2,26 @@
 % Please edit documentation in R/read_faers.R
 \name{read_demo}
 \alias{read_demo}
-\title{Title}
+\title{Read faers data}
 \usage{
 read_demo(path)
 }
 \arguments{
-\item{path}{refers to the dataset's path,}
+\item{path}{(chr) path to the FAERS \code{.txt} to read.}
 }
 \value{
-import DB read_* already trasformed
+a \link[tibble:tibble-package]{tibble} for the FAERS table in \code{path}.
 }
 \description{
-Title
+The \verb{read_*()} functions read FAERS data into a well formatted
+tibble.
 }
 \examples{
-x <- read_demo("C:/Users/nicol/Desktop/faers data/DEMO20Q3.txt")
-          x <- read_demo("C:/Users/nicola/Desktop/DRUG20Q3.txt")
+  \dontrun{
+    demo_path <- system.file(
+      "testing-data/DEMO20Q3-10.txt",
+       package = "faers.db"
+    )
+    read_demo(demo_path)
+  }
 }

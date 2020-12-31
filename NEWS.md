@@ -1,8 +1,7 @@
 # faers.db (development version)
 
-* I have created a seven function, different function for every table.
-  Those function allow me to import data and automaticaly convert each 
-  coloums in in the right way.
+* added `read_*()` (with * in {`demo`, `drug`, `indi`, `outc`, `reac`,
+  `rpsr`, and `ther`}) functions to read FAERS raw data into tibbles.
 * added `.lintr` to set the default linters
 * added development skeleton `dev/02-development.R`
 

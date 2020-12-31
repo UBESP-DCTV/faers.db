@@ -34,14 +34,16 @@ Imports:
     dplyr,
     lubridate,
     magrittr,
-    readr
+    readr,
+    tibble
 Suggests: 
     devtools,
     goodpractice,
     lintr,
     spelling,
     testthat,
-    usethis
+    usethis,
+    purrr
 Encoding: UTF-8
 Language: en-US
 LazyData: true
