@@ -36,7 +36,8 @@ Imports:
     dplyr,
     lubridate,
     rvest,
-    xml2
+    xml2,
+    glue
 Suggests: 
     devtools,
     goodpractice,
