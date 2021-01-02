@@ -14,7 +14,9 @@
 #' @export
 #'
 #' @examples
-#' retrieve_qde(year = 2018, quarter = "q4")
+#' \dontrun{
+#'   retrieve_qde(year = 2018, quarter = "q4")
+#' }
 #'
 retrieve_qde <- function(path = getwd(),
                          year,

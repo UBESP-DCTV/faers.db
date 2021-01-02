@@ -9,6 +9,7 @@
 #'
 #' @return (lgl) FAERS can have data for the `.year` and `.quarter` required?
 #'
+#' @export
 #' @examples
 #' is_year_quarter_available(2013, "q1")  # TRUE
 #' is_year_quarter_available(2012, "q1")  # FALSE

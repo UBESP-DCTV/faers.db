@@ -31,5 +31,7 @@ This function creates the set of nested folders where FAERS
 data will be downloaded; if the folders already exist, no nothing
 }
 \examples{
-create_faers_folders(year = 2018, quarter = "q1", type = "ascii")
+\dontrun{
+  create_faers_folders(year = 2018, quarter = "q1", type = "ascii")
+}
 }

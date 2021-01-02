@@ -1,5 +1,6 @@
 # faers.db (development version)
 
+* added `\dontrun{}` to examples with side effects.
 * rename and refactor `list_of_faers_year()` into
   `years_from_faers_html()`
 * refactored `fetch_faers_meta()` and `years_from_faers_html()` to have
