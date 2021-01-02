@@ -508,10 +508,10 @@
     },
     "rlang": {
       "Package": "rlang",
-      "Version": "0.4.9",
+      "Version": "0.4.10",
       "Source": "Repository",
-      "Repository": "RSPM",
-      "Hash": "9d7aba7bed9a79e2403b4777428a2b12"
+      "Repository": "CRAN",
+      "Hash": "599df23c40a4fce9c7b4764f28c37857"
     },
     "roxygen2": {
       "Package": "roxygen2",

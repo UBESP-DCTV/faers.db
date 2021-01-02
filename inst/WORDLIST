@@ -1,9 +1,11 @@
 CMD
 FAERS
 Lifecycle
+Metaprogramming
 ORCID
 chr
 dependences
+eval
 faers
 https
 lgl
@@ -14,5 +16,6 @@ reprex
 reproducibility
 roxygen
 styler
+summarise
 testthat
 tidyverse

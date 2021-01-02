@@ -13,6 +13,8 @@
 #' @return Return the path of the internal folder where FAERS
 #' data will be downloaded
 #'
+#' @export
+#'
 #' @examples
 #' compose_faers_path(year = 2020)
 compose_faers_path <- function(path = getwd(),

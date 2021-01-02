@@ -8,6 +8,8 @@
 #' @param type (char, default: "ascii") The format of the data to
 #'   download between "ascii" or "xml",
 #'
+#' @export
+#'
 #' @return (chr) the link to download selected FAERS `.zip` data.
 #'
 #' @examples

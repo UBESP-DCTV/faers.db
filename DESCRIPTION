@@ -36,13 +36,17 @@ Imports:
     glue,
     lubridate,
     magrittr,
+    purrr,
+    rlang (>= 0.1.2),
     rvest,
+    stringr,
     tibble,
     xml2
 Suggests: 
     devtools,
     goodpractice,
     lintr,
+    roxygen2,
     spelling,
     testthat,
     usethis
