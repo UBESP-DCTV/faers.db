@@ -9,7 +9,7 @@
 #' @examples
 #' list_of_faers_years()
 list_of_faers_years <- function(faers_url = "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html") {
-  faers_html_code <- import_faers_html(faers_url)
+  faers_html_code <- xml2::read_html(faers_url)
   nyears <- number_of_faers_years(faers_html_code)
   years <- c(rep(NA, nyears))
   for (i in 1L:nyears) {

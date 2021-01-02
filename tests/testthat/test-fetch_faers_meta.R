@@ -1,8 +1,32 @@
-test_that("list_of_faers_data works", {
-  available_faers <- list_of_faers_data()
-  expect_is(available_faers, "tbl_df")
+test_that("fetch_faers_meta works", {
+  faers_meta <- fetch_faers_meta()
+  expect_is(faers_meta, "tbl_df")
+
+  current_str <- purrr::map_chr(faers_meta, ~class(.x)[[1]])
+  expected_str <- c(
+    upload = "Date",
+    period = "character",
+    quarter = "character",
+    ascii_zip_mb = "numeric",
+    xml_zip_mb = "numeric"
+  )
+  expect_equal(current_str, expected_str)
 })
 
+
+
+test_that("extract_up_date works", {
+  x <- "July - September 2020posted on 17-Nov-2020"
+  res <- extract_up_date(x)
+  expect_equal(res, as.Date("2020-11-17"))
+})
+
+
+test_that("extract_up_date works", {
+  x <- "July - September 2020posted on 17-Nov-2020"
+  res <- extract_period(x)
+  expect_equal(res, "July - September")
+})
 
 
 test_that("period2quarter works", {
@@ -25,6 +49,7 @@ test_that("extract_mb works", {
   expect_equal(res_ascii, 64)
   expect_equal(res_xml, 121)
 })
+
 
 test_that("extract_mb works with decimals", {
   x <- "ASCII\n      (ZIP - 64.2MB)\n     XML\n      (ZIP - 121.45MB)"

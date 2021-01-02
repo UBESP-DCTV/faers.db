@@ -1,6 +1,12 @@
 # faers.db (development version)
 
-* refactor `list_of_faers_data()` to return a `tible`.
+* removed `import faers_html()` (does not need to export it and it
+  us a single function call without extra arguments, it was more
+  fragile only)
+* rename and refactor `list_of_faers_data` into `fetch_faers_meta()`.
+    Now it always return a `tible`, using fixed internal parametrization
+    for FAERS meta-data's URL. Internal computationl service function
+    are extracted and tested.
 * refactor `compose_faers_link()` with the updated `check_year()`.
 * refactor `check_year()` to always return booleans.
 * added a function to download FAERS data.

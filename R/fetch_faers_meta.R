@@ -1,50 +1,44 @@
 #' List of FAERS data
 #'
-#' The function lists the databases currently online on the FAERS web
-#' page
-#'
-#' @param faers_url (char) Url of the FAERS repository web page
-#'   (do not modify the default url unless it is changed by the web page
-#'    owner)
+#' The function lists the metadata for the FAERS databases currently
+#' available to download.
 #'
 #' @return a [tibble][tibble::tibble-package] reporting years, period,
 #' quarter, and dimension for available FAERS data.
 #' @export
 #'
 #' @examples
-#' list_of_faers_data()
-list_of_faers_data <- function(
-  faers_url = NULL
-) {
-  if (is.null(faers_url)) {
-    faers_url <- paste0("https://fis.fda.gov/extensions/FPD-QDE-FAERS/",
-                        "FPD-QDE-FAERS.html"
-    )
-  }
+#' fetch_faers_meta()
+fetch_faers_meta <- function() {
+  faers_url <- current_faers_meta_url()
 
   yearlist <- list_of_faers_years(faers_url)
-  faers_html <- import_faers_html(faers_url)
+  faers_html <- xml2::read_html(faers_url)
 
-  purrr::imap_dfr(yearlist, ~ {
-
+  meta_raw <- purrr::imap_dfr(yearlist, ~ {
     year_raw <- faers_html %>%
       rvest::html_node(css = compose_table_css(.x)) %>%
       rvest::html_table(header = FALSE, fill = TRUE) %>%
       dplyr::filter(dplyr::row_number() %% 2L == 1L) %>%
-      dplyr::select(c(1L, 2L))
-
-    year_raw %>%
-      tibble::as_tibble() %>%
-      dplyr::transmute(
-        year = .x,
-        period = .data[["X1"]] %>%
-          stringr::str_remove(glue::glue(" {.x}.*$")),
-        quarter = period2quarter(.data[["period"]]),
-        ascii_zip_mb = extract_mb(.data[["X2"]], "ascii"),
-        xml_zip_mb = extract_mb(.data[["X2"]], "xml"),
-      )
+      dplyr::select(c(1L, 2L)) %>%
+      tibble::as_tibble()
   })
+
+  meta_raw %>%
+    dplyr::transmute(
+      upload = extract_up_date(.data[["X1"]]),
+      period = extract_period(.data[["X1"]]),
+      quarter = period2quarter(.data[["period"]]),
+      ascii_zip_mb = extract_mb(.data[["X2"]], "ascii"),
+      xml_zip_mb = extract_mb(.data[["X2"]], "xml"),
+    )
 }
+
+
+current_faers_meta_url <- function() {
+  "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html"
+}
+
 
 # Compose a css selector for a specific table of a year
 # https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
@@ -61,6 +55,17 @@ period2quarter <- function(x) {
     TRUE ~ NA_character_
 
   )
+}
+
+
+extract_up_date <- function(x) {
+  stringr::str_extract(x, "\\d{1,2}-\\w+-\\d{4}") %>%
+    lubridate::dmy()
+}
+
+
+extract_period <- function(x) {
+  stringr::str_remove(x, " \\d.+$")
 }
 
 

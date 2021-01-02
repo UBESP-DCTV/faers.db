@@ -7,7 +7,7 @@
 number_of_faers_years(faers_html)
 }
 \arguments{
-\item{faers_html}{An output of the import_faers_html() function}
+\item{faers_html}{An output of the fetch_faers_meta() function}
 }
 \value{
 An integer number
@@ -16,5 +16,5 @@ An integer number
 Retrieve the number of FAERS year currently listed on the FAERS web page
 }
 \examples{
-number_of_faers_years(import_faers_html())
+number_of_faers_years(fetch_faers_meta())
 }
