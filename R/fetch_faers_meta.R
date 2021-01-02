@@ -10,7 +10,7 @@
 #' @examples
 #' fetch_faers_meta()
 fetch_faers_meta <- function() {
-  faers_html = current_faers_html()
+  faers_html <- current_faers_html()
 
   years_from_faers_html(faers_html) %>%
     purrr::map_dfr(extract_meta_for_year, faers_html = faers_html) %>%
@@ -110,7 +110,7 @@ period2quarter <- function(x) {
 
 
 extract_mb <- function(x, type = c("ascii", "xml")) {
-  type = match.arg(type)
+  type <- match.arg(type)
 
   starting <- "([^-]+- )"
   if (type == "ascii") starting <- paste0("^", starting)

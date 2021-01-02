@@ -20,5 +20,5 @@ is_year_quarter_available <- function(.year, .quarter) {
     ) %>%
     nrow()
 
-  n_data > 0
+  n_data > 0L
 }

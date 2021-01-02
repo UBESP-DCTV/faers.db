@@ -1,9 +1,9 @@
 test_that("compose_faers_link works", {
-  ok_link <- compose_faers_link(2018, "q1", "ascii")
+  ok_link <- compose_faers_link(2018L, "q1", "ascii")
   expected <- paste0(
     "https://fis.fda.gov/content/Exports/", "faers_ascii_2018q1.zip"
   )
   expect_equal(ok_link, expected)
-  expect_error(compose_faers_link(2012, "q1", "ascii"),
+  expect_error(compose_faers_link(2012L, "q1", "ascii"),
                "Year is admissible")
 })

@@ -2,7 +2,7 @@ test_that("fetch_faers_meta works", {
   faers_meta <- fetch_faers_meta()
   expect_is(faers_meta, "tbl_df")
 
-  current_str <- purrr::map_chr(faers_meta, ~class(.x)[[1]])
+  current_str <- purrr::map_chr(faers_meta, ~class(.x)[[1L]])
   expected_str <- c(
     year = "character",
     period = "character",
@@ -50,8 +50,8 @@ test_that("extract_mb works", {
   x <- "ASCII\n      (ZIP - 64MB)\n     XML\n      (ZIP - 121MB)"
   res_ascii <- extract_mb(x)
   res_xml <- extract_mb(x, "xml")
-  expect_equal(res_ascii, 64)
-  expect_equal(res_xml, 121)
+  expect_equal(res_ascii, 64.0)
+  expect_equal(res_xml, 121.0)
 })
 
 
