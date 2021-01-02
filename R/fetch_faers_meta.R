@@ -12,10 +12,55 @@
 fetch_faers_meta <- function() {
   faers_html = current_faers_html()
 
-  list_of_faers_years(faers_html) %>%
+  years_from_faers_html(faers_html) %>%
     purrr::map_dfr(extract_meta_for_year, faers_html = faers_html) %>%
     tidy_raw_faers_meta()
 }
+
+
+current_faers_html <- function() {
+  xml2::read_html(current_faers_meta_url())
+}
+
+
+current_faers_meta_url <- function() {
+  "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html"
+}
+
+
+years_from_faers_html <- function(faers_html = current_faers_html()) {
+  n_years <- number_of_faers_years(faers_html)
+
+  years_raw_tags <- purrr::map_dfr(seq_len(n_years), ~ {
+    faers_html %>%
+      rvest::html_node(css = compose_year_css(.x)) %>%
+      xml2::xml_attrs()
+  })
+
+  years_raw_tags[["href"]] %>%
+    stringr::str_remove("#collapse")
+}
+
+
+# CSS selector for a specific table of a year
+# https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
+compose_year_css <- function(yearnumber) {
+  glue::glue(
+    "#accordion > div:nth-child({yearnumber}) > ",
+    "div.panel-heading > h4 > a"
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 extract_meta_for_year <- function(faers_html = current_faers_html(),
@@ -26,6 +71,11 @@ extract_meta_for_year <- function(faers_html = current_faers_html(),
     rvest::html_table(header = FALSE, fill = TRUE) %>%
     dplyr::filter(dplyr::row_number() %% 2L == 1L) %>%
     tibble::as_tibble()
+}
+
+
+compose_table_css <- function(year) {
+  glue::glue("#collapse{year} > div > div > table")
 }
 
 
@@ -40,47 +90,6 @@ tidy_raw_faers_meta <- function(meta_raw_tbl) {
     )
 }
 
-
-list_of_faers_years <- function(faers_html = current_faers_html()) {
-  nyears <- number_of_faers_years(faers_html)
-
-  years <- c(rep(NA, nyears))
-
-  for (i in 1L:nyears) {
-    year_css <- compose_year_css(i)
-
-    year_node <- rvest::html_node(faers_html, css = year_css)
-
-    years[i] <- xml2::xml_attrs(year_node)[["href"]] %>%
-      stringr::str_remove("#collapse")
-  }
-
-  years
-}
-
-
-current_faers_meta_url <- function() {
-  "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html"
-}
-
-
-current_faers_html <- function() {
-  xml2::read_html(current_faers_meta_url())
-}
-
-
-# Compose a css selector for a specific table of a year
-# https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
-compose_table_css <- function(year) {
-  glue::glue("#collapse{year} > div > div > table")
-}
-
-
-compose_year_css <- function(yearnumber) {
-  glue::glue(
-    "#accordion > div:nth-child({yearnumber}) > div.panel-heading > h4 > a"
-  )
-}
 
 
 number_of_faers_years <- function(faers_html) {
@@ -98,7 +107,6 @@ period2quarter <- function(x) {
     stringr::str_detect(x, "^April") ~ "q2",
     stringr::str_detect(x, "^January") ~ "q1",
     TRUE ~ NA_character_
-
   )
 }
 
@@ -118,17 +126,11 @@ extract_mb <- function(x, type = c("ascii", "xml")) {
   type = match.arg(type)
 
   starting <- "([^-]+- )"
-  if (type == "ascii") {
-    starting <- paste0("^", starting)
-  }
-
+  if (type == "ascii") starting <- paste0("^", starting)
 
   ending <- "MB(.|\n)+"
-  if (type == "xml") {
-    ending <- paste0(ending, "?")
-  }
+  if (type == "xml") ending <- paste0(ending, "?")
 
   to_remove <- paste0(starting, "|", ending)
-
   as.numeric(stringr::str_remove_all(x, to_remove))
 }

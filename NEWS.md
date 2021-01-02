@@ -1,6 +1,8 @@
 # faers.db (development version)
 
-* refactored `fetch_faers_meta()` and `list_of_faers_years()` to have
+* rename and refactor `list_of_faers_year()` into
+  `years_from_faers_html()`
+* refactored `fetch_faers_meta()` and `years_from_faers_html()` to have
   in input the FAERS' meta html. This way it is possible to download 
   the HTML only once.
 * rename and refactor `import faers_html()` into `current_faers_html()`
