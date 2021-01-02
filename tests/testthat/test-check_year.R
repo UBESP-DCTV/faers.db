@@ -10,6 +10,6 @@ test_that("check_year works", {
   next_year <- lubridate::year(Sys.Date()) + 1L
   expect_message(
     expect_false(check_year(next_year)),
-    "is in the future"
+    "Are you requiring a future year"
   )
 })

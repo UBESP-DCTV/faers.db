@@ -3,8 +3,6 @@
 #' This function check if the year selected for FAERS download can have
 #' data.
 #'
-#' @note This should be improved checking the actual file online!
-#'
 #' @param year (int) The year of the data to download.
 #'
 #' @return (lgl) FAERS can have data for the `year` required?
@@ -21,14 +19,15 @@ check_year <- function(year) {
     ))
   }
 
+  is_available <- year %in% years_from_faers_html()
   current_year <- lubridate::year(Sys.Date())
-  is_future <- year > current_year
-  if (is_future) {
+  if (!is_available) {
     message(glue::glue(
+      "The year slected ({year}) is not available.",
       "We are now in {current_year}.",
-      "The year slected ({year}) is in the future. ",
+      "Are you requiring a future year?",
     ))
   }
 
-  is_after_start && !is_future
+  is_after_start && is_available
 }

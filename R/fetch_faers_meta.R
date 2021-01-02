@@ -29,7 +29,7 @@ current_faers_meta_url <- function() {
 
 
 years_from_faers_html <- function(faers_html = current_faers_html()) {
-  n_years <- number_of_faers_years(faers_html)
+  n_years <- n_years_of_faers(faers_html)
 
   years_raw_tags <- purrr::map_dfr(seq_len(n_years), ~ {
     faers_html %>%
@@ -42,7 +42,7 @@ years_from_faers_html <- function(faers_html = current_faers_html()) {
 }
 
 
-number_of_faers_years <- function(faers_html) {
+n_years_of_faers <- function(faers_html) {
   faers_html %>%
     rvest::xml_node(css = "#accordion") %>%
     xml2::xml_children() %>%
