@@ -2,10 +2,13 @@ CMD
 FAERS
 Lifecycle
 ORCID
+chr
 dependences
 faers
 https
+lgl
 linters
+num
 qde
 reprex
 reproducibility
