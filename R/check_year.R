@@ -1,16 +1,17 @@
 #' Check FAERS year
 #'
-#' This function check if the year selected for FAERS download is fine
+#' This function check if the year selected for FAERS download can have
+#' data.
 #'
+#' @note This should be improved checking the actual file online!
 #'
-#' @param year (int) The year of the data to download (no default)
+#' @param year (int) The year of the data to download.
 #'
-#' @return If the year is fine returns TRUE, stops
-#' (with an error message) otherwise
-#' @export
+#' @return (lgl) FAERS can have data for the `year` required?
 #'
 #' @examples
-#' check_year(2018)
+#' check_year(2013)  # TRUE
+#' check_year(2012)  # FALSE
 check_year <- function(year) {
   is_after_start <-  year >= 2013L
   if (!is_after_start) {

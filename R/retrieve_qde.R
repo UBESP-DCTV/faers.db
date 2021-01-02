@@ -22,7 +22,7 @@ retrieve_qde <- function(path = getwd(),
                          type = c("ascii", "xml")) {
   quarter <- match.arg(quarter)
   type <- match.arg(type)
-  checkyear(year)
+  check_year(year)
   faers_link <- compose_faers_link(year, quarter, type)
   faers_path <- compose_faers_path(path, year, quarter, type)
   create_faers_folders(path, year, quarter, type)

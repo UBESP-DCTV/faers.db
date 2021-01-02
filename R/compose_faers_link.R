@@ -2,23 +2,26 @@
 #'
 #' This function compose the download link for FAERS data
 #'
-#' @param year (int) The year of the data to download (no default)
-#' @param quarter (char) The quarter of the data to download
-#' ("q1", "q2", "q3" or "q4", default: "q1)
-#' @param type (char) The format of the data to download,
-#' ("ascii" or "xml", default: "ascii")
+#' @param year (int) The year of the data to download.
+#' @param quarter (char, default: "q1") The quarter of the data
+#'   to download between "q1", "q2", "q3" or "q4".
+#' @param type (char, default: "ascii") The format of the data to
+#'   download between "ascii" or "xml",
 #'
-#' @return Return the link to download FAERS data
+#' @return (chr) the link to download selected FAERS `.zip` data.
 #' @export
 #'
 #' @examples
 #' compose_faers_link(2018, "q1", "ascii")
 compose_faers_link <- function(year,
                                quarter = c("q1", "q2", "q3", "q4"),
-                               type = c("ascii", "xml")) {
+                               type = c("ascii", "xml")
+) {
+  stopifnot(`Year is admissible` = check_year(year))
   quarter <- match.arg(quarter)
   type <- match.arg(type)
-  checkyear(year)
-  return(paste0("https://fis.fda.gov/content/Exports/faers_",
-                type, "_", year, quarter, ".zip"))
+
+  glue::glue(
+    "https://fis.fda.gov/content/Exports/faers_{type}_{year}{quarter}.zip"
+  )
 }
