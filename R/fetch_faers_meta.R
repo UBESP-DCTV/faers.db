@@ -42,25 +42,22 @@ years_from_faers_html <- function(faers_html = current_faers_html()) {
 }
 
 
+number_of_faers_years <- function(faers_html) {
+  faers_html %>%
+    rvest::xml_node(css = "#accordion") %>%
+    xml2::xml_children() %>%
+    length()
+}
+
+
 # CSS selector for a specific table of a year
-# https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors)
+# https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors
 compose_year_css <- function(yearnumber) {
   glue::glue(
     "#accordion > div:nth-child({yearnumber}) > ",
     "div.panel-heading > h4 > a"
   )
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 extract_meta_for_year <- function(faers_html = current_faers_html(),
@@ -91,12 +88,14 @@ tidy_raw_faers_meta <- function(meta_raw_tbl) {
 }
 
 
+extract_up_date <- function(x) {
+  stringr::str_extract(x, "\\d{1,2}-\\w+-\\d{4}") %>%
+    lubridate::dmy()
+}
 
-number_of_faers_years <- function(faers_html) {
-  faers_html %>%
-    rvest::xml_node(css = "#accordion") %>%
-    xml2::xml_children() %>%
-    length()
+
+extract_period <- function(x) {
+  stringr::str_remove(x, " \\d.+$")
 }
 
 
@@ -108,17 +107,6 @@ period2quarter <- function(x) {
     stringr::str_detect(x, "^January") ~ "q1",
     TRUE ~ NA_character_
   )
-}
-
-
-extract_up_date <- function(x) {
-  stringr::str_extract(x, "\\d{1,2}-\\w+-\\d{4}") %>%
-    lubridate::dmy()
-}
-
-
-extract_period <- function(x) {
-  stringr::str_remove(x, " \\d.+$")
 }
 
 
