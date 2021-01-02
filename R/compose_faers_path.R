@@ -20,8 +20,9 @@ compose_faers_path <- function(path = getwd(),
                                quarter = c("q1", "q2", "q3", "q4"),
                                type = c("ascii", "xml")) {
   quarter <- match.arg(quarter)
+  stopifnot(`Data available` = is_year_quarter_available(year, quarter))
   type <- match.arg(type)
-  check_year(year)
+
   if (dir.exists(path)) {
     return(paste0(path, "/faers_raw_data/",
                   year, "/", quarter, "/", type))

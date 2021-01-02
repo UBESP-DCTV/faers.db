@@ -11,8 +11,11 @@
     Now it always return a `tible`, using fixed internal parametrization
     for FAERS meta-data's URL. Internal computationl service function
     are extracted and tested.
-* refactor `compose_faers_link()` with the updated `check_year()`.
-* refactor `check_year()` to always return booleans.
+* refactor `compose_faers_link()` with the updated
+  `is_year_quarter_available()`.
+* rename and refactor `check_year` into `is_year_quarter_available()`
+  to always return booleans and check agains real FAERS data (using 
+  quarter too).
 * added a function to download FAERS data.
 * added `.lintr` to set the default linters.
 * added development skeleton `dev/02-development.R`.

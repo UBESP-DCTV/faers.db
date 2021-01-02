@@ -21,8 +21,10 @@ retrieve_qde <- function(path = getwd(),
                          quarter = c("q1", "q2", "q3", "q4"),
                          type = c("ascii", "xml")) {
   quarter <- match.arg(quarter)
+  stopifnot(`Data available` = is_year_quarter_available(year, quarter))
+
   type <- match.arg(type)
-  check_year(year)
+
   faers_link <- compose_faers_link(year, quarter, type)
   faers_path <- compose_faers_path(path, year, quarter, type)
   create_faers_folders(path, year, quarter, type)

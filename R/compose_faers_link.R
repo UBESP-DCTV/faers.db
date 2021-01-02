@@ -16,8 +16,9 @@ compose_faers_link <- function(year,
                                quarter = c("q1", "q2", "q3", "q4"),
                                type = c("ascii", "xml")
 ) {
-  stopifnot(`Year is admissible` = check_year(year))
   quarter <- match.arg(quarter)
+  stopifnot(`Data available` = is_year_quarter_available(year, quarter))
+
   type <- match.arg(type)
 
   glue::glue(
