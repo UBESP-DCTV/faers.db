@@ -16,9 +16,6 @@ check_year(year)
 This function check if the year selected for FAERS download can have
 data.
 }
-\note{
-This should be improved checking the actual file online!
-}
 \examples{
 check_year(2013)  # TRUE
 check_year(2012)  # FALSE

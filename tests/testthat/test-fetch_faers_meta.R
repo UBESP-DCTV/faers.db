@@ -4,7 +4,7 @@ test_that("fetch_faers_meta works", {
 
   current_str <- purrr::map_chr(faers_meta, ~class(.x)[[1]])
   expected_str <- c(
-    upload = "Date",
+    year = "character",
     period = "character",
     quarter = "character",
     ascii_zip_mb = "numeric",
@@ -15,14 +15,18 @@ test_that("fetch_faers_meta works", {
 
 
 
-test_that("extract_up_date works", {
-  x <- "July - September 2020posted on 17-Nov-2020"
-  res <- extract_up_date(x)
-  expect_equal(res, as.Date("2020-11-17"))
+test_that("extract_upload_year works", {
+  x_full <- "July - September 2020posted on 17-Nov-2020"
+  res_full <- extract_upload_year(x_full)
+  expect_equal(res_full, "2020")
+
+  x_short <- "July - September 2020"
+  res_short <- extract_upload_year(x_short)
+  expect_equal(res_short, "2020")
 })
 
 
-test_that("extract_up_date works", {
+test_that("extract_period works", {
   x <- "July - September 2020posted on 17-Nov-2020"
   res <- extract_period(x)
   expect_equal(res, "July - September")

@@ -61,7 +61,7 @@ compose_year_css <- function(yearnumber) {
 
 
 extract_meta_for_year <- function(faers_html = current_faers_html(),
-                              year
+                                  year
 ) {
   faers_html %>%
     rvest::html_node(css = compose_table_css(year)) %>%
@@ -79,7 +79,7 @@ compose_table_css <- function(year) {
 tidy_raw_faers_meta <- function(meta_raw_tbl) {
   meta_raw_tbl %>%
     dplyr::transmute(
-      upload = extract_up_date(.data[["X1"]]),
+      year = extract_upload_year(.data[["X1"]]),
       period = extract_period(.data[["X1"]]),
       quarter = period2quarter(.data[["period"]]),
       ascii_zip_mb = extract_mb(.data[["X2"]], "ascii"),
@@ -88,9 +88,8 @@ tidy_raw_faers_meta <- function(meta_raw_tbl) {
 }
 
 
-extract_up_date <- function(x) {
-  stringr::str_extract(x, "\\d{1,2}-\\w+-\\d{4}") %>%
-    lubridate::dmy()
+extract_upload_year <- function(x) {
+  stringr::str_extract(x, "\\d{4}")
 }
 
 
