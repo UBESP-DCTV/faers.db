@@ -4,21 +4,20 @@
 \alias{list_of_faers_data}
 \title{List of FAERS data}
 \usage{
-list_of_faers_data(
-  faers_url = "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html"
-)
+list_of_faers_data(faers_url = NULL)
 }
 \arguments{
 \item{faers_url}{(char) Url of the FAERS repository web page
-(do not modify the default url unless it is changed by the web page owner)}
+(do not modify the default url unless it is changed by the web page
+owner)}
 }
 \value{
-A list. Each element of the list is a data frame corresponding of a
-year of FAERS data. Inside each data frame some information of the data are
-available (for example: available quarters or dimension of the database)
+a \link[tibble:tibble-package]{tibble} reporting years, period,
+quarter, and dimension for available FAERS data.
 }
 \description{
-The function lists the databases currently online on the FAERS web page
+The function lists the databases currently online on the FAERS web
+page
 }
 \examples{
 list_of_faers_data()

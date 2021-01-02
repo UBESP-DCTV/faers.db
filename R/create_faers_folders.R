@@ -12,7 +12,6 @@
 #' ("ascii" or "xml", default: "ascii")
 #'
 #' @return Creates a set of nested folders
-#' @export
 #'
 #' @examples
 #' create_faers_folders(year = 2018, quarter = "q1", type = "ascii")

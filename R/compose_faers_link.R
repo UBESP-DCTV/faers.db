@@ -9,7 +9,6 @@
 #'   download between "ascii" or "xml",
 #'
 #' @return (chr) the link to download selected FAERS `.zip` data.
-#' @export
 #'
 #' @examples
 #' compose_faers_link(2018, "q1", "ascii")

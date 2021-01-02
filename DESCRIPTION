@@ -37,7 +37,8 @@ Imports:
     lubridate,
     rvest,
     xml2,
-    glue
+    glue,
+    tibble
 Suggests: 
     devtools,
     goodpractice,

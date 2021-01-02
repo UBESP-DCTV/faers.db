@@ -1,8 +1,11 @@
 # faers.db (development version)
 
-* added a function to download FAERS data
-* added `.lintr` to set the default linters
-* added development skeleton `dev/02-development.R`
+* refactor `list_of_faers_data()` to return a `tible`.
+* refactor `compose_faers_link()` with the updated `check_year()`.
+* refactor `check_year()` to always return booleans.
+* added a function to download FAERS data.
+* added `.lintr` to set the default linters.
+* added development skeleton `dev/02-development.R`.
 
 # faers.db 0.0.0.9000
 
