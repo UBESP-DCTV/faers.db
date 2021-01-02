@@ -11,18 +11,26 @@
 #' fetch_faers_meta()
 fetch_faers_meta <- function() {
   faers_html = current_faers_html()
-  yearlist <- list_of_faers_years(faers_html)
 
-  meta_raw <- purrr::imap_dfr(yearlist, ~ {
-    year_raw <- faers_html %>%
-      rvest::html_node(css = compose_table_css(.x)) %>%
-      rvest::html_table(header = FALSE, fill = TRUE) %>%
-      dplyr::filter(dplyr::row_number() %% 2L == 1L) %>%
-      dplyr::select(c(1L, 2L)) %>%
-      tibble::as_tibble()
-  })
+  list_of_faers_years(faers_html) %>%
+    purrr::map_dfr(extract_meta_for_year, faers_html = faers_html) %>%
+    tidy_raw_faers_meta()
+}
 
-  meta_raw %>%
+
+extract_meta_for_year <- function(faers_html = current_faers_html(),
+                              year
+) {
+  faers_html %>%
+    rvest::html_node(css = compose_table_css(year)) %>%
+    rvest::html_table(header = FALSE, fill = TRUE) %>%
+    dplyr::filter(dplyr::row_number() %% 2L == 1L) %>%
+    tibble::as_tibble()
+}
+
+
+tidy_raw_faers_meta <- function(meta_raw_tbl) {
+  meta_raw_tbl %>%
     dplyr::transmute(
       upload = extract_up_date(.data[["X1"]]),
       period = extract_period(.data[["X1"]]),
@@ -34,7 +42,6 @@ fetch_faers_meta <- function() {
 
 
 list_of_faers_years <- function(faers_html = current_faers_html()) {
-
   nyears <- number_of_faers_years(faers_html)
 
   years <- c(rep(NA, nyears))
