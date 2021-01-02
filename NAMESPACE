@@ -2,8 +2,6 @@
 
 export("%>%")
 export(fetch_faers_meta)
-export(list_of_faers_years)
-export(number_of_faers_years)
 export(retrieve_qde)
 importFrom(magrittr,"%>%")
 importFrom(tibble,tibble)

@@ -1,8 +1,10 @@
 # faers.db (development version)
 
-* removed `import faers_html()` (does not need to export it and it
-  us a single function call without extra arguments, it was more
-  fragile only)
+* refactored `fetch_faers_meta()` and `list_of_faers_years()` to have
+  in input the FAERS' meta html. This way it is possible to download 
+  the HTML only once.
+* rename and refactor `import faers_html()` into `current_faers_html()`
+  to directly access to `current_faers_meta_url()`.
 * rename and refactor `list_of_faers_data` into `fetch_faers_meta()`.
     Now it always return a `tible`, using fixed internal parametrization
     for FAERS meta-data's URL. Internal computationl service function

@@ -10,10 +10,8 @@
 #' @examples
 #' fetch_faers_meta()
 fetch_faers_meta <- function() {
-  faers_url <- current_faers_meta_url()
-
-  yearlist <- list_of_faers_years(faers_url)
-  faers_html <- xml2::read_html(faers_url)
+  faers_html = current_faers_html()
+  yearlist <- list_of_faers_years(faers_html)
 
   meta_raw <- purrr::imap_dfr(yearlist, ~ {
     year_raw <- faers_html %>%
@@ -35,8 +33,32 @@ fetch_faers_meta <- function() {
 }
 
 
+list_of_faers_years <- function(faers_html = current_faers_html()) {
+
+  nyears <- number_of_faers_years(faers_html)
+
+  years <- c(rep(NA, nyears))
+
+  for (i in 1L:nyears) {
+    year_css <- compose_year_css(i)
+
+    year_node <- rvest::html_node(faers_html, css = year_css)
+
+    years[i] <- xml2::xml_attrs(year_node)[["href"]] %>%
+      stringr::str_remove("#collapse")
+  }
+
+  years
+}
+
+
 current_faers_meta_url <- function() {
   "https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html"
+}
+
+
+current_faers_html <- function() {
+  xml2::read_html(current_faers_meta_url())
 }
 
 
@@ -45,6 +67,22 @@ current_faers_meta_url <- function() {
 compose_table_css <- function(year) {
   glue::glue("#collapse{year} > div > div > table")
 }
+
+
+compose_year_css <- function(yearnumber) {
+  glue::glue(
+    "#accordion > div:nth-child({yearnumber}) > div.panel-heading > h4 > a"
+  )
+}
+
+
+number_of_faers_years <- function(faers_html) {
+  faers_html %>%
+    rvest::xml_node(css = "#accordion") %>%
+    xml2::xml_children() %>%
+    length()
+}
+
 
 period2quarter <- function(x) {
   dplyr::case_when(
