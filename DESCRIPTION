@@ -31,14 +31,14 @@ License: GPL-3
 URL: https://github.com/UBESP-DCTV/faers.db
 BugReports: https://github.com/UBESP-DCTV/faers.db/issues
 Imports: 
-    magrittr,
     downloader,
     dplyr,
-    lubridate,
-    rvest,
-    xml2,
     glue,
-    tibble
+    lubridate,
+    magrittr,
+    rvest,
+    tibble,
+    xml2
 Suggests: 
     devtools,
     goodpractice,
