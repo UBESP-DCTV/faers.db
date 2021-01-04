@@ -27,7 +27,7 @@ read_demo <- function(path) {
         as.factor
       ),
       dplyr::across(
-        dplyr::all_of(c("primaryid", "caseid", "caseversion", "age")),
+        dplyr::all_of(c( "caseid", "caseversion", "age")),
         as.integer
       ),
       dplyr::across(
@@ -51,7 +51,7 @@ read_drug <- function(path) {
       ),
       dplyr::across(
         dplyr::all_of(
-               c("primaryid", "caseid", "nda_num", "dose_amt", "drug_seq"
+               c( "caseid", "dose_amt", "drug_seq"
         )),
         as.integer
       ),
@@ -71,7 +71,7 @@ read_indi <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("primaryid", "caseid", "indi_drug_seq"
+        dplyr::all_of(c( "caseid", "indi_drug_seq"
         )),
         as.integer
       )
@@ -84,7 +84,7 @@ read_outc <- function(path) {
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
       dplyr::across(
-        dplyr::all_of(c("primaryid", "caseid"
+        dplyr::all_of(c( "caseid"
         )),
         as.integer)
     )
@@ -95,7 +95,7 @@ read_reac <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("primaryid", "caseid"
+        dplyr::all_of(c( "caseid"
         )),
         as.integer
       )
@@ -107,7 +107,7 @@ read_rpsr <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("rpsr_cod", as.factor),
-      dplyr::across(c("primaryid", "caseid"), as.integer)
+      dplyr::across(c( "caseid"), as.integer)
     )
   x
 }
@@ -121,7 +121,7 @@ read_ther <- function(path) {
   ) %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("primaryid", "caseid", "dsg_drug_seq"
+        dplyr::all_of(c( "caseid", "dsg_drug_seq"
         )),
         as.integer
       ),

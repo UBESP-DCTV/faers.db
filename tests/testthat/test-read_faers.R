@@ -1,12 +1,12 @@
 test_that("read_demo works", {
-  db_test_path <- system.file("testing-data/DEMO20Q3-10.txt",
+  db_test_path <- system.file("testing-data/DEMO20Q3-10000.txt",
     package = "faers.db"
   )
   res <- read_demo(db_test_path)
   expect_is(res, "tbl_df")
 
   expected_class_names <- c(
-    primaryid = "integer",
+    primaryid = "numeric",
     caseid = "integer",
     caseversion = "integer",
     i_f_code = "factor",
@@ -15,10 +15,10 @@ test_that("read_demo works", {
     init_fda_dt = "POSIXct",
     fda_dt = "POSIXct",
     rept_cod = "factor",
-    auth_num = "logical",
+    auth_num = "character",
     mfr_num = "character",
     mfr_sndr = "factor",
-    lit_ref = "logical",
+    lit_ref = "character",
     age = "integer",
     age_cod = "character",
     age_grp = "character",
@@ -41,16 +41,16 @@ test_that("read_demo works", {
 })
 
 
-test_that("read drug works",{
-  db_test_path <-  system.file("testing-data/DRUG20Q3-10.txt",
+test_that("read drug works", {
+  db_test_path <-  system.file("testing-data/DRUG20Q3-10000.txt",
                                package = "faers.db"
   )
 
   res <- read_drug(db_test_path)
   expect_is(res, "tbl_df")
 
-  expected_class_names <- c( #
-    primaryid = "integer",
+  expected_class_names <- c(
+    primaryid = "numeric",
     caseid = "integer",
     drug_seq = "integer",
     role_cod = "factor",
@@ -60,12 +60,12 @@ test_that("read drug works",{
     route = "character",
     dose_vbm = "character",
     cum_dose_chr = "numeric",
-    cum_dose_unit = "logical",
+    cum_dose_unit = "character",
     dechal = "factor",
     rechal = "factor",
-    lot_num = "logical",
+    lot_num = "character",
     exp_dt = "POSIXct",
-    nda_num = "integer",
+    nda_num = "numeric",
     dose_amt = "integer",
     dose_unit = "character",
     dose_form = "character",
@@ -78,8 +78,9 @@ test_that("read drug works",{
 })
 
 
-test_that("read indi works",{
-  db_test_path <-  system.file("testing-data/INDI20Q3-10.txt",
+
+test_that("read indi works", {
+  db_test_path <-  system.file("testing-data/INDI20Q3-10000.txt",
                                package = "faers.db"
   )
 
@@ -87,7 +88,7 @@ test_that("read indi works",{
   expect_is(res, "tbl_df")
 
   expected_class_names <- c(
-    primaryid = "integer",
+    primaryid = "numeric",
     caseid = "integer",
     indi_drug_seq = "integer",
     indi_pt = "character"
@@ -100,8 +101,8 @@ test_that("read indi works",{
 
 
 
-test_that("read outc works",{
-  db_test_path <-  system.file("testing-data/OUTC20Q3-10.txt",
+test_that("read outc works", {
+  db_test_path <-  system.file("testing-data/OUTC20Q3-10000.txt",
                                package = "faers.db"
   )
 
@@ -109,7 +110,7 @@ test_that("read outc works",{
   expect_is(res, "tbl_df")
 
   expected_class_names <- c(
-    primaryid = "integer",
+    primaryid = "numeric",
     caseid = "integer",
     outc_cod = "factor"
   )
@@ -119,8 +120,8 @@ test_that("read outc works",{
   )
 })
 
-test_that("read reac works",{
-  db_test_path <-  system.file("testing-data/REAC20Q3-10.txt",
+test_that("read reac works", {
+  db_test_path <-  system.file("testing-data/REAC20Q3-10000.txt",
                                package = "faers.db"
   )
 
@@ -128,10 +129,10 @@ test_that("read reac works",{
   expect_is(res, "tbl_df")
 
   expected_class_names <- c(
-    primaryid = "integer",
+    primaryid = "numeric",
     caseid = "integer",
     pt = "character",
-    drug_rec_act = "logical"
+    drug_rec_act = "character"
   )
   expect_equal(
     purrr::map_chr(res, ~class(.x)[[1L]]),
@@ -139,8 +140,8 @@ test_that("read reac works",{
   )
 })
 
-test_that("read rpsr works",{
-  db_test_path <-  system.file("testing-data/RPSR20Q3-10.txt",
+test_that("read rpsr works", {
+  db_test_path <-  system.file("testing-data/RPSR20Q3-10000.txt",
                                package = "faers.db"
   )
 
@@ -148,7 +149,7 @@ test_that("read rpsr works",{
   expect_is(res, "tbl_df")
 
   expected_class_names <- c(
-    primaryid = "integer",
+    primaryid = "numeric",
     caseid = "integer",
     rpsr_cod = "factor"
   )
@@ -158,8 +159,8 @@ test_that("read rpsr works",{
   )
 })
 
-test_that("read ther works",{
-  db_test_path <-  system.file("testing-data/THER20Q3-10.txt",
+test_that("read ther works", {
+  db_test_path <-  system.file("testing-data/THER20Q3-10000.txt",
                                package = "faers.db"
   )
 
@@ -167,7 +168,7 @@ test_that("read ther works",{
   expect_is(res, "tbl_df")
 
   expected_class_names <- c(
-    primaryid = "integer",
+    primaryid = "numeric",
     caseid = "integer",
     dsg_drug_seq = "integer",
     start_dt = "POSIXct",
@@ -180,3 +181,4 @@ test_that("read ther works",{
     expected_class_names
   )
 })
+
