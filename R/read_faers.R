@@ -68,10 +68,11 @@ read_drug <- function(path) {
 }
 
 read_indi <- function(path) {
-  x <- readr::read_delim(path, delim = "$")
-  x <- x %>%
+  x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
-      dplyr::across(c("primaryid", "caseid", "indi_drug_seq"),
+      dplyr::across(
+        dplyr::all_of(c("primaryid", "caseid", "indi_drug_seq"
+        )),
         as.integer
       )
     )
@@ -79,27 +80,33 @@ read_indi <- function(path) {
 }
 
 read_outc <- function(path) {
-  x <- readr::read_delim(path, delim = "$")
-  x <- x %>%
+  x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
-      dplyr::across(c("primaryid", "caseid"), as.integer)
+      dplyr::across(
+        dplyr::all_of(c("primaryid", "caseid"
+        )),
+        as.integer)
     )
   x
 }
 
 read_reac <- function(path) {
-  x <- readr::read_delim(path, delim = "$")
-  x <- x %>%
-    dplyr::mutate(dplyr::across(c("primaryid", "caseid"), as.integer))
+  x <- readr::read_delim(path, delim = "$") %>%
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(c("primaryid", "caseid"
+        )),
+        as.integer
+      )
+    )
   x
 }
 
 read_rpsr <- function(path) {
-  x <- readr::read_delim(path, delim = "$")
-  x <- x %>%
+  x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
-      dplyr::across("rpsr_cod", as.factor), #transform to factor
+      dplyr::across("rpsr_cod", as.factor),
       dplyr::across(c("primaryid", "caseid"), as.integer)
     )
   x
@@ -111,18 +118,19 @@ read_ther <- function(path) {
       dur = readr::col_double(),
       dur_cod =  readr::col_character()
     )
-  )
-  x <- x %>%
+  ) %>%
     dplyr::mutate(
-      dplyr::across(c("primaryid", "caseid", "dsg_drug_seq"),
+      dplyr::across(
+        dplyr::all_of(c("primaryid", "caseid", "dsg_drug_seq"
+        )),
         as.integer
+      ),
+      dplyr::across(
+        dplyr::ends_with("dt"),
+         ~lubridate::parse_date_time(.x,
+         orders = c("%Y%m%d", "%Y%m", "%Y")
+         )
       )
     )
-  x[[4L]] <- lubridate::parse_date_time(x[[4L]],
-    orders = c("%Y%m%d", "%Y%m", "%Y")
-  )
-  x[[5L]] <- lubridate::parse_date_time(x[[5L]],
-    orders = c("%Y%m%d", "%Y%m", "%Y")
-  )
   x
 }
