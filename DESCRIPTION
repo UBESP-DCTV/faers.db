@@ -40,10 +40,10 @@ Suggests:
     devtools,
     goodpractice,
     lintr,
+    purrr,
     spelling,
     testthat,
-    usethis,
-    purrr
+    usethis
 Encoding: UTF-8
 Language: en-US
 LazyData: true
