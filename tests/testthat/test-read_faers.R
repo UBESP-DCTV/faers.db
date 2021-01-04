@@ -181,4 +181,3 @@ test_that("read ther works", {
     expected_class_names
   )
 })
-
