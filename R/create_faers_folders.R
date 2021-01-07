@@ -15,7 +15,9 @@
 #' @export
 #'
 #' @examples
-#' create_faers_folders(year = 2018, quarter = "q1", type = "ascii")
+#' \dontrun{
+#'   create_faers_folders(year = 2018, quarter = "q1", type = "ascii")
+#' }
 create_faers_folders <- function(path = getwd(),
                                  year,
                                  quarter = c("q1", "q2", "q3", "q4"),

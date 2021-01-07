@@ -14,15 +14,19 @@
 #' @export
 #'
 #' @examples
-#' retrieve_qde(year = 2018, quarter = "q4")
+#' \dontrun{
+#'   retrieve_qde(year = 2018, quarter = "q4")
+#' }
 #'
 retrieve_qde <- function(path = getwd(),
                          year,
                          quarter = c("q1", "q2", "q3", "q4"),
                          type = c("ascii", "xml")) {
   quarter <- match.arg(quarter)
+  stopifnot(`Data available` = is_year_quarter_available(year, quarter))
+
   type <- match.arg(type)
-  checkyear(year)
+
   faers_link <- compose_faers_link(year, quarter, type)
   faers_path <- compose_faers_path(path, year, quarter, type)
   create_faers_folders(path, year, quarter, type)

@@ -11,16 +11,16 @@ compose_faers_link(
 )
 }
 \arguments{
-\item{year}{(int) The year of the data to download (no default)}
+\item{year}{(int) The year of the data to download.}
 
-\item{quarter}{(char) The quarter of the data to download
-("q1", "q2", "q3" or "q4", default: "q1)}
+\item{quarter}{(char, default: "q1") The quarter of the data
+to download between "q1", "q2", "q3" or "q4".}
 
-\item{type}{(char) The format of the data to download,
-("ascii" or "xml", default: "ascii")}
+\item{type}{(char, default: "ascii") The format of the data to
+download between "ascii" or "xml",}
 }
 \value{
-Return the link to download FAERS data
+(chr) the link to download selected FAERS \code{.zip} data.
 }
 \description{
 This function compose the download link for FAERS data
