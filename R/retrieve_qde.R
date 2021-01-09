@@ -22,17 +22,17 @@ retrieve_qde <- function(year,
                          quarter = c("q1", "q2", "q3", "q4"),
                          type = c("ascii", "xml"),
                          path = getwd(),
-                         create.folder = NULL,
-                         download.data = NULL) {
+                         create_folder = NULL,
+                         download_data = NULL) {
   checkyear(year)
   quarter <- match.arg(quarter)
   type <- match.arg(type)
-  if(!is_year_quarter_available(year, quarter)) {
+  if (!is_year_quarter_available(year, quarter)) {
     stop(glue::glue("Data of {quarter} of {year} are not available"))
   }
   download_from <- compose_faers_link(year, quarter, type)
   download_to <- compose_faers_path(year, quarter, type, path)
-  create_folder(download_to, create.folder)
-  download_file(download_from, download_to, download.data,
+  create_folder(download_to, create_folder)
+  download_file(download_from, download_to, download_data,
                 year, quarter, type)
 }

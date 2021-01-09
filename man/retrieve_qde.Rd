@@ -9,8 +9,8 @@ retrieve_qde(
   quarter = c("q1", "q2", "q3", "q4"),
   type = c("ascii", "xml"),
   path = getwd(),
-  create.folder = NULL,
-  download.data = NULL
+  create_folder = NULL,
+  download_data = NULL
 )
 }
 \arguments{
