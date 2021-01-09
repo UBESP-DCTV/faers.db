@@ -51,3 +51,9 @@ compose_faers_link <- function(year, quarter, type) {
   glue::glue("https://fis.fda.gov/content/Exports/faers_{type}",
              "_{year}{quarter}.zip")
 }
+
+
+compose_faers_path <- function(year, quarter, type, path) {
+  if (!dir.exists(path)) stop(glue::glue("Directory {path} not found"))
+  glue::glue("{path}/faers_raw_data/{year}/{quarter}/{type}")
+}
