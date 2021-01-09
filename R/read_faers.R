@@ -41,22 +41,15 @@ read_demo <- function(path) {
 
 read_drug <- function(path) {
   x <- readr::read_delim(path, delim = "$",
-    col_types = readr::cols(exp_dt = readr::col_double())
-  ) %>%
+    col_types = readr::cols(exp_dt = readr::col_double())) %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("role_cod",  "dechal", "rechal"
-        )),
-        as.factor
+        dplyr::all_of(c("role_cod",  "dechal", "rechal")),as.factor
       ),
       dplyr::across(
-        dplyr::all_of(
-               c("caseid", "dose_amt", "drug_seq"
-        )),
-        as.integer
+        dplyr::all_of(c("caseid", "dose_amt", "drug_seq")),as.integer
       ),
-      dplyr::across("cum_dose_chr", as.numeric
-        ),
+      dplyr::across("cum_dose_chr", as.numeric),
       dplyr::across(
         dplyr::ends_with("dt"),
          ~lubridate::parse_date_time(.x,
@@ -71,9 +64,7 @@ read_indi <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("caseid", "indi_drug_seq"
-        )),
-        as.integer
+        dplyr::all_of(c("caseid", "indi_drug_seq")),as.integer
       )
     )
   x
@@ -83,11 +74,7 @@ read_outc <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
-      dplyr::across(
-        dplyr::all_of("caseid"
-        ),
-        as.integer
-      )
+      dplyr::across(dplyr::all_of("caseid"),as.integer)
     )
   x
 }
@@ -95,11 +82,7 @@ read_outc <- function(path) {
 read_reac <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
-      dplyr::across(
-        dplyr::all_of("caseid"
-        ),
-        as.integer
-      )
+      dplyr::across(dplyr::all_of("caseid"),as.integer)
     )
   x
 }
@@ -122,9 +105,7 @@ read_ther <- function(path) {
   ) %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("caseid", "dsg_drug_seq"
-        )),
-        as.integer
+        dplyr::all_of(c("caseid", "dsg_drug_seq")),as.integer
       ),
       dplyr::across(
         dplyr::ends_with("dt"),

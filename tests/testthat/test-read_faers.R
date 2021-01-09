@@ -1,5 +1,5 @@
 test_that("read_demo works", {
-  db_test_path <- system.file("testing-data/DEMO20Q3-10000.txt",
+  db_test_path <- system.file("testing-data/DEMO20Q3-10.txt",
     package = "faers.db"
   )
   res <- read_demo(db_test_path)
@@ -42,7 +42,7 @@ test_that("read_demo works", {
 
 
 test_that("read drug works", {
-  db_test_path <-  system.file("testing-data/DRUG20Q3-10000.txt",
+  db_test_path <-  system.file("testing-data/DRUG20Q3-10.txt",
                                package = "faers.db"
   )
 
@@ -80,7 +80,7 @@ test_that("read drug works", {
 
 
 test_that("read indi works", {
-  db_test_path <-  system.file("testing-data/INDI20Q3-10000.txt",
+  db_test_path <-  system.file("testing-data/INDI20Q3-10.txt",
                                package = "faers.db"
   )
 
@@ -102,7 +102,7 @@ test_that("read indi works", {
 
 
 test_that("read outc works", {
-  db_test_path <-  system.file("testing-data/OUTC20Q3-10000.txt",
+  db_test_path <-  system.file("testing-data/OUTC20Q3-10.txt",
                                package = "faers.db"
   )
 
@@ -121,7 +121,7 @@ test_that("read outc works", {
 })
 
 test_that("read reac works", {
-  db_test_path <-  system.file("testing-data/REAC20Q3-10000.txt",
+  db_test_path <-  system.file("testing-data/REAC20Q3-10.txt",
                                package = "faers.db"
   )
 
@@ -141,7 +141,7 @@ test_that("read reac works", {
 })
 
 test_that("read rpsr works", {
-  db_test_path <-  system.file("testing-data/RPSR20Q3-10000.txt",
+  db_test_path <-  system.file("testing-data/RPSR20Q3-10.txt",
                                package = "faers.db"
   )
 
@@ -160,7 +160,7 @@ test_that("read rpsr works", {
 })
 
 test_that("read ther works", {
-  db_test_path <-  system.file("testing-data/THER20Q3-10000.txt",
+  db_test_path <-  system.file("testing-data/THER20Q3-10.txt",
                                package = "faers.db"
   )
 
