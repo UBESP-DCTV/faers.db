@@ -36,3 +36,12 @@ retrieve_qde <- function(year,
   download_file(download_from, download_to, download_data,
                 year, quarter, type)
 }
+
+
+checkyear <- function(year) {
+  if (!is.character(year)) stop("Year must be character")
+  if (as.numeric(year) < 2013L |
+      as.numeric(year) > lubridate::year(Sys.Date())) {
+    stop("Use a year after 2013 up to the current year")
+  }
+}
