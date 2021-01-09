@@ -82,3 +82,12 @@ permission_download_file <- function(faerspath, download_data) {
   }
   download_data
 }
+
+
+create_folder <- function(download_to, create_folder) {
+  if (!dir.exists(download_to)) {
+    if (permission_create_folder(download_to, create_folder)) {
+      dir.create(download_to, recursive = TRUE)
+    } else stop("Permission to create folder denied by the user")
+  }
+}
