@@ -57,3 +57,15 @@ compose_faers_path <- function(year, quarter, type, path) {
   if (!dir.exists(path)) stop(glue::glue("Directory {path} not found"))
   glue::glue("{path}/faers_raw_data/{year}/{quarter}/{type}")
 }
+
+
+permission_create_folder <- function(faerspath, create_folder) {
+  if (interactive()) {
+    create_folder <- utils::askYesNo(glue::glue("The following folders will be",
+                                                "created:\n{faerspath}\ndo you",
+                                                " confirm?"))
+  } else {
+    create_folder <- create_folder %NULL% TRUE
+  }
+  create_folder
+}
