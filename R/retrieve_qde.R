@@ -45,3 +45,9 @@ checkyear <- function(year) {
     stop("Use a year after 2013 up to the current year")
   }
 }
+
+
+compose_faers_link <- function(year, quarter, type) {
+  glue::glue("https://fis.fda.gov/content/Exports/faers_{type}",
+             "_{year}{quarter}.zip")
+}
