@@ -5,23 +5,25 @@
 \title{Retrieve qde}
 \usage{
 retrieve_qde(
-  path = getwd(),
   year,
   quarter = c("q1", "q2", "q3", "q4"),
-  type = c("ascii", "xml")
+  type = c("ascii", "xml"),
+  path = getwd(),
+  create.folder = NULL,
+  download.data = NULL
 )
 }
 \arguments{
-\item{path}{(char) The path of the folder where the database
-will be saved (default: working directory)}
+\item{year}{(chr) The year of the data to download (no default)}
 
-\item{year}{(int) The year of the data to download (no default)}
-
-\item{quarter}{(char) The quarter of the data to download
+\item{quarter}{(chr) The quarter of the data to download
 ("q1", "q2", "q3" or "q4", default: "q1)}
 
-\item{type}{(char) The format of the data to download,
+\item{type}{(chr) The format of the data to download,
 ("ascii" or "xml", default: "ascii")}
+
+\item{path}{(chr) Path of the directory where you want to download the data
+(default: working directory)}
 }
 \value{
 Download the selected FAERS data in the chosen folder

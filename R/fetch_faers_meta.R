@@ -11,7 +11,6 @@
 #' fetch_faers_meta()
 fetch_faers_meta <- function() {
   faers_html <- current_faers_html()
-
   years_from_faers_html(faers_html) %>%
     purrr::map_dfr(extract_meta_for_year, faers_html = faers_html) %>%
     tidy_raw_faers_meta()
@@ -61,8 +60,7 @@ compose_year_css <- function(yearnumber) {
 
 
 extract_meta_for_year <- function(faers_html = current_faers_html(),
-                                  year
-) {
+                                  year) {
   faers_html %>%
     rvest::html_node(css = compose_table_css(year)) %>%
     rvest::html_table(header = FALSE, fill = TRUE) %>%
