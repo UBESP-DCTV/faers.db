@@ -33,7 +33,7 @@ This function download the FAERS data for a specific year and quarter
 }
 \examples{
 \dontrun{
-  retrieve_qde(year = 2018, quarter = "q4")
+  retrieve_qde(year = "2018", quarter = "q4")
 }
 
 }
