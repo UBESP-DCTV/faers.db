@@ -85,9 +85,22 @@ permission_download_file <- function(faerspath, download_data) {
 
 
 create_folder <- function(download_to, create_folder) {
-  if (!dir.exists(download_to)) {
-    if (permission_create_folder(download_to, create_folder)) {
+  if(!dir.exists(download_to)) {
+    if(permission_create_folder(download_to, create_folder)) {
       dir.create(download_to, recursive = TRUE)
     } else stop("Permission to create folder denied by the user")
   }
+}
+
+
+download_file <- function(download_from, download_to, download_data,
+                          year, quarter, type) {
+  if(permission_download_file(download_to, download_data)) {
+    cat(glue::glue("Retrieving FAERS {quarter} {year} ({type}): "))
+    downloader::download(url = download_from,
+                         glue::glue("{download_to}/",
+                                    "faers_{type}_{year}{quarter}.zip"),
+                         mode = "wb")
+    cat("\nDone")
+  } else stop("Permission to download file denied by the user")
 }
