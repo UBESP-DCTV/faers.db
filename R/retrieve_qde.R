@@ -69,3 +69,16 @@ permission_create_folder <- function(faerspath, create_folder) {
   }
   create_folder
 }
+
+
+permission_download_file <- function(faerspath, download_data) {
+  if (interactive()) {
+    download_data <- utils::askYesNo(glue::glue("A .zip file will be",
+                                                "downloaded at the local path",
+                                                "\n{faerspath}\n ",
+                                                "do you confirm?"))
+  } else {
+    download_data <- download_data %NULL% TRUE
+  }
+  download_data
+}
