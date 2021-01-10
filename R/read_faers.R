@@ -26,14 +26,12 @@ read_demo <- function(path) {
         )),
         as.factor
       ),
-      dplyr::across(
-        dplyr::all_of(c("caseid", "caseversion", "age")),
+      dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
         as.integer
       ),
-      dplyr::across(
-        dplyr::ends_with("dt"),
+      dplyr::across(dplyr::ends_with("dt"),
         ~lubridate::parse_date_time(.x,
-           orders = c("%Y%m%d", "%Y%m", "%Y")
+          orders = c("%Y%m%d", "%Y%m", "%Y")
         )
       )
     )
@@ -43,17 +41,14 @@ read_drug <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(exp_dt = readr::col_double())) %>%
     dplyr::mutate(
-      dplyr::across(
-        dplyr::all_of(c("role_cod",  "dechal", "rechal")),
+      dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
         as.factor
       ),
-      dplyr::across(
-        dplyr::all_of(c("caseid", "dose_amt", "drug_seq")),
+      dplyr::across(dplyr::all_of(c("caseid", "dose_amt", "drug_seq")),
         as.integer
       ),
       dplyr::across("cum_dose_chr", as.numeric),
-      dplyr::across(
-        dplyr::ends_with("dt"),
+      dplyr::across(dplyr::ends_with("dt"),
         ~lubridate::parse_date_time(.x,
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
@@ -64,8 +59,7 @@ read_drug <- function(path) {
 read_indi <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
-      dplyr::across(
-        dplyr::all_of(c("caseid", "indi_drug_seq")),
+      dplyr::across(dplyr::all_of(c("caseid", "indi_drug_seq")),
         as.integer
       )
     )
@@ -100,12 +94,10 @@ read_ther <- function(path) {
     )
   ) %>%
     dplyr::mutate(
-      dplyr::across(
-        dplyr::all_of(c("caseid", "dsg_drug_seq")),
+      dplyr::across(dplyr::all_of(c("caseid", "dsg_drug_seq")),
         as.integer
       ),
-    dplyr::across(
-      dplyr::ends_with("dt"),
+      dplyr::across(dplyr::ends_with("dt"),
         ~lubridate::parse_date_time(.x,
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
