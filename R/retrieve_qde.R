@@ -74,7 +74,7 @@ permission_create_folder <- function(faerspath, create_folder) {
   if (interactive()) {
     create_folder <- usethis::ui_yeah(glue::glue(
       "The following folders will be created:
-      {'faerspath'}
+      {faerspath}
       do you confirm?"
     ))
   }
