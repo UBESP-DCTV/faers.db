@@ -40,7 +40,7 @@ read_demo <- function(path) {
 }
 
 read_drug <- function(path) {
-  x <- readr::read_delim(path, delim = "$",
+  readr::read_delim(path, delim = "$",
     col_types = readr::cols(exp_dt = readr::col_double())) %>%
     dplyr::mutate(
       dplyr::across(
@@ -59,48 +59,41 @@ read_drug <- function(path) {
         )
       )
     )
-  x
 }
 
 read_indi <- function(path) {
-  x <- readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(c("caseid", "indi_drug_seq")),
         as.integer
       )
     )
-  x
 }
 
 read_outc <- function(path) {
-  x <- readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
       dplyr::across(dplyr::all_of("caseid"), as.integer)
     )
-  x
 }
 
 read_reac <- function(path) {
-  x <- readr::read_delim(path, delim = "$") %>%
-    dplyr::mutate(
-      dplyr::across(dplyr::all_of("caseid"), as.integer)
-    )
-  x
+  readr::read_delim(path, delim = "$") %>%
+    dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer))
 }
 
 read_rpsr <- function(path) {
-  x <- readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("rpsr_cod", as.factor),
       dplyr::across("caseid", as.integer)
     )
-  x
 }
 
 read_ther <- function(path) {
-  x <- readr::read_delim(path, delim = "$",
+  readr::read_delim(path, delim = "$",
     col_types = readr::cols(
       dur = readr::col_double(),
       dur_cod =  readr::col_character()
@@ -111,12 +104,11 @@ read_ther <- function(path) {
         dplyr::all_of(c("caseid", "dsg_drug_seq")),
         as.integer
       ),
-      dplyr::across(
-        dplyr::ends_with("dt"),
-          ~lubridate::parse_date_time(.x,
-            orders = c("%Y%m%d", "%Y%m", "%Y")
+    dplyr::across(
+      dplyr::ends_with("dt"),
+        ~lubridate::parse_date_time(.x,
+          orders = c("%Y%m%d", "%Y%m", "%Y")
         )
       )
     )
-  x
 }
