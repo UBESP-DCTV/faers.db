@@ -44,10 +44,12 @@ read_drug <- function(path) {
     col_types = readr::cols(exp_dt = readr::col_double())) %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("role_cod",  "dechal", "rechal")), as.factor
+        dplyr::all_of(c("role_cod",  "dechal", "rechal")),
+        as.factor
       ),
       dplyr::across(
-        dplyr::all_of(c("caseid", "dose_amt", "drug_seq")), as.integer
+        dplyr::all_of(c("caseid", "dose_amt", "drug_seq")),
+        as.integer
       ),
       dplyr::across("cum_dose_chr", as.numeric),
       dplyr::across(
@@ -64,7 +66,8 @@ read_indi <- function(path) {
   x <- readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("caseid", "indi_drug_seq")), as.integer
+        dplyr::all_of(c("caseid", "indi_drug_seq")),
+        as.integer
       )
     )
   x
@@ -105,7 +108,8 @@ read_ther <- function(path) {
   ) %>%
     dplyr::mutate(
       dplyr::across(
-        dplyr::all_of(c("caseid", "dsg_drug_seq")), as.integer
+        dplyr::all_of(c("caseid", "dsg_drug_seq")),
+        as.integer
       ),
       dplyr::across(
         dplyr::ends_with("dt"),
