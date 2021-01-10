@@ -54,9 +54,9 @@ read_drug <- function(path) {
       dplyr::across("cum_dose_chr", as.numeric),
       dplyr::across(
         dplyr::ends_with("dt"),
-         ~lubridate::parse_date_time(.x,
-         orders = c("%Y%m%d", "%Y%m", "%Y")
-         )
+        ~lubridate::parse_date_time(.x,
+          orders = c("%Y%m%d", "%Y%m", "%Y")
+        )
       )
     )
   x
@@ -113,9 +113,9 @@ read_ther <- function(path) {
       ),
       dplyr::across(
         dplyr::ends_with("dt"),
-         ~lubridate::parse_date_time(.x,
-         orders = c("%Y%m%d", "%Y%m", "%Y")
-         )
+          ~lubridate::parse_date_time(.x,
+            orders = c("%Y%m%d", "%Y%m", "%Y")
+        )
       )
     )
   x
