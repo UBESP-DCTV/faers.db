@@ -5,28 +5,27 @@
 \title{Retrieve qde}
 \usage{
 retrieve_qde(
+  path,
   year,
   quarter = c("q1", "q2", "q3", "q4"),
   type = c("ascii", "xml"),
-  path = getwd(),
   create_folder = NULL,
   download_data = NULL
 )
 }
 \arguments{
-\item{year}{(chr) The year of the data to download (no default)}
+\item{path}{(chr) Path of the directory where you want to download the data}
+
+\item{year}{(chr) The year of the data to download}
 
 \item{quarter}{(chr) The quarter of the data to download
 ("q1", "q2", "q3" or "q4", default: "q1)}
 
 \item{type}{(chr) The format of the data to download,
 ("ascii" or "xml", default: "ascii")}
-
-\item{path}{(chr) Path of the directory where you want to download the data
-(default: working directory)}
 }
 \value{
-(lgl) TRUE (invisible) if downloaded was succesful, FALSE otherwise
+(lgl) TRUE (invisible) if the download was succesful, FALSE otherwise
 }
 \description{
 This function download the FAERS data for a specific year and quarter
@@ -35,5 +34,6 @@ This function download the FAERS data for a specific year and quarter
 \dontrun{
   retrieve_qde(year = "2018", quarter = "q4")
 }
+a <- retrieve_qde(year="2016", quarter = "q4", path = "C:/Users/pietr/Documents/Downloads")
 
 }
