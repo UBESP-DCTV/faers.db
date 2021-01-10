@@ -10,7 +10,7 @@
 #' @param path (chr) Path of the directory where you want to download the data
 #' (default: working directory)
 #'
-#' @return Download the selected FAERS data in the chosen folder
+#' @return (lgl) TRUE (invisible) if downloaded was succesful, FALSE otherwise
 #' @export
 #'
 #' @examples
@@ -28,7 +28,8 @@ retrieve_qde <- function(year,
   quarter <- match.arg(quarter)
   type <- match.arg(type)
   if (!is_year_quarter_available(year, quarter)) {
-    stop(glue::glue("Data of {quarter} of {year} are not available"))
+    warning(glue::glue("Data of {quarter} of {year} are not available"))
+    return(invisible(FALSE))
   }
   download_from <- compose_faers_link(year, quarter, type)
   download_to <- compose_faers_path(year, quarter, type, path)
@@ -65,29 +66,39 @@ create_folder <- function(download_to, create_folder) {
       dir.create(download_to, recursive = TRUE)
     } else stop("Permission to create folder denied by the user")
   }
+  download_to
 }
 
 
 permission_create_folder <- function(faerspath, create_folder) {
   if (interactive()) {
-    create_folder <- utils::askYesNo(glue::glue("The following folders will be",
-                                                "created:\n{faerspath}\ndo you",
-                                                " confirm?"))
+    create_folder <- usethis::ui_yeah(glue::glue(
+      "The following folders will be created:
+      {'faerspath'}
+      do you confirm?"
+    ))
   }
-  create_folder <- create_folder %NULL% TRUE
-  create_folder
+  create_folder %NULL% TRUE
 }
 
 
 download_file <- function(download_from, download_to, download_data,
                           year, quarter, type) {
+  downloaded <- FALSE
   filename <- glue::glue("{download_to}/faers_{type}_{year}{quarter}.zip")
-  if (file.exists(filename)) stop("Data already in the folder")
+  if (file.exists(filename)) {
+    warning("Data already in the folder, will not download the file")
+    return(invisible(downloaded))
+  }
   if (permission_download_file(download_to, download_data)) {
-    cat(glue::glue("Retrieving FAERS {quarter} {year} ({type}): "))
+    message(glue::glue("Retrieving FAERS {quarter} {year} ({type}): "))
     downloader::download(url = download_from, filename, mode = "wb")
-    cat("\nDone")
-  } else stop("Permission to download file denied by the user")
+    message("\nDone")
+    downloaded <- TRUE
+  } else {
+    warning("Permission to download file denied by the user")
+  }
+  invisible(downloaded)
 }
 
 
@@ -98,6 +109,5 @@ permission_download_file <- function(faerspath, download_data) {
                                                 "\n{faerspath}\n ",
                                                 "do you confirm?"))
   }
-  download_data <- download_data %NULL% TRUE
-  download_data
+  download_data %NULL% TRUE
 }

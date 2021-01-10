@@ -26,7 +26,7 @@ retrieve_qde(
 (default: working directory)}
 }
 \value{
-Download the selected FAERS data in the chosen folder
+(lgl) TRUE (invisible) if downloaded was succesful, FALSE otherwise
 }
 \description{
 This function download the FAERS data for a specific year and quarter
