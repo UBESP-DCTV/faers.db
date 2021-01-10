@@ -25,7 +25,7 @@ retrieve_qde(
 ("ascii" or "xml", default: "ascii")}
 }
 \value{
-(lgl) TRUE (invisible) if the download was succesful, FALSE otherwise
+(lgl) TRUE if the download was successful, FALSE otherwise
 }
 \description{
 This function download the FAERS data for a specific year and quarter
@@ -34,6 +34,5 @@ This function download the FAERS data for a specific year and quarter
 \dontrun{
   retrieve_qde(year = "2018", quarter = "q4")
 }
-a <- retrieve_qde(year="2016", quarter = "q4", path = "C:/Users/pietr/Documents/Downloads")
 
 }
