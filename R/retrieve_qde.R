@@ -73,9 +73,8 @@ permission_create_folder <- function(faerspath, create_folder) {
     create_folder <- utils::askYesNo(glue::glue("The following folders will be",
                                                 "created:\n{faerspath}\ndo you",
                                                 " confirm?"))
-  } else {
-    create_folder <- create_folder %NULL% TRUE
   }
+  create_folder <- create_folder %NULL% TRUE
   create_folder
 }
 
@@ -103,8 +102,7 @@ permission_download_file <- function(faerspath, download_data) {
                                                 "downloaded at the local path",
                                                 "\n{faerspath}\n ",
                                                 "do you confirm?"))
-  } else {
-    download_data <- download_data %NULL% TRUE
   }
+  download_data <- download_data %NULL% TRUE
   download_data
 }
