@@ -17,7 +17,12 @@
 #'     read_demo(demo_path)
 #'   }
 read_demo <- function(path) {
-  readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$",
+    col_types = readr::cols(
+      auth_num = readr::col_character(),
+      lit_ref = readr::col_character()
+    )
+  ) %>%
     dplyr::mutate(
       dplyr::across(
         dplyr::all_of(c(
@@ -39,7 +44,13 @@ read_demo <- function(path) {
 
 read_drug <- function(path) {
   readr::read_delim(path, delim = "$",
-    col_types = readr::cols(exp_dt = readr::col_double())) %>%
+    col_types = readr::cols(
+      exp_dt = readr::col_double(),
+      cum_dose_unit = readr::col_character(),
+      lot_num = readr::col_character(),
+      nda_num = readr::col_double()
+    )
+  ) %>%
     dplyr::mutate(
       dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
         as.factor
@@ -74,7 +85,8 @@ read_outc <- function(path) {
 }
 
 read_reac <- function(path) {
-  readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$",
+    col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
     dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer))
 }
 
