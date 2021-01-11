@@ -31,16 +31,23 @@ License: GPL-3
 URL: https://github.com/UBESP-DCTV/faers.db
 BugReports: https://github.com/UBESP-DCTV/faers.db/issues
 Imports: 
+    downloader,
     dplyr,
+    glue,
     lubridate,
     magrittr,
+    purrr,
     readr,
-    tibble
+    rlang (>= 0.1.2),
+    rvest,
+    stringr,
+    tibble,
+    xml2
 Suggests: 
     devtools,
     goodpractice,
     lintr,
-    purrr,
+    roxygen2,
     spelling,
     testthat,
     usethis

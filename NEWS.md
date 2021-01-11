@@ -1,5 +1,25 @@
 # faers.db (development version)
 
+* added `\dontrun{}` to examples with side effects.
+* rename and refactor `list_of_faers_year()` into
+  `years_from_faers_html()`
+* refactored `fetch_faers_meta()` and `years_from_faers_html()` to have
+  in input the FAERS' meta html. This way it is possible to download 
+  the HTML only once.
+* rename and refactor `import faers_html()` into `current_faers_html()`
+  to directly access to `current_faers_meta_url()`.
+* rename and refactor `list_of_faers_data` into `fetch_faers_meta()`.
+    Now it always return a `tible`, using fixed internal parametrization
+    for FAERS meta-data URL. Internal computational service function
+    are extracted and tested.
+* refactor `compose_faers_link()` with the updated
+  `is_year_quarter_available()`.
+* rename and refactor `check_year` into `is_year_quarter_available()`
+  to always return booleans and check against real FAERS data (using 
+  quarter too).
+* added a function to download FAERS data.
+* added `.lintr` to set the default linters.
+* added development skeleton `dev/02-development.R`.
 * added `read_*()` (with * in {`demo`, `drug`, `indi`, `outc`, `reac`,
   `rpsr`, and `ther`}) functions to read FAERS raw data into tibbles.
 * added `.lintr` to set the default linters
