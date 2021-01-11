@@ -23,6 +23,12 @@ retrieve_qde(
 
 \item{type}{(chr) The format of the data to download,
 ("ascii" or "xml", default: "ascii")}
+
+\item{create_folder}{(lgl) Only if session is not in interactive mode.
+TRUE: permission to create folders, FALSE: deny permission to create folders}
+
+\item{download_data}{(lgl) Only if session is not in interactive mode.
+TRUE: permission to download data, FALSE: deny permission to download data.}
 }
 \value{
 (lgl) TRUE if the download was successful, FALSE otherwise

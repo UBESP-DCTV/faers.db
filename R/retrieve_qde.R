@@ -8,7 +8,11 @@
 #' ("q1", "q2", "q3" or "q4", default: "q1)
 #' @param type (chr) The format of the data to download,
 #' ("ascii" or "xml", default: "ascii")
-#'
+#' @param create_folder (lgl) Only if session is not in interactive mode.
+#' TRUE: permission to create folders, FALSE: deny permission to create folders
+#' @param download_data (lgl) Only if session is not in interactive mode.
+#' TRUE: permission to download data, FALSE: deny permission to download data.
+#
 #' @return (lgl) TRUE if the download was successful, FALSE otherwise
 #' @export
 #'
@@ -81,6 +85,9 @@ checkpath <- function(path) {
 
 
 compose_faers_link <- function(year, quarter, type) {
+  if (!is_year_quarter_available(year, quarter)) {
+    warning("Data not available")
+  }
   glue::glue("https://fis.fda.gov/content/Exports/faers_{type}",
              "_{year}{quarter}.zip")
 }
