@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • faers.db</title>
+<title>Tidy eval helpers — tidyeval • faers.db</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,41 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Tidy eval helpers — tidyeval" />
+<meta property="og:description" content="
+
+sym() creates a symbol from a string and
+syms() creates a list of symbols from a
+character vector.
+enquo() and
+enquos() delay the execution of one or
+several function arguments. enquo() returns a single quoted
+expression, which is like a blueprint for the delayed computation.
+enquos() returns a list of such quoted expressions.
+expr() quotes a new expression
+locally. It
+is mostly useful to build new expressions around arguments
+captured with enquo() or enquos():
+expr(mean(!!enquo(arg), na.rm = TRUE)).
+as_name() transforms a quoted variable name
+into a string. Supplying something else than a quoted variable
+name is an error.
+That's unlike as_label() which also returns
+a single string but supports any kind of R object as input,
+including quoted function calls and vectors. Its purpose is to
+summarise that object into a single label. That label is often
+suitable as a default name.
+If you don't know what a quoted expression contains (for instance
+expressions captured with enquo() could be a variable
+name, a call to a function, or an unquoted constant), then use
+as_label(). If you know you have quoted a simple variable
+name, or would like to enforce this, use as_name().
+
+
+To learn more about tidy eval and how to use these tools, visit
+https://tidyeval.tidyverse.org and the
+Metaprogramming
+section of Advanced R." />
 
 
 
@@ -58,7 +92,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,54 +144,57 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/UBESP-DCTV/faers.db/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Tidy eval helpers</h1>
+    <small class="dont-index">Source: <a href='https://github.com/UBESP-DCTV/faers.db/blob/master/R/utils-tidy-eval.R'><code>R/utils-tidy-eval.R</code></a></small>
+    <div class="hidden name"><code>tidyeval.Rd</code></div>
     </div>
 
-    <div id="faersdb-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#faersdb-development-version" class="anchor"></a>faers.db (development version)</h1>
+    <div class="ref-description">
+    
 <ul>
-<li>added <code>\dontrun{}</code> to examples with side effects.</li>
-<li>rename and refactor <code>list_of_faers_year()</code> into <code>years_from_faers_html()</code>
-</li>
-<li>refactored <code><a href="../reference/fetch_faers_meta.html">fetch_faers_meta()</a></code> and <code>years_from_faers_html()</code> to have in input the FAERS’ meta html. This way it is possible to download the HTML only once.</li>
-<li>rename and refactor <code>import faers_html()</code> into <code>current_faers_html()</code> to directly access to <code>current_faers_meta_url()</code>.</li>
-<li>rename and refactor <code>list_of_faers_data</code> into <code><a href="../reference/fetch_faers_meta.html">fetch_faers_meta()</a></code>. Now it always return a <code>tible</code>, using fixed internal parametrization for FAERS meta-data URL. Internal computational service function are extracted and tested.</li>
-<li>refactor <code>compose_faers_link()</code> with the updated <code><a href="../reference/is_year_quarter_available.html">is_year_quarter_available()</a></code>.</li>
-<li>rename and refactor <code>check_year</code> into <code><a href="../reference/is_year_quarter_available.html">is_year_quarter_available()</a></code> to always return booleans and check against real FAERS data (using quarter too).</li>
-<li>added a function to download FAERS data.</li>
-<li>added <code>.lintr</code> to set the default linters.</li>
-<li>added development skeleton <code>dev/02-development.R</code>.</li>
-<li>added <code>read_*()</code> (with * in {<code>demo</code>, <code>drug</code>, <code>indi</code>, <code>outc</code>, <code>reac</code>, <code>rpsr</code>, and <code>ther</code>}) functions to read FAERS raw data into tibbles.</li>
-<li>added <code>.lintr</code> to set the default linters</li>
-<li>added development skeleton <code>dev/02-development.R</code>
-</li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/sym.html'>sym</a>()</code> creates a symbol from a string and
+<code><a href='https://rlang.r-lib.org/reference/sym.html'>syms</a>()</code> creates a list of symbols from a
+character vector.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquo</a>()</code> and
+<code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>enquos</a>()</code> delay the execution of one or
+several function arguments. <code>enquo()</code> returns a single quoted
+expression, which is like a blueprint for the delayed computation.
+<code>enquos()</code> returns a list of such quoted expressions.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/nse-defuse.html'>expr</a>()</code> quotes a new expression
+<em>locally</em>. It
+is mostly useful to build new expressions around arguments
+captured with <code>enquo()</code> or <code>enquos()</code>:
+<code>expr(mean(!!enquo(arg), na.rm = TRUE))</code>.</p></li>
+<li><p><code><a href='https://rlang.r-lib.org/reference/as_name.html'>as_name</a>()</code> transforms a quoted variable name
+into a string. Supplying something else than a quoted variable
+name is an error.</p>
+<p>That's unlike <code><a href='https://rlang.r-lib.org/reference/as_label.html'>as_label</a>()</code> which also returns
+a single string but supports any kind of R object as input,
+including quoted function calls and vectors. Its purpose is to
+summarise that object into a single label. That label is often
+suitable as a default name.</p>
+<p>If you don't know what a quoted expression contains (for instance
+expressions captured with <code>enquo()</code> could be a variable
+name, a call to a function, or an unquoted constant), then use
+<code>as_label()</code>. If you know you have quoted a simple variable
+name, or would like to enforce this, use <code>as_name()</code>.</p></li>
 </ul>
-</div>
-    <div id="faersdb-0009000" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9000">
-<a href="#faersdb-0009000" class="anchor"></a>faers.db 0.0.0.9000</h1>
-<ul>
-<li>Added support to use the <strong>pipe</strong> (<code><a href="../reference/%&gt;%.html">%&gt;%</a></code>) operator.</li>
-<li>Added GitHub action for CI/CD automating lint, coverage, tests, and checks.</li>
-<li>Added support from <a href="https://rstudio.github.io/renv/">renv</a> package management system for reproducibility of all the results.</li>
-<li>Added instructions for contributions and getting help in the <code>README.Rmd</code> and added them in the GitHub templates (including issues).</li>
-<li>Added support for unit test powered by the <a href="https://testthat.r-lib.org">testthat</a> package.</li>
-<li>Added support for potentially useful raw data to include in the package: created and <code>.Rbuildignore</code>d the <code>data-raw/</code> folder.</li>
-<li>Added support for spellcheck powered by the <a href="https://docs.ropensci.org/spelling/">spelling</a> package.</li>
-<li>Added a <code>README.Rmd</code> file to produce <code>README.md</code>, i.e., the project’s home page.</li>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul>
-</div>
-  </div>
 
+<p>To learn more about tidy eval and how to use these tools, visit
+<a href='https://tidyeval.tidyverse.org'>https://tidyeval.tidyverse.org</a> and the
+<a href='https://adv-r.hadley.nz/metaprogramming.html'>Metaprogramming
+section</a> of <a href='https://adv-r.hadley.nz'>Advanced R</a>.</p>
+    </div>
+
+
+
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

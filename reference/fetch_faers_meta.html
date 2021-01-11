@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • faers.db</title>
+<title>List of FAERS data — fetch_faers_meta • faers.db</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="List of FAERS data — fetch_faers_meta" />
+<meta property="og:description" content="The function lists the metadata for the FAERS databases currently
+available to download." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -110,54 +112,46 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/UBESP-DCTV/faers.db/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>List of FAERS data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/UBESP-DCTV/faers.db/blob/master/R/fetch_faers_meta.R'><code>R/fetch_faers_meta.R</code></a></small>
+    <div class="hidden name"><code>fetch_faers_meta.Rd</code></div>
     </div>
 
-    <div id="faersdb-development-version" class="section level1">
-<h1 class="page-header" data-toc-text="development version">
-<a href="#faersdb-development-version" class="anchor"></a>faers.db (development version)</h1>
-<ul>
-<li>added <code>\dontrun{}</code> to examples with side effects.</li>
-<li>rename and refactor <code>list_of_faers_year()</code> into <code>years_from_faers_html()</code>
-</li>
-<li>refactored <code><a href="../reference/fetch_faers_meta.html">fetch_faers_meta()</a></code> and <code>years_from_faers_html()</code> to have in input the FAERS’ meta html. This way it is possible to download the HTML only once.</li>
-<li>rename and refactor <code>import faers_html()</code> into <code>current_faers_html()</code> to directly access to <code>current_faers_meta_url()</code>.</li>
-<li>rename and refactor <code>list_of_faers_data</code> into <code><a href="../reference/fetch_faers_meta.html">fetch_faers_meta()</a></code>. Now it always return a <code>tible</code>, using fixed internal parametrization for FAERS meta-data URL. Internal computational service function are extracted and tested.</li>
-<li>refactor <code>compose_faers_link()</code> with the updated <code><a href="../reference/is_year_quarter_available.html">is_year_quarter_available()</a></code>.</li>
-<li>rename and refactor <code>check_year</code> into <code><a href="../reference/is_year_quarter_available.html">is_year_quarter_available()</a></code> to always return booleans and check against real FAERS data (using quarter too).</li>
-<li>added a function to download FAERS data.</li>
-<li>added <code>.lintr</code> to set the default linters.</li>
-<li>added development skeleton <code>dev/02-development.R</code>.</li>
-<li>added <code>read_*()</code> (with * in {<code>demo</code>, <code>drug</code>, <code>indi</code>, <code>outc</code>, <code>reac</code>, <code>rpsr</code>, and <code>ther</code>}) functions to read FAERS raw data into tibbles.</li>
-<li>added <code>.lintr</code> to set the default linters</li>
-<li>added development skeleton <code>dev/02-development.R</code>
-</li>
-</ul>
-</div>
-    <div id="faersdb-0009000" class="section level1">
-<h1 class="page-header" data-toc-text="0.0.0.9000">
-<a href="#faersdb-0009000" class="anchor"></a>faers.db 0.0.0.9000</h1>
-<ul>
-<li>Added support to use the <strong>pipe</strong> (<code><a href="../reference/%&gt;%.html">%&gt;%</a></code>) operator.</li>
-<li>Added GitHub action for CI/CD automating lint, coverage, tests, and checks.</li>
-<li>Added support from <a href="https://rstudio.github.io/renv/">renv</a> package management system for reproducibility of all the results.</li>
-<li>Added instructions for contributions and getting help in the <code>README.Rmd</code> and added them in the GitHub templates (including issues).</li>
-<li>Added support for unit test powered by the <a href="https://testthat.r-lib.org">testthat</a> package.</li>
-<li>Added support for potentially useful raw data to include in the package: created and <code>.Rbuildignore</code>d the <code>data-raw/</code> folder.</li>
-<li>Added support for spellcheck powered by the <a href="https://docs.ropensci.org/spelling/">spelling</a> package.</li>
-<li>Added a <code>README.Rmd</code> file to produce <code>README.md</code>, i.e., the project’s home page.</li>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p>The function lists the metadata for the FAERS databases currently
+available to download.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>fetch_faers_meta</span><span class='op'>(</span><span class='op'>)</span></pre>
+
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a> reporting years, period,
+quarter, and dimension for available FAERS data.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_faers_meta</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 32 x 5</span><span>
+#&gt;    year  period             quarter ascii_zip_mb xml_zip_mb
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2020  July - September   q3                64        121
+#&gt; </span><span style='color: #555555;'> 2</span><span> 2020  April - June       q2                66        123
+#&gt; </span><span style='color: #555555;'> 3</span><span> 2020  January - March    q1                65        125
+#&gt; </span><span style='color: #555555;'> 4</span><span> 2019  October - December q4                60        113
+#&gt; </span><span style='color: #555555;'> 5</span><span> 2019  July - September   q3                62        118
+#&gt; </span><span style='color: #555555;'> 6</span><span> 2019  April - June       q2                62        118
+#&gt; </span><span style='color: #555555;'> 7</span><span> 2019  January - March    q1                56        103
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2018  October - December q4                60        112
+#&gt; </span><span style='color: #555555;'> 9</span><span> 2018  July - September   q3                60        112
+#&gt; </span><span style='color: #555555;'>10</span><span> 2018  April - June       q2                60        112
+#&gt; </span><span style='color: #555555;'># … with 22 more rows</span><span></div></span></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 
