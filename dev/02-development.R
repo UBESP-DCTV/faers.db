@@ -24,8 +24,8 @@
 #' List here all the command executed during development of the package
 #'
 
-# usethis::use_test("<function_name>")
-# usethis::use_r("<function_name>")
+usethis::use_test("read_faers")
+ usethis::use_r("read_faers")
 
 
 # ...
@@ -45,6 +45,7 @@
 usethis::use_tidy_description()
 spelling::spell_check_package()
 spelling::update_wordlist()
+devtools::check_man()
 
 
 

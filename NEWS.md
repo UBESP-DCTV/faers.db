@@ -1,5 +1,7 @@
 # faers.db (development version)
 
+* added `read_*()` (with * in {`demo`, `drug`, `indi`, `outc`, `reac`,
+  `rpsr`, and `ther`}) functions to read FAERS raw data into tibbles.
 * added `.lintr` to set the default linters
 * added development skeleton `dev/02-development.R`
 
