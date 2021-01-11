@@ -1,0 +1,3 @@
+primaryid$caseid$drug_seq$role_cod$drugname$prod_ai$val_vbm$route$dose_vbm$cum_dose_chr$cum_dose_unit$dechal$rechal$lot_num$exp_dt$nda_num$dose_amt$dose_unit$dose_form$dose_freq
+100046943$10004694$1$PS$LIPITOR$ATORVASTATIN CALCIUM$1$Oral$20 MG, DAILY$$$U$$2020$$020702$20$MG$FILM-COATED TABLET$
+

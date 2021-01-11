@@ -1,0 +1,11 @@
+primaryid$caseid$indi_drug_seq$indi_pt
+100046943$10004694$1$Low density lipoprotein increased
+100046943$10004694$2$Cardiovascular event prophylaxis
+100048208$10004820$1$Epilepsy
+100048208$10004820$2$Partial seizures
+100048232$10004823$1$Low density lipoprotein increased
+100048232$10004823$2$Cardiovascular event prophylaxis
+100049343$10004934$1$Low density lipoprotein increased
+100049343$10004934$2$Cardiovascular event prophylaxis
+100049343$10004934$3$Blood cholesterol increased
+100049343$10004934$4$Blood cholesterol increased
