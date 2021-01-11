@@ -39,7 +39,7 @@ retrieve_qde <- function(path,
   download_to <- compose_faers_path(year, quarter, path)
   if (!dir.exists(download_to)) {
     if (permission_create_folder(download_to, create_folder)) {
-      create_folder(download_to, create_folder)
+      dir.create(download_to, recursive = TRUE)
     } else {
       warning("Permission to create folder denied by the user")
       return(invisible(FALSE))
@@ -95,12 +95,6 @@ compose_faers_link <- function(year, quarter, type) {
 
 compose_faers_path <- function(year, quarter, path) {
   glue::glue("{path}/faers_raw_data/{year}/{quarter}")
-}
-
-
-create_folder <- function(download_to, create_folder) {
-  dir.create(download_to, recursive = TRUE)
-  download_to
 }
 
 
