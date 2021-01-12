@@ -20,6 +20,10 @@
 * added a function to download FAERS data.
 * added `.lintr` to set the default linters.
 * added development skeleton `dev/02-development.R`.
+* added `read_*()` (with * in {`demo`, `drug`, `indi`, `outc`, `reac`,
+  `rpsr`, and `ther`}) functions to read FAERS raw data into tibbles.
+* added `.lintr` to set the default linters
+* added development skeleton `dev/02-development.R`
 
 # faers.db 0.0.0.9000
 

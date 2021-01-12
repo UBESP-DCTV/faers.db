@@ -18,4 +18,6 @@ roxygen
 styler
 summarise
 testthat
+tibble
+tibbles
 tidyverse

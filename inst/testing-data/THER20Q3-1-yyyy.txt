@@ -1,0 +1,3 @@
+primaryid$caseid$dsg_drug_seq$start_dt$end_dt$dur$dur_cod
+100046943$10004694$1$20100501$2012$$
+

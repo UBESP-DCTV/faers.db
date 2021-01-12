@@ -1,0 +1,2 @@
+primaryid$caseid$caseversion$i_f_code$event_dt$mfr_dt$init_fda_dt$fda_dt$rept_cod$auth_num$mfr_num$mfr_sndr$lit_ref$age$age_cod$age_grp$sex$e_sub$wt$wt_cod$rept_dt$to_mfr$occp_cod$reporter_country$occr_country
+100046943$10004694$3$F$2020$20200924$201403$20200928$EXP$$US-PFIZER INC-2014065112$PFIZER$$48$YR$$F$Y$57$KG$20200928$$LW$US$US

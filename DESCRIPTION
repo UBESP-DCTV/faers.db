@@ -37,6 +37,7 @@ Imports:
     lubridate,
     magrittr,
     purrr,
+    readr,
     rlang (>= 0.1.2),
     rvest,
     stringr,
