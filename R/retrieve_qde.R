@@ -99,7 +99,7 @@ compose_faers_path <- function(year, quarter, path) {
 
 
 permission_create_folder <- function(faerspath, create_folder) {
-  if (interactive()) {
+  if (rlang::is_interactive()) {
     create_folder <- usethis::ui_yeah(glue::glue(
       "The following folder will be created:
       {faerspath}
@@ -121,7 +121,7 @@ download_file <- function(download_from, download_to, download_data, filename,
 
 
 permission_download_file <- function(faerspath, download_data) {
-    if (interactive()) {
+    if (rlang::is_interactive()) {
       download_data <- usethis::ui_yeah(glue::glue(
         "A .zip file will be downloaded at the local path
         {faerspath}
