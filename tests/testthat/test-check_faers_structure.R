@@ -54,7 +54,7 @@ test_that("check_quarter_every_year works", {
 
 
 test_that("check_quarter_directory works", {
-  year <- 2015
+  year <- 2015L
   testfolder <- glue::glue("{getwd()}/faers_raw_data/{year}/tempfolder")
   dir.create(testfolder, recursive = TRUE)
   expect_warning(
@@ -80,7 +80,8 @@ test_that("check_files works", {
   file.create(testfile)
   expect_warning(
     check_files(getwd()),
-    glue::glue("The following files do not match a FAERS dataset: 2015/foo.csv.",
+    glue::glue("The following files do not match a FAERS dataset: 2015/",
+               "foo.csv.",
                " Please remove the files or change directory path.")
   )
   fs::file_delete(glue::glue("{getwd()}/faers_raw_data"))
@@ -92,4 +93,3 @@ test_that("all_possible_filenames works", {
   expect_equal(all_possible_filenames(),
                out)
 })
-

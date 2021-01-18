@@ -16,6 +16,7 @@ reprex
 reproducibility
 roxygen
 styler
+subfolder
 summarise
 testthat
 tibble

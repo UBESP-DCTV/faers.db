@@ -11,7 +11,7 @@ check_faers_structure(path, faersyears = years_from_faers_html())
 "faers_raw_data") with FAERS data inside, sorted by year and quarter.}
 
 \item{faersyears}{(chr) A vector of characters with the list of the years of
-FAERS data (defauls: all years available).}
+FAERS data (defaults: all years available).}
 }
 \value{
 (lgl) TRUE (invisible) if the "faers_raw_data" exists and it is
