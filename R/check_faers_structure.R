@@ -6,8 +6,7 @@ check_root_folder <- function(path) {
     return(FALSE)
   }
   if (sum(is_faers_folder) > 1) {
-    warning("Too many folders named 'faers_raw_data' (or similar).
-            Please keep only one.")
+    warning("Too Many folders named 'faers_raw_data' (or similar).")
     return(FALSE)
   }
   TRUE
