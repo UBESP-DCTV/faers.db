@@ -15,6 +15,9 @@
 #' @examples
 #' what_is_missing(".")
 what_is_missing <- function(path, faers_meta = fetch_faers_meta()) {
+  if (!check_faers_structure(path)) {
+    return(invisible(tibble(year = "", quarter = "", type = "")))
+  }
   local <- fetch_local(path) %>%
     subset(select = c(year, quarter, type)) %>%
     tidyr::unite(unq, c(year, quarter, type), remove = FALSE)
@@ -33,23 +36,4 @@ what_is_missing <- function(path, faers_meta = fetch_faers_meta()) {
     dplyr::select(-unq)
   message(glue::glue("{NROW(out)} FAERS databases are missing in your folder."))
   invisible(out)
-}
-
-
-# The following function it's just for testing!
-# It generates a series of folders and files simulating the correct structure of
-# FAERS data folder (sorry for the for loop, but it's a function that will not
-# be used anyway...)
-simulate_faers_structure <- function(path) {
-  faers_meta <- fetch_faers_meta()
-  for (i in 1:NROW(faers_meta)) {
-    year <- faers_meta[[i, "year"]]
-    quarter <- faers_meta[[i, "quarter"]]
-    dir.create(glue::glue("{path}/faers_raw_data/{year}/{quarter}"),
-                 recursive = TRUE)
-    file.create(glue::glue("{path}/faers_raw_data/{year}/{quarter}/",
-                           "faers_ascii_{year}{quarter}.zip"))
-    file.create(glue::glue("{path}/faers_raw_data/{year}/{quarter}/",
-                           "faers_xml_{year}{quarter}.zip"))
-  }
 }
