@@ -14,6 +14,7 @@
 #'
 #' @examples
 #' check_faers_structure(".")
+#' check_faers_structure("C:/Users/pietr/Documents/Ricerca/faers")
 check_faers_structure <- function(path, faersyears = years_from_faers_html()) {
   if (!check_root_folder(path)) return(invisible(FALSE))
   if (length(check_years_directory(path, faersyears)) > 0L) {
@@ -110,7 +111,7 @@ check_quarter_directory <- function(path, year) {
 
 
 check_files <- function(path, current_filenames = all_possible_filenames()) {
-  filelist <- list.files(glue::glue("{getwd()}/faers_raw_data"),
+  filelist <- list.files(glue::glue("{path}/faers_raw_data"),
                          full.names = FALSE, recursive = TRUE)
   files_logical <- filelist %in% current_filenames
   if (sum(!files_logical) > 0L) {

@@ -14,7 +14,7 @@
 #' fetch_local(".")
 fetch_local <- function(path) {
   if (!check_faers_structure(path)) {
-    return(invisible(tibble(path = NA, year = NA, quarter = NA, type = NA)))
+    return(invisible(tibble(path = "", year = "", quarter = "", type = "")))
   }
   list_of_filename <- list.files(paste0(path, "/faers_raw_data"),
                                  recursive = TRUE)
@@ -38,4 +38,6 @@ quarter_from_zipname <- function(zipname) {
 type_from_zipname <- function(zipname) {
   if (stringr::str_detect(zipname, "xml")) "xml" else "ascii"
 }
+
+
 type_from_zipnameV <- Vectorize(type_from_zipname)
