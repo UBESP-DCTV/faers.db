@@ -3,7 +3,7 @@
 #' The function lists the metadata for the FAERS databases currently
 #' available to download.
 #'
-#' @return a [tibble][tibble::tibble-package] reporting years, period,
+#' @return A [tibble][tibble::tibble-package] reporting years, period,
 #' quarter, and dimension for available FAERS data.
 #' @export
 #'
