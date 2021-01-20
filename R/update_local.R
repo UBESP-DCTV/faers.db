@@ -27,7 +27,7 @@ update_local <- function(path,
     return(invisible(FALSE))
   }
   if (permission_update(permission_to_update)) {
-    parallel::mcmapply(
+    mapply(
       function(x, y, z) retrieve_qde(getwd(), year = x, quarter = y, type = z,
                                      interactive_session = FALSE),
       missing_metadata[["year"]],
