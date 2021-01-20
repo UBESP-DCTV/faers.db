@@ -23,7 +23,7 @@ what_is_missing <- function(path, faers_meta = fetch_faers_meta()) {
   out <- online %>%
     dplyr::filter(online[["unq"]] %in% local[["unq"]] == FALSE) %>%
     dplyr::select(-unq) %>%
-    replace(is.na(.), 0) %>%
+    replace(is.na(.), 0L) %>%
     dplyr::transmute(year, quarter, type, mb = ascii_zip_mb + xml_zip_mb)
   totmb <- sum(out[["mb"]])
   message(glue::glue("{NROW(out)} FAERS databases are missing in your folder",

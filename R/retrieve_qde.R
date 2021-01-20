@@ -1,6 +1,6 @@
-#' Retrieve qde
+#' Download FAERS data
 #'
-#' This function download the FAERS data for a specific year and quarter.
+#' This function downloads the FAERS data for a specific year and quarter.
 #'
 #' @param path (chr) Path of the directory where you want to download the data
 #' @param year (chr) The year of the data to download
@@ -22,7 +22,6 @@
 #' \dontrun{
 #'   retrieve_qde(path = ".", year = "2018", quarter = "q4")
 #' }
-#'
 retrieve_qde <- function(path,
                          year,
                          quarter = c("q1", "q2", "q3", "q4"),
@@ -62,7 +61,7 @@ retrieve_qde <- function(path,
     warning("Permission to download file denied by the user")
     return(invisible(FALSE))
   }
-  TRUE
+  invisible(TRUE)
 }
 
 

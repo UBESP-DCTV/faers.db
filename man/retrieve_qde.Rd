@@ -2,7 +2,7 @@
 % Please edit documentation in R/retrieve_qde.R
 \name{retrieve_qde}
 \alias{retrieve_qde}
-\title{Retrieve qde}
+\title{Download FAERS data}
 \usage{
 retrieve_qde(
   path,
@@ -38,11 +38,10 @@ TRUE: permission to download data, FALSE: deny permission to download data.}
 (lgl) TRUE if the download was successful, FALSE otherwise.
 }
 \description{
-This function download the FAERS data for a specific year and quarter.
+This function downloads the FAERS data for a specific year and quarter.
 }
 \examples{
 \dontrun{
   retrieve_qde(path = ".", year = "2018", quarter = "q4")
 }
-
 }
