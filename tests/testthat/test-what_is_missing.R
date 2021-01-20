@@ -8,7 +8,8 @@ test_that("what_is_missing works", {
   expected_str <- c(
     year = "character",
     quarter = "character",
-    type = "character"
+    type = "character",
+    mb = "numeric"
   )
   expect_equal(current_str, expected_str)
   fs::dir_delete(glue::glue("{path}/faers_raw_data"))

@@ -16,14 +16,18 @@
 #' what_is_missing(".")
 what_is_missing <- function(path, faers_meta = fetch_faers_meta()) {
   if (!check_faers_structure(path)) {
-    return(invisible(tibble(year = "", quarter = "", type = "")))
+    return(invisible(tibble(year = "", quarter = "", type = "", mb = 0L)))
   }
   local <- prepare_local_meta(path)
   online <- prepare_online_meta(faers_meta)
   out <- online %>%
     dplyr::filter(online[["unq"]] %in% local[["unq"]] == FALSE) %>%
-    dplyr::select(-unq)
-  message(glue::glue("{NROW(out)} FAERS databases are missing in your folder."))
+    dplyr::select(-unq) %>%
+    replace(is.na(.), 0) %>%
+    dplyr::transmute(year, quarter, type, mb = ascii_zip_mb + xml_zip_mb)
+  totmb <- sum(out[["mb"]])
+  message(glue::glue("{NROW(out)} FAERS databases are missing in your folder",
+                     " ({totmb} mb)."))
   invisible(out)
 }
 
@@ -39,11 +43,11 @@ prepare_online_meta <- function(faers_meta) {
   n <- NROW(faers_meta)
   dplyr::bind_rows(
     faers_meta %>%
-      subset(select = c(year, quarter)) %>%
+      subset(select = c(year, quarter, ascii_zip_mb)) %>%
       tibble::add_column(type = rep("ascii", n)) %>%
       tidyr::unite(unq, c(year, quarter, type), remove = FALSE),
     faers_meta %>%
-      subset(select = c(year, quarter)) %>%
+      subset(select = c(year, quarter, xml_zip_mb)) %>%
       tibble::add_column(type = rep("xml", n)) %>%
       tidyr::unite(unq, c(year, quarter, type), remove = FALSE)
   )
