@@ -22,13 +22,13 @@ update_local <- function(path,
                          missing_metadata = what_is_missing(path),
                          permission_to_update = NULL) {
   if (!check_faers_structure(path)) return(invisible(FALSE))
-  if (NROW(missing_metadata) == 0) {
+  if (NROW(missing_metadata) == 0L) {
     message("No new data to download.")
     return(invisible(FALSE))
   }
   if (permission_update(permission_to_update)) {
     parallel::mcmapply(
-      function(x ,y, z) retrieve_qde(getwd(),year = x, quarter = y, type = z,
+      function(x, y, z) retrieve_qde(getwd(), year = x, quarter = y, type = z,
                                      interactive_session = FALSE),
       missing_metadata[["year"]],
       missing_metadata[["quarter"]],
