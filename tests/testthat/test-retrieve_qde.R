@@ -73,15 +73,15 @@ test_that("compose_faers_path works", {
 
 
 test_that("permission_create_folder works", {
-  expect_equal(permission_create_folder(getwd(), FALSE),
+  expect_equal(permission_create_folder(getwd(), FALSE, FALSE),
                FALSE)
-  expect_equal(permission_create_folder(getwd(), TRUE),
+  expect_equal(permission_create_folder(getwd(), TRUE, FALSE),
                TRUE)
 })
 
 test_that("permission_download_file works", {
-  expect_equal(permission_download_file(getwd(), FALSE),
+  expect_equal(permission_download_file(getwd(), FALSE, FALSE),
                FALSE)
-  expect_equal(permission_download_file(getwd(), TRUE),
+  expect_equal(permission_download_file(getwd(), TRUE, FALSE),
                TRUE)
 })

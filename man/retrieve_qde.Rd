@@ -9,6 +9,7 @@ retrieve_qde(
   year,
   quarter = c("q1", "q2", "q3", "q4"),
   type = c("ascii", "xml"),
+  interactive_session = rlang::is_interactive(),
   create_folder = NULL,
   download_data = NULL
 )
@@ -24,6 +25,9 @@ retrieve_qde(
 \item{type}{(chr) The format of the data to download,
 ("ascii" or "xml", default: "ascii")}
 
+\item{interactive_session}{(lgl) Is R running in an interactive session?
+(default: the status of the current session).}
+
 \item{create_folder}{(lgl) Only if session is not in interactive mode.
 TRUE: permission to create folders, FALSE: deny permission to create folders}
 
@@ -31,14 +35,14 @@ TRUE: permission to create folders, FALSE: deny permission to create folders}
 TRUE: permission to download data, FALSE: deny permission to download data.}
 }
 \value{
-(lgl) TRUE if the download was successful, FALSE otherwise
+(lgl) TRUE if the download was successful, FALSE otherwise.
 }
 \description{
-This function download the FAERS data for a specific year and quarter
+This function download the FAERS data for a specific year and quarter.
 }
 \examples{
 \dontrun{
-  retrieve_qde(year = "2018", quarter = "q4")
+  retrieve_qde(path = ".", year = "2018", quarter = "q4")
 }
 
 }
