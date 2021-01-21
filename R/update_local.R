@@ -45,7 +45,7 @@ update_local <- function(path,
 permission_update <- function(permission) {
   if (rlang::is_interactive()) {
     permission <- usethis::ui_yeah(
-      glue::glue("Do do want to download the missing FAERS data?")
+      "Do do want to download the missing FAERS data?"
     )
   }
   permission %NULL% TRUE
