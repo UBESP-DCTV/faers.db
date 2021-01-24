@@ -26,7 +26,7 @@ update_local <- function(path,
     message("No new data to download.")
     return(invisible(FALSE))
   }
-  if (permission_update(permission_to_update)) {
+  if (permission_update(permission_to_update, path)) {
     mapply(
       function(x, y, z) retrieve_qde(getwd(), year = x, quarter = y, type = z,
                                      interactive_session = FALSE),
@@ -42,10 +42,17 @@ update_local <- function(path,
 }
 
 
-permission_update <- function(permission) {
+permission_update <- function(permission, path) {
   if (rlang::is_interactive()) {
     permission <- usethis::ui_yeah(
-      "Do do want to download the missing FAERS data?"
+      glue::glue(
+        "You are about to sync the folder
+        {path}/faers_raw_data
+        with the online FAERS database.
+
+        If your FAERS data exists elsewhere on this computer, you shold change",
+        " the 'path' parameter of this function to point to your existing data."
+      )
     )
   }
   permission %NULL% TRUE
