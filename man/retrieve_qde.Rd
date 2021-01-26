@@ -20,7 +20,7 @@ retrieve_qde(
 \item{year}{(chr) The year of the data to download}
 
 \item{quarter}{(chr) The quarter of the data to download
-("q1", "q2", "q3" or "q4", default: "q1)}
+("q1", "q2", "q3" or "q4", default: "q1")}
 
 \item{type}{(chr) The format of the data to download,
 ("ascii" or "xml", default: "ascii")}

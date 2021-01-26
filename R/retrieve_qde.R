@@ -5,7 +5,7 @@
 #' @param path (chr) Path of the directory where you want to download the data
 #' @param year (chr) The year of the data to download
 #' @param quarter (chr) The quarter of the data to download
-#' ("q1", "q2", "q3" or "q4", default: "q1)
+#' ("q1", "q2", "q3" or "q4", default: "q1")
 #' @param type (chr) The format of the data to download,
 #' ("ascii" or "xml", default: "ascii")
 #' @param interactive_session (lgl) Is R running in an interactive session?
