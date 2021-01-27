@@ -28,7 +28,7 @@ update_local <- function(path,
   }
   if (permission_update(permission_to_update, path)) {
     mapply(
-      function(x, y, z) retrieve_qde(getwd(), year = x, quarter = y, type = z,
+      function(x, y, z) retrieve_qde(path, year = x, quarter = y, type = z,
                                      interactive_session = FALSE),
       missing_metadata[["year"]],
       missing_metadata[["quarter"]],
