@@ -15,21 +15,21 @@ retrieve_qde(
 )
 }
 \arguments{
-\item{path}{(chr) Path of the directory where you want to download the data}
+\item{path}{(chr) Path of the directory where you want to download the data.}
 
-\item{year}{(chr) The year of the data to download}
+\item{year}{(chr) The year of the data to download (after 2012 up to the
+current year).}
 
 \item{quarter}{(chr) The quarter of the data to download
-("q1", "q2", "q3" or "q4", default: "q1")}
+("q1", "q2", "q3" or "q4", default: "q1").}
 
-\item{type}{(chr) The format of the data to download,
-("ascii" or "xml", default: "ascii")}
+\item{type}{(chr) The format of the data to download,}
 
 \item{interactive_session}{(lgl) Is R running in an interactive session?
 (default: the status of the current session).}
 
 \item{create_folder}{(lgl) Only if session is not in interactive mode.
-TRUE: permission to create folders, FALSE: deny permission to create folders}
+TRUE: permission to create folders, FALSE: deny permission to create folders.}
 
 \item{download_data}{(lgl) Only if session is not in interactive mode.
 TRUE: permission to download data, FALSE: deny permission to download data.}

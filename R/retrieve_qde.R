@@ -2,16 +2,16 @@
 #'
 #' This function downloads the FAERS data for a specific year and quarter.
 #'
-#' @param path (chr) Path of the directory where you want to download the data
-#' @param year (chr) The year of the data to download
+#' @param path (chr) Path of the directory where you want to download the data.
+#' @param year (chr) The year of the data to download (after 2012 up to the
+#' current year).
 #' @param quarter (chr) The quarter of the data to download
-#' ("q1", "q2", "q3" or "q4", default: "q1")
+#' ("q1", "q2", "q3" or "q4", default: "q1").
 #' @param type (chr) The format of the data to download,
-#' ("ascii" or "xml", default: "ascii")
 #' @param interactive_session (lgl) Is R running in an interactive session?
 #' (default: the status of the current session).
 #' @param create_folder (lgl) Only if session is not in interactive mode.
-#' TRUE: permission to create folders, FALSE: deny permission to create folders
+#' TRUE: permission to create folders, FALSE: deny permission to create folders.
 #' @param download_data (lgl) Only if session is not in interactive mode.
 #' TRUE: permission to download data, FALSE: deny permission to download data.
 #
