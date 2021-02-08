@@ -70,9 +70,9 @@ checkyear <- function(year) {
     warning("Year must be character")
     return(FALSE)
   }
-  if (as.numeric(year) < 2013L |
+  if (as.numeric(year) < 2012L |
       as.numeric(year) > lubridate::year(Sys.Date())) {
-    warning("Use a year after 2013 up to the current year")
+    warning("Use a year after 2012 up to the current year")
     return(FALSE)
   }
   TRUE

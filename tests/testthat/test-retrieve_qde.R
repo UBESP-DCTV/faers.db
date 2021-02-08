@@ -5,7 +5,7 @@ test_that("retrieve_qde works", {
   )
   expect_warning(
     retrieve_qde(path = getwd(), year = "2010"),
-    "Use a year after 2013 up to the current year"
+    "Use a year after 2012 up to the current year"
   )
   expect_error(
     retrieve_qde(path = getwd(),
@@ -39,12 +39,12 @@ test_that("checkyear works", {
     "Year must be character"
   )
   expect_warning(
-    checkyear("2012"),
-    "Use a year after 2013 up to the current year"
+    checkyear("2011"),
+    "Use a year after 2012 up to the current year"
   )
   expect_warning(
     checkyear("5000"),
-    "Use a year after 2013 up to the current year"
+    "Use a year after 2012 up to the current year"
   )
 })
 
