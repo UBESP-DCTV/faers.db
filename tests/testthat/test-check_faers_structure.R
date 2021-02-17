@@ -1,5 +1,4 @@
-skip("Test passed in local")
-
+skip("Tested locally")
 test_that("check_root_folder works", {
   testfolder1 <- glue::glue("{getwd()}/tempfolder")
   dir.create(testfolder1)

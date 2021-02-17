@@ -23,5 +23,4 @@ the folder is correct.
 }
 \examples{
 check_faers_structure(".")
-check_faers_structure("C:/Users/pietr/Documents/Ricerca/faers")
 }

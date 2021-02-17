@@ -14,7 +14,6 @@
 #'
 #' @examples
 #' check_faers_structure(".")
-#' check_faers_structure("C:/Users/pietr/Documents/Ricerca/faers")
 check_faers_structure <- function(path, faersyears = years_from_faers_html()) {
   if (!check_root_folder(path)) return(invisible(FALSE))
   if (length(check_years_directory(path, faersyears)) > 0L) {

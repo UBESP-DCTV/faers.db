@@ -1,5 +1,4 @@
-skip("Test passed in local")
-
+skip("Tested locally")
 test_that("fetch_local works", {
   tdir <- glue::glue("{getwd()}/faers_raw_data/2015/q1")
   dir.create(tdir, recursive = TRUE)

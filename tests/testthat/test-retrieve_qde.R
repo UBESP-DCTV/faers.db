@@ -1,19 +1,20 @@
+skip("Tested locally")
 test_that("retrieve_qde works", {
   expect_warning(
-    retrieve_qde(path = getwd(), year = 2013L),
+    retrieve_qde(path = ".", year = 2013L),
     "Year must be character"
   )
   expect_warning(
-    retrieve_qde(path = getwd(), year = "2010"),
+    retrieve_qde(path = ".", year = "2010"),
     "Use a year after 2012 up to the current year"
   )
   expect_error(
-    retrieve_qde(path = getwd(),
+    retrieve_qde(path = ".",
                  year = "2017",
                  quarter = "q5")
   )
   expect_warning(
-    retrieve_qde(path = getwd(),
+    retrieve_qde(path = ".",
                  year = "2016",
                  quarter = "q2",
                  create_folder = FALSE),
@@ -24,7 +25,7 @@ test_that("retrieve_qde works", {
 
 test_that("checkpath works", {
   expect_equal(
-    checkpath(getwd()),
+    checkpath("."),
     TRUE
   )
 })
@@ -73,15 +74,15 @@ test_that("compose_faers_path works", {
 
 
 test_that("permission_create_folder works", {
-  expect_equal(permission_create_folder(getwd(), FALSE, FALSE),
+  expect_equal(permission_create_folder(".", FALSE, FALSE),
                FALSE)
-  expect_equal(permission_create_folder(getwd(), TRUE, FALSE),
+  expect_equal(permission_create_folder(".", TRUE, FALSE),
                TRUE)
 })
 
 test_that("permission_download_file works", {
-  expect_equal(permission_download_file(getwd(), FALSE, FALSE),
+  expect_equal(permission_download_file(".", FALSE, FALSE),
                FALSE)
-  expect_equal(permission_download_file(getwd(), TRUE, FALSE),
+  expect_equal(permission_download_file(".", TRUE, FALSE),
                TRUE)
 })

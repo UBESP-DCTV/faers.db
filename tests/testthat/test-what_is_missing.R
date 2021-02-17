@@ -1,5 +1,4 @@
-skip("Test passed in local")
-
+skip("Tested locally")
 test_that("what_is_missing works", {
   path <- getwd()
   simulate_faers_structure(path)
