@@ -14,24 +14,29 @@
 #' fetch_local(".")
 fetch_local <- function(path) {
   if (!check_faers_structure(path)) {
-    return(invisible(tibble(path = "", year = "", quarter = "", type = "")))
+    return(invisible(tibble::tibble(path = "", year = "",
+                                    quarter = "", type = "")))
   }
   list_of_filename <- list.files(paste0(path, "/faers_raw_data"),
                                  recursive = TRUE)
-  tibble(path = list_of_filename,
-         year = year_from_zipname(list_of_filename),
-         quarter = quarter_from_zipname(list_of_filename),
-         type = type_from_zipnameV(list_of_filename))
+  tibble::tibble(path = list_of_filename,
+                 year = year_from_zipname(list_of_filename),
+                 quarter = quarter_from_zipname(list_of_filename),
+                 type = type_from_zipname_mul(list_of_filename))
 }
 
 
 year_from_zipname <- function(zipname) {
-  zipname %>% stringr::str_sub(-10L, -7L)
+  start_substring <- -10L
+  end_substring <- -7L
+  stringr::str_sub(zipname, start_substring, end_substring)
 }
 
 
 quarter_from_zipname <- function(zipname) {
-  zipname %>% stringr::str_sub(-6L, -5L)
+  start_substring <- -6L
+  end_substring <- -5L
+  stringr::str_sub(zipname, start_substring, end_substring)
 }
 
 
@@ -40,4 +45,4 @@ type_from_zipname <- function(zipname) {
 }
 
 
-type_from_zipnameV <- Vectorize(type_from_zipname)
+type_from_zipname_mul <- Vectorize(type_from_zipname)

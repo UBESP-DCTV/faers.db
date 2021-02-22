@@ -16,15 +16,15 @@
 #' check_faers_structure(".")
 check_faers_structure <- function(path, faersyears = years_from_faers_html()) {
   if (!check_root_folder(path)) return(invisible(FALSE))
-  if (length(check_years_directory(path, faersyears)) > 0L) {
+  if (!check_years_directory(path, faersyears)) {
     print(faers_folder_structure(path))
     return(invisible(FALSE))
   }
-  if (check_quarter_every_year(path, faersyears)) {
+  if (!check_quarter_every_year(path, faersyears)) {
     print(faers_folder_structure(path))
     return(invisible(FALSE))
   }
-  if (length(check_files(path)) > 0L) {
+  if (!check_files(path)) {
     print(faers_folder_structure(path))
     return(invisible(FALSE))
   }
@@ -42,8 +42,7 @@ check_root_folder <- function(path) {
   if (sum(is_faers_folder) > 1L) {
     warning("Too Many folders named 'faers_raw_data' (or similar).")
     return(FALSE)
-  }
-  TRUE
+  } else TRUE
 }
 
 
@@ -61,8 +60,8 @@ check_years_directory <- function(path, faers_years) {
     warning(glue::glue("The following folders do not match a FAERS year: ",
                        ".../faers_raw_data/{toString(bad_folders)}. ",
                        "Please remove the folders or change directory path."))
-  }
-  bad_folders
+    return(FALSE)
+  } else TRUE
 }
 
 
@@ -77,15 +76,11 @@ faers_folder_structure <- function(path) {
 
 
 check_quarter_every_year <- function(path, faers_years) {
-  subfolders_character <- purrr::map(
+  subfolders_logical <- purrr::map(
     faers_years,
     function(x) check_quarter_directory(path = path, year = x)
   )
-  subfolders_logical <- purrr::map(
-    subfolders_character,
-    function(x) length(x) > 0L
-  )
-  sum(purrr::map(subfolders_logical, sum) > 0L)
+  sum(!purrr::map(subfolders_logical, sum) > 0) == 0
 }
 
 
@@ -104,8 +99,8 @@ check_quarter_directory <- function(path, year) {
     warning(glue::glue("The following folders do not match a FAERS quarter: ",
                        ".../faers_raw_data/{year}/{toString(bad_folders)}. ",
                        "Please remove the folders or change directory path."))
-  }
-  bad_folders
+    return(FALSE)
+  } else TRUE
 }
 
 
@@ -118,7 +113,7 @@ check_files <- function(path, current_filenames = all_possible_filenames()) {
                        "{toString(filelist[which(!files_logical)])}. ",
                        "Please remove the files or change directory path."))
   }
-  filelist[which(!files_logical)]
+  length(filelist[which(!files_logical)]) == 0
 }
 
 

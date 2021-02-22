@@ -37,7 +37,7 @@ test_that("check_years_directory works", {
   truefolder <- glue::glue("{getwd()}/faers_raw_data/2015")
   dir.create(truefolder, recursive = TRUE)
   expect_equal(check_years_directory(getwd(), faersyears),
-               character(0L))
+               TRUE)
   fs::file_delete(glue::glue("{getwd()}/faers_raw_data"))
 })
 
@@ -48,7 +48,7 @@ test_that("check_quarter_every_year works", {
   testfolder2 <- glue::glue("{getwd()}/faers_raw_data/2016/q2")
   dir.create(testfolder1, recursive = TRUE)
   dir.create(testfolder2, recursive = TRUE)
-  expect_equal(check_quarter_every_year(getwd(), faersyears), 0L)
+  expect_equal(check_quarter_every_year(getwd(), faersyears), TRUE)
   fs::file_delete(glue::glue("{getwd()}/faers_raw_data"))
 })
 
@@ -68,7 +68,7 @@ test_that("check_quarter_directory works", {
   truefolder <- glue::glue("{getwd()}/faers_raw_data/{year}/q1")
   dir.create(truefolder, recursive = TRUE)
   expect_equal(check_quarter_directory(getwd(), year),
-               character(0L))
+               TRUE)
   fs::file_delete(glue::glue("{getwd()}/faers_raw_data"))
 })
 
