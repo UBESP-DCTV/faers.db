@@ -4,7 +4,7 @@
 # be used anyway...)
 simulate_faers_structure <- function(path) {
   faers_meta <- fetch_faers_meta()
-  for (i in 1L:nrow(faers_meta)) {
+  for (i in seq_len(nrow(faers_meta))) {
     cyear <- faers_meta[[i, "year"]]
     cquarter <- faers_meta[[i, "quarter"]]
     dir.create(glue::glue("{path}/faers_raw_data/{cyear}/{cquarter}"),
