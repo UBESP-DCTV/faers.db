@@ -11,11 +11,11 @@ https
 lgl
 linters
 num
-qde
 reprex
 reproducibility
 roxygen
 styler
+subfolder
 summarise
 testthat
 tibble

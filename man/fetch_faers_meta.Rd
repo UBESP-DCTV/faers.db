@@ -7,7 +7,7 @@
 fetch_faers_meta()
 }
 \value{
-a \link[tibble:tibble-package]{tibble} reporting years, period,
+A \link[tibble:tibble-package]{tibble} reporting years, period,
 quarter, and dimension for available FAERS data.
 }
 \description{

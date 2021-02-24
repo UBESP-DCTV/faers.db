@@ -1,30 +1,32 @@
-#' Retrieve qde
+#' Download FAERS data
 #'
-#' This function download the FAERS data for a specific year and quarter
+#' This function downloads the FAERS data for a specific year and quarter.
 #'
-#' @param path (chr) Path of the directory where you want to download the data
-#' @param year (chr) The year of the data to download
+#' @param path (chr) Path of the directory where you want to download the data.
+#' @param year (chr) The year of the data to download (after 2012 up to the
+#' current year).
 #' @param quarter (chr) The quarter of the data to download
-#' ("q1", "q2", "q3" or "q4", default: "q1)
+#' ("q1", "q2", "q3" or "q4", default: "q1").
 #' @param type (chr) The format of the data to download,
-#' ("ascii" or "xml", default: "ascii")
+#' @param interactive_session (lgl) Is R running in an interactive session?
+#' (default: the status of the current session).
 #' @param create_folder (lgl) Only if session is not in interactive mode.
-#' TRUE: permission to create folders, FALSE: deny permission to create folders
+#' TRUE: permission to create folders, FALSE: deny permission to create folders.
 #' @param download_data (lgl) Only if session is not in interactive mode.
 #' TRUE: permission to download data, FALSE: deny permission to download data.
 #
-#' @return (lgl) TRUE if the download was successful, FALSE otherwise
+#' @return (lgl) TRUE if the download was successful, FALSE otherwise.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#'   retrieve_qde(year = "2018", quarter = "q4")
+#'   retrieve_qde(path = ".", year = "2018", quarter = "q4")
 #' }
-#'
 retrieve_qde <- function(path,
                          year,
                          quarter = c("q1", "q2", "q3", "q4"),
                          type = c("ascii", "xml"),
+                         interactive_session = rlang::is_interactive(),
                          create_folder = NULL,
                          download_data = NULL) {
   if (!checkpath(path)) return(invisible(FALSE))
@@ -38,8 +40,9 @@ retrieve_qde <- function(path,
   download_from <- compose_faers_link(year, quarter, type)
   download_to <- compose_faers_path(year, quarter, path)
   if (!dir.exists(download_to)) {
-    if (permission_create_folder(download_to, create_folder)) {
-      create_folder(download_to, create_folder)
+    if (permission_create_folder(download_to, create_folder,
+                                 interactive_session)) {
+      dir.create(download_to, recursive = TRUE)
     } else {
       warning("Permission to create folder denied by the user")
       return(invisible(FALSE))
@@ -50,14 +53,15 @@ retrieve_qde <- function(path,
     warning(glue::glue("Data already in folder {download_to}"))
     return(invisible(FALSE))
   }
-  if (permission_download_file(download_to, download_data)) {
+  if (permission_download_file(download_to, download_data,
+                               interactive_session)) {
     download_file(download_from, download_to, download_data, filename,
                   year, quarter, type)
   } else {
     warning("Permission to download file denied by the user")
     return(invisible(FALSE))
   }
-  TRUE
+  invisible(TRUE)
 }
 
 
@@ -66,9 +70,9 @@ checkyear <- function(year) {
     warning("Year must be character")
     return(FALSE)
   }
-  if (as.numeric(year) < 2013L |
+  if (as.numeric(year) < 2012L |
       as.numeric(year) > lubridate::year(Sys.Date())) {
-    warning("Use a year after 2013 up to the current year")
+    warning("Use a year after 2012 up to the current year")
     return(FALSE)
   }
   TRUE
@@ -98,14 +102,9 @@ compose_faers_path <- function(year, quarter, path) {
 }
 
 
-create_folder <- function(download_to, create_folder) {
-  dir.create(download_to, recursive = TRUE)
-  download_to
-}
-
-
-permission_create_folder <- function(faerspath, create_folder) {
-  if (interactive()) {
+permission_create_folder <- function(faerspath, create_folder,
+                                     interactive_session) {
+  if (interactive_session) {
     create_folder <- usethis::ui_yeah(glue::glue(
       "The following folder will be created:
       {faerspath}
@@ -126,8 +125,9 @@ download_file <- function(download_from, download_to, download_data, filename,
 }
 
 
-permission_download_file <- function(faerspath, download_data) {
-    if (interactive()) {
+permission_download_file <- function(faerspath, download_data,
+                                     interactive_session) {
+    if (interactive_session) {
       download_data <- usethis::ui_yeah(glue::glue(
         "A .zip file will be downloaded at the local path
         {faerspath}
