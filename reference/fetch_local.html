@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download FAERS data — retrieve_qde • faers.db</title>
+<title>List of local FAERS data — fetch_local • faers.db</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Download FAERS data — retrieve_qde" />
-<meta property="og:description" content="This function downloads the FAERS data for a specific year and quarter." />
+<meta property="og:title" content="List of local FAERS data — fetch_local" />
+<meta property="og:description" content="The function lists the metadata for the FAERS databases currently in the path
+chosen folder." />
 
 
 
@@ -111,72 +112,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download FAERS data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/UBESP-DCTV/faers.db/blob/master/R/retrieve_qde.R'><code>R/retrieve_qde.R</code></a></small>
-    <div class="hidden name"><code>retrieve_qde.Rd</code></div>
+    <h1>List of local FAERS data</h1>
+    <small class="dont-index">Source: <a href='https://github.com/UBESP-DCTV/faers.db/blob/master/R/fetch_local.R'><code>R/fetch_local.R</code></a></small>
+    <div class="hidden name"><code>fetch_local.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function downloads the FAERS data for a specific year and quarter.</p>
+    <p>The function lists the metadata for the FAERS databases currently in the path
+chosen folder.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>retrieve_qde</span><span class='op'>(</span>
-  <span class='va'>path</span>,
-  <span class='va'>year</span>,
-  quarter <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"q1"</span>, <span class='st'>"q2"</span>, <span class='st'>"q3"</span>, <span class='st'>"q4"</span><span class='op'>)</span>,
-  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"ascii"</span>, <span class='st'>"xml"</span><span class='op'>)</span>,
-  interactive_session <span class='op'>=</span> <span class='fu'>rlang</span><span class='fu'>::</span><span class='fu'><a href='https://rlang.r-lib.org/reference/is_interactive.html'>is_interactive</a></span><span class='op'>(</span><span class='op'>)</span>,
-  create_folder <span class='op'>=</span> <span class='cn'>NULL</span>,
-  download_data <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>fetch_local</span><span class='op'>(</span><span class='va'>path</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>path</th>
-      <td><p>(chr) Path of the directory where you want to download the data.</p></td>
-    </tr>
-    <tr>
-      <th>year</th>
-      <td><p>(chr) The year of the data to download (after 2012 up to the
-current year).</p></td>
-    </tr>
-    <tr>
-      <th>quarter</th>
-      <td><p>(chr) The quarter of the data to download
-("q1", "q2", "q3" or "q4", default: "q1").</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>(chr) The format of the data to download,</p></td>
-    </tr>
-    <tr>
-      <th>interactive_session</th>
-      <td><p>(lgl) Is R running in an interactive session?
-(default: the status of the current session).</p></td>
-    </tr>
-    <tr>
-      <th>create_folder</th>
-      <td><p>(lgl) Only if session is not in interactive mode.
-TRUE: permission to create folders, FALSE: deny permission to create folders.</p></td>
-    </tr>
-    <tr>
-      <th>download_data</th>
-      <td><p>(lgl) Only if session is not in interactive mode.
-TRUE: permission to download data, FALSE: deny permission to download data.</p></td>
+      <td><p>(chr) The path of the folder containing a subfolder (named
+"faers_raw_data") with FAERS data inside, sorted by year and quarter.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>(lgl) TRUE if the download was successful, FALSE otherwise.</p>
+    <p>A <a href='https://tibble.tidyverse.org/reference/tibble-package.html'>tibble</a> reporting years, path and quarter
+for local FAERS data.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='fu'>retrieve_qde</span><span class='op'>(</span>path <span class='op'>=</span> <span class='st'>"."</span>, year <span class='op'>=</span> <span class='st'>"2018"</span>, quarter <span class='op'>=</span> <span class='st'>"q4"</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>fetch_local</span><span class='op'>(</span><span class='st'>"."</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: I can't find a folder named 'faers_raw_data'.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
