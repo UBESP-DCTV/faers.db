@@ -1,21 +1,23 @@
 #' Read faers data
 #'
-#' The `read_*()` functions read FAERS data into a well formatted
+#' The `read()` functions read FAERS data into a well formatted
 #' tibble.
 #'
 #' @param path (chr) path to the FAERS `.txt` to read.
 #'
 #' @return a [tibble][tibble::tibble-package] for the FAERS table in `path`.
-#' @export
 #'
+#' @name read
 #' @examples
 #'   \dontrun{
-#'     demo_path <- system.file(
-#'       "testing-data/DEMO20Q3-10.txt",
-#'        package = "faers.db"
+#'     demo_db <- read_demo(
+#'     path = "mypath"
 #'     )
-#'     read_demo(demo_path)
 #'   }
+NULL
+
+#' @describeIn read  read DEMO db
+#' @export
 read_demo <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(
@@ -42,6 +44,8 @@ read_demo <- function(path) {
     )
 }
 
+#' @describeIn read  read DRUG db
+#' @export
 read_drug <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(
@@ -67,6 +71,8 @@ read_drug <- function(path) {
     )
 }
 
+#' @describeIn read  read INDI db
+#' @export
 read_indi <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
@@ -76,6 +82,8 @@ read_indi <- function(path) {
     )
 }
 
+#' @describeIn read  read OUTC db
+#' @export
 read_outc <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
@@ -84,12 +92,16 @@ read_outc <- function(path) {
     )
 }
 
+#' @describeIn read  read REAC db
+#' @export
 read_reac <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
     dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer))
 }
 
+#' @describeIn read  read RPSR db
+#' @export
 read_rpsr <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
@@ -98,6 +110,8 @@ read_rpsr <- function(path) {
     )
 }
 
+#' @describeIn read  read THER db
+#' @export
 read_ther <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(
