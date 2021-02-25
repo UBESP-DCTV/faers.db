@@ -11,7 +11,7 @@
 #' @examples
 #'   \dontrun{
 #'     demo_db <- read_demo(
-#'     path = "mypath"
+#'     path = "path_demo.csv"
 #'     )
 #'   }
 NULL
