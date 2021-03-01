@@ -41,7 +41,8 @@ read_demo <- function(path) {
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
       )
-    )
+    ) %>%
+    mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read DRUG db
@@ -68,7 +69,8 @@ read_drug <- function(path) {
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
       )
-    )
+    ) %>%
+    mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read INDI db
@@ -79,7 +81,8 @@ read_indi <- function(path) {
       dplyr::across(dplyr::all_of(c("caseid", "indi_drug_seq")),
         as.integer
       )
-    )
+    ) %>%
+    mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read OUTC db
@@ -89,7 +92,8 @@ read_outc <- function(path) {
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
       dplyr::across(dplyr::all_of("caseid"), as.integer)
-    )
+    ) %>%
+    mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read REAC db
@@ -107,7 +111,8 @@ read_rpsr <- function(path) {
     dplyr::mutate(
       dplyr::across("rpsr_cod", as.factor),
       dplyr::across("caseid", as.integer)
-    )
+    ) %>%
+    mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read THER db
@@ -128,5 +133,13 @@ read_ther <- function(path) {
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
       )
-    )
+    ) %>%
+    mutate(period = period_from_path(path))
+}
+
+
+period_from_path <- function(path) {
+  start_substring <- -8L
+  end_substring <- -5L
+  stringr::str_sub(path, start_substring, end_substring)
 }
