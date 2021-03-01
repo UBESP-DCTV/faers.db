@@ -1,5 +1,9 @@
 # faers.db (development version)
 
+* Now `faers_*()` create a new coloum, "period", with year and quarter
+  throught `period_from_path()`
+* create `period_from_path()` function in order to extract year and 
+  quarter from FAERS db path.
 * added `\dontrun{}` to examples with side effects.
 * rename and refactor `list_of_faers_year()` into
   `years_from_faers_html()`
