@@ -42,7 +42,7 @@ read_demo <- function(path) {
         )
       )
     ) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read DRUG db
@@ -70,7 +70,7 @@ read_drug <- function(path) {
         )
       )
     ) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read INDI db
@@ -82,7 +82,7 @@ read_indi <- function(path) {
         as.integer
       )
     ) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read OUTC db
@@ -93,7 +93,7 @@ read_outc <- function(path) {
       dplyr::across("outc_cod", as.factor),
       dplyr::across(dplyr::all_of("caseid"), as.integer)
     ) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read REAC db
@@ -102,7 +102,7 @@ read_reac <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
     dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer)) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read RPSR db
@@ -113,7 +113,7 @@ read_rpsr <- function(path) {
       dplyr::across("rpsr_cod", as.factor),
       dplyr::across("caseid", as.integer)
     ) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read THER db
@@ -135,7 +135,7 @@ read_ther <- function(path) {
         )
       )
     ) %>%
-    mutate(period = period_from_path(path))
+    dplyr::mutate(period = period_from_path(path))
 }
 
 
