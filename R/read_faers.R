@@ -101,7 +101,8 @@ read_outc <- function(path) {
 read_reac <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
-    dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer))
+    dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer)) %>%
+    mutate(period = period_from_path(path))
 }
 
 #' @describeIn read  read RPSR db
