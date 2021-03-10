@@ -19,7 +19,7 @@ NULL
 #' @describeIn read  read DEMO db
 #' @export
 read_demo <- function(path) {
-  if (yea(path) < 14) {
+  if (year_from_path(path) < 14) {
     readr::read_delim(path, delim = "$") %>%
       dplyr::rename(sex = gndr_cod) %>%
       dplyr::mutate(
@@ -43,7 +43,7 @@ read_demo <- function(path) {
         )
       )
   }
-  else if (yea(path) == 14 & quarte(path) <4) {
+  else if (year_from_path(path) == 14 & quarter_from_path(path) <4) {
     readr::read_delim(path, delim = "$") %>%
       dplyr::rename(sex = gndr_cod) %>%
       dplyr::mutate(
@@ -79,15 +79,67 @@ read_demo <- function(path) {
           ~lubridate::parse_date_time(.x,
             orders = c("%Y%m%d", "%Y%m", "%Y")
                       )
-        )
-      ) %>%
-      dplyr::mutate(period = period_from_path(path))
+        ),
+        period = period_from_path(path))
   }
 }
 
 #' @describeIn read  read DRUG db
 #' @export
 read_drug <- function(path) {
+  if (year_from_path(path) < 14) {
+    readr::read_delim(path, delim = "$",
+                      col_types = readr::cols(
+                        exp_dt = readr::col_double(),
+                        cum_dose_unit = readr::col_character(),
+                        lot_num = readr::col_character(),
+                        nda_num = readr::col_double()
+      )
+    ) %>%
+      dplyr::mutate(
+        dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
+                      as.factor
+        ),
+        dplyr::across(dplyr::all_of(c("caseid", "dose_amt", "drug_seq")),
+          as.integer
+        ),
+        dplyr::across("cum_dose_chr", as.numeric),
+        dplyr::across(dplyr::ends_with("dt"),
+          ~lubridate::parse_date_time(.x,
+            orders = c("%Y%m%d", "%Y%m", "%Y")
+          )
+        ),
+        period = period_from_path(path),
+        prod_ai = NA_character_
+      )
+  }
+  else if (year_from_path(path) == 14 & quarter_from_path(path) <4) {
+    readr::read_delim(path, delim = "$",
+                      col_types = readr::cols(
+                        exp_dt = readr::col_double(),
+                        cum_dose_unit = readr::col_character(),
+                        lot_num = readr::col_character(),
+                        nda_num = readr::col_double()
+      )
+    ) %>%
+      dplyr::mutate(
+        dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
+          as.factor
+        ),
+        dplyr::across(dplyr::all_of(c("caseid", "dose_amt", "drug_seq")),
+          as.integer
+        ),
+        dplyr::across("cum_dose_chr", as.numeric),
+        dplyr::across(dplyr::ends_with("dt"),
+          ~lubridate::parse_date_time(.x,
+            orders = c("%Y%m%d", "%Y%m", "%Y")
+          )
+        ),
+        period = period_from_path(path),
+        prod_ai = NA_character_
+      )
+  }
+  else{
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(
       exp_dt = readr::col_double(),
@@ -108,9 +160,10 @@ read_drug <- function(path) {
         ~lubridate::parse_date_time(.x,
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
-      )
-    ) %>%
-    dplyr::mutate(period = period_from_path(path))
+      ),
+      period = period_from_path(path)
+    )
+  }
 }
 
 #' @describeIn read  read INDI db
@@ -131,9 +184,9 @@ read_outc <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
-      dplyr::across(dplyr::all_of("caseid"), as.integer)
-    ) %>%
-    dplyr::mutate(period = period_from_path(path))
+      dplyr::across(dplyr::all_of("caseid"), as.integer),
+      period = period_from_path(path)
+    )
 }
 
 #' @describeIn read  read REAC db
@@ -141,8 +194,10 @@ read_outc <- function(path) {
 read_reac <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
-    dplyr::mutate(dplyr::across(dplyr::all_of("caseid"), as.integer)) %>%
-    dplyr::mutate(period = period_from_path(path))
+    dplyr::mutate(
+      dplyr::across(dplyr::all_of("caseid"), as.integer),
+      period = period_from_path(path)
+  )
 }
 
 #' @describeIn read  read RPSR db
@@ -151,9 +206,9 @@ read_rpsr <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
       dplyr::across("rpsr_cod", as.factor),
-      dplyr::across("caseid", as.integer)
-    ) %>%
-    dplyr::mutate(period = period_from_path(path))
+      dplyr::across("caseid", as.integer),
+      period = period_from_path(path)
+    )
 }
 
 #' @describeIn read  read THER db
@@ -173,14 +228,27 @@ read_ther <- function(path) {
         ~lubridate::parse_date_time(.x,
           orders = c("%Y%m%d", "%Y%m", "%Y")
         )
-      )
-    ) %>%
-    dplyr::mutate(period = period_from_path(path))
+      ),
+      period = period_from_path(path)
+    )
 }
 
 
 period_from_path <- function(path) {
   start_substring <- -8L
+  end_substring <- -5L
+  stringr::str_sub(path, start_substring, end_substring)
+}
+
+
+year_from_path <- function(path) {
+  start_substring <- -8L
+  end_substring <- -7L
+  stringr::str_sub(path, start_substring, end_substring)
+}
+
+quarter_from_path <- function(path) {
+  start_substring <- -5L
   end_substring <- -5L
   stringr::str_sub(path, start_substring, end_substring)
 }
