@@ -1,9 +1,15 @@
 CMD
 FAERS
+INDI
 Lifecycle
 Metaprogramming
 ORCID
+OUTC
+REAC
+RPSR
+THER
 chr
+coloum
 dependences
 eval
 faers
@@ -18,6 +24,7 @@ styler
 subfolder
 summarise
 testthat
+throught
 tibble
 tibbles
 tidyverse

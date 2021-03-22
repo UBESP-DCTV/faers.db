@@ -382,7 +382,7 @@ test_that("read_demo works", {
   res <- read_demo(db_test_path12)
   res20 <- read_demo(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
 
 
@@ -433,7 +433,7 @@ test_that("read_drug works", {
   res <- read_drug(db_test_path12)
   res20 <- read_drug(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
 
 
@@ -468,7 +468,7 @@ test_that("read_indi works", {
   res <- read_indi(db_test_path12)
   res20 <- read_indi(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
 
 
@@ -502,7 +502,7 @@ test_that("read_outc works", {
   res <- read_indi(db_test_path12)
   res20 <- read_indi(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
 
 
@@ -537,7 +537,7 @@ test_that("read_reac works", {
   res <- read_outc(db_test_path12)
   res20 <- read_outc(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
 
 test_that("read rpsr works", {
@@ -570,7 +570,7 @@ test_that("read_rpsr works", {
   res <- read_rpsr(db_test_path12)
   res20 <- read_rpsr(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
 
 test_that("read ther works", {
@@ -607,11 +607,5 @@ test_that("read_ther works", {
   res <- read_ther(db_test_path12)
   res20 <- read_ther(db_test_path20)
 
-  expect_setequal(colnames(res20) , colnames(res))
+  expect_setequal(colnames(res20), colnames(res))
 })
-
-
-
-
-
-

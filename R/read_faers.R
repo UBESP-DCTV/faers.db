@@ -19,8 +19,8 @@ NULL
 #' @describeIn read  read DEMO db
 #' @export
 read_demo <- function(path) {
-  if ((year_from_path(path) < 14) |
-      (year_from_path(path) == 14 & quarter_from_path(path) <4)) {
+  if ((year_from_path(path) < 14L) |
+      (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
     readr::read_delim(path, delim = "$") %>%
       dplyr::rename(sex = gndr_cod) %>%
       dplyr::mutate(
@@ -38,7 +38,7 @@ read_demo <- function(path) {
         dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
           as.integer
         ),
-        dplyr::across(ends_with("dt"),
+        dplyr::across(dplyr::ends_with("dt"),
           ~lubridate::parse_date_time(.x,
             orders = c("%Y%m%d", "%Y%m", "%Y"))
         )
@@ -75,8 +75,8 @@ read_demo <- function(path) {
 #' @describeIn read  read DRUG db
 #' @export
 read_drug <- function(path) {
-  if ((year_from_path(path) < 14) |
-      (year_from_path(path) == 14 & quarter_from_path(path) <4))  {
+  if ((year_from_path(path) < 14L) |
+      (year_from_path(path) == 14L & quarter_from_path(path) < 4L))  {
     readr::read_delim(path, delim = "$",
                       col_types = readr::cols(
                         exp_dt = readr::col_double(),
@@ -145,8 +145,8 @@ read_indi <- function(path) {
 #' @describeIn read  read OUTC db
 #' @export
 read_outc <- function(path) {
-  if ((year_from_path(path) < 14) |
-      (year_from_path(path) == 14 & quarter_from_path(path) <4)) {
+  if ((year_from_path(path) < 14L) |
+      (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::rename(outc_cod = outc_code) %>%
     dplyr::mutate(
@@ -169,8 +169,8 @@ read_outc <- function(path) {
 #' @describeIn read  read REAC db
 #' @export
 read_reac <- function(path) {
-  if ((year_from_path(path) < 14) |
-      (year_from_path(path) == 14 & quarter_from_path(path) <4)) {
+  if ((year_from_path(path) < 14L) |
+      (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
     readr::read_delim(path, delim = "$") %>%
       dplyr::mutate(
         dplyr::across(dplyr::all_of("caseid"), as.integer),
@@ -180,7 +180,7 @@ read_reac <- function(path) {
   }
   else {
     readr::read_delim(path, delim = "$",
-                      col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
+      col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
       dplyr::mutate(
         dplyr::across(dplyr::all_of("caseid"), as.integer),
         period = period_from_path(path)
