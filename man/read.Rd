@@ -33,7 +33,7 @@ a \link[tibble:tibble-package]{tibble} for the FAERS table in \code{path}.
 }
 \description{
 The \code{read()} functions read FAERS data into a well formatted
-tibble.
+tibble and covert old FAERS version.
 }
 \section{Functions}{
 \itemize{

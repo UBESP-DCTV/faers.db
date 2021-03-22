@@ -1,5 +1,7 @@
 # faers.db (development version)
 
+* Now `faers_*()` import FAERS data before 2014Q4 in the same structure
+  as FAERS data from 2014Q4
 * Now `faers_*()` create a new coloum, "period", with year and quarter
   throught `period_from_path()`
 * create `period_from_path()` function in order to extract year and 
