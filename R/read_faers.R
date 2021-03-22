@@ -1,7 +1,7 @@
 #' Read faers data
 #'
 #' The `read()` functions read FAERS data into a well formatted
-#' tibble.
+#' tibble and covert old FAERS version.
 #'
 #' @param path (chr) path to the FAERS `.txt` to read.
 #'
