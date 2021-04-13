@@ -386,7 +386,7 @@ test_that("read_demo works", {
 
 
 test_that("read drug works", {
-  db_test_path <-  system.file("testing-data/faers12/DRUG12q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/drug12q4.txt",
                                package = "faers.db"
   )
 
@@ -492,14 +492,14 @@ test_that("read outc works", {
 })
 #check same coloums
 test_that("read_outc works", {
-  db_test_path12 <- system.file("testing-data/faers12/indi12q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/outc12q4.txt",
                                 package = "faers.db"
   )
-  db_test_path20 <- system.file("testing-data/faers20/INDI20Q3-10.txt",
+  db_test_path20 <- system.file("testing-data/faers20/outc20Q3-10.txt",
                                 package = "faers.db"
   )
-  res <- read_indi(db_test_path12)
-  res20 <- read_indi(db_test_path20)
+  res <- read_outc(db_test_path12)
+  res20 <- read_outc(db_test_path20)
 
   expect_setequal(colnames(res20), colnames(res))
 })
