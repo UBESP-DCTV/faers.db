@@ -495,7 +495,7 @@ test_that("read_outc works", {
   db_test_path12 <- system.file("testing-data/faers12/outc12q4.txt",
                                 package = "faers.db"
   )
-  db_test_path20 <- system.file("testing-data/faers20/outc20Q3-10.txt",
+  db_test_path20 <- system.file("testing-data/faers20/OUTC20Q3-10.txt",
                                 package = "faers.db"
   )
   res <- read_outc(db_test_path12)
