@@ -527,14 +527,14 @@ test_that("read reac works", {
 })
 #check same coloums
 test_that("read_reac works", {
-  db_test_path12 <- system.file("testing-data/faers12/outc12q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/reac12q4.txt",
                                 package = "faers.db"
   )
-  db_test_path20 <- system.file("testing-data/faers20/outc20Q3-10.txt",
+  db_test_path20 <- system.file("testing-data/faers20/REAC20Q3-10.txt",
                                 package = "faers.db"
   )
-  res <- read_outc(db_test_path12)
-  res20 <- read_outc(db_test_path20)
+  res <- read_reac(db_test_path12)
+  res20 <- read_reac(db_test_path20)
 
   expect_setequal(colnames(res20), colnames(res))
 })
