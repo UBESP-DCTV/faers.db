@@ -329,7 +329,7 @@ test_that("read ther works", {
 
 
 test_that("read_demo works", {
-  db_test_path <- system.file("testing-data/faers12/demo12Q4.txt",
+  db_test_path <- system.file("testing-data/faers12/demo12q4.txt",
                               package = "faers.db"
   )
   res <- read_demo(db_test_path)
@@ -362,7 +362,6 @@ test_that("read_demo works", {
     lit_ref = "character",
     age_grp = "character",
     period = "character"
-
   )
 
   expect_equal(
@@ -373,7 +372,7 @@ test_that("read_demo works", {
 })
 #check same coloums
 test_that("read_demo works", {
-  db_test_path12 <- system.file("testing-data/faers12/demo12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/demo12q4.txt",
                               package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/DEMO20Q3-10.txt",
@@ -387,7 +386,7 @@ test_that("read_demo works", {
 
 
 test_that("read drug works", {
-  db_test_path <-  system.file("testing-data/faers12/DRUG12Q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/DRUG12q4.txt",
                                package = "faers.db"
   )
 
@@ -424,7 +423,7 @@ test_that("read drug works", {
 })
 #check same coloums
 test_that("read_drug works", {
-  db_test_path12 <- system.file("testing-data/faers12/drug12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/drug12q4.txt",
                                 package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/DRUG20Q3-10.txt",
@@ -438,7 +437,7 @@ test_that("read_drug works", {
 
 
 test_that("read indi works", {
-  db_test_path <-  system.file("testing-data/faers12/indi12Q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/indi12q4.txt",
                                package = "faers.db"
   )
 
@@ -459,7 +458,7 @@ test_that("read indi works", {
 })
 #check same coloums
 test_that("read_indi works", {
-  db_test_path12 <- system.file("testing-data/faers12/indi12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/indi12q4.txt",
                                 package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/INDI20Q3-10.txt",
@@ -473,7 +472,7 @@ test_that("read_indi works", {
 
 
 test_that("read outc works", {
-  db_test_path <-  system.file("testing-data/faers12/outc12Q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/outc12q4.txt",
                                package = "faers.db"
   )
 
@@ -493,7 +492,7 @@ test_that("read outc works", {
 })
 #check same coloums
 test_that("read_outc works", {
-  db_test_path12 <- system.file("testing-data/faers12/indi12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/indi12q4.txt",
                                 package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/INDI20Q3-10.txt",
@@ -507,7 +506,7 @@ test_that("read_outc works", {
 
 
 test_that("read reac works", {
-  db_test_path <-  system.file("testing-data/faers12/reac12Q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/reac12q4.txt",
                                package = "faers.db"
   )
 
@@ -528,7 +527,7 @@ test_that("read reac works", {
 })
 #check same coloums
 test_that("read_reac works", {
-  db_test_path12 <- system.file("testing-data/faers12/outc12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/outc12q4.txt",
                                 package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/outc20Q3-10.txt",
@@ -541,7 +540,7 @@ test_that("read_reac works", {
 })
 
 test_that("read rpsr works", {
-  db_test_path <-  system.file("testing-data/faers12/rpsr12Q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/rpsr12q4.txt",
                                package = "faers.db"
   )
 
@@ -561,7 +560,7 @@ test_that("read rpsr works", {
 })
 #check same coloums
 test_that("read_rpsr works", {
-  db_test_path12 <- system.file("testing-data/faers12/rpsr12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/rpsr12q4.txt",
                                 package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/RPSR20Q3-10.txt",
@@ -574,7 +573,7 @@ test_that("read_rpsr works", {
 })
 
 test_that("read ther works", {
-  db_test_path <-  system.file("testing-data/faers12/ther12Q4.txt",
+  db_test_path <-  system.file("testing-data/faers12/ther12q4.txt",
                                package = "faers.db"
   )
 
@@ -598,7 +597,7 @@ test_that("read ther works", {
 })
 #check same coloums
 test_that("read_ther works", {
-  db_test_path12 <- system.file("testing-data/faers12/ther12Q4.txt",
+  db_test_path12 <- system.file("testing-data/faers12/ther12q4.txt",
                                 package = "faers.db"
   )
   db_test_path20 <- system.file("testing-data/faers20/THER20Q3-10.txt",
@@ -609,3 +608,4 @@ test_that("read_ther works", {
 
   expect_setequal(colnames(res20), colnames(res))
 })
+
