@@ -18,59 +18,66 @@ NULL
 
 #' @describeIn read  read DEMO db
 #' @export
-read_demo <- function(path) {
-  if ((year_from_path(path) < 14L) |
-      (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
-    readr::read_delim(path, delim = "$") %>%
-      dplyr::rename(sex = .data$gndr_cod) %>%
-      dplyr::mutate(
-        auth_num = NA_character_,
-        lit_ref = NA_character_,
-        age_grp = NA_character_,
-        period = period_from_path(path),
-        dplyr::across(
-          dplyr::all_of(c(
-            "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
-            "occp_cod"
-          )),
-          as.factor
-        ),
-        dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
-          as.integer
-        ),
-        dplyr::across(dplyr::ends_with("dt"),
-          ~lubridate::parse_date_time(.x,
-            orders = c("%Y%m%d", "%Y%m", "%Y"))
-        )
-      ) %>%
-      dplyr::rename(, rept_dt = .data$` rept_dt`)
-  }
-  else{
-    readr::read_delim(path, delim = "$",
-                      col_types = readr::cols(
-                        auth_num = readr::col_character(),
-                        lit_ref = readr::col_character()
-                      )
-    ) %>%
-      dplyr::mutate(
-        dplyr::across(
-          dplyr::all_of(c(
-            "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
-            "occp_cod"
-          )),
-          as.factor
-        ),
-        dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
-          as.integer
-        ),
-        dplyr::across(dplyr::ends_with("dt"),
-          ~lubridate::parse_date_time(.x,
-            orders = c("%Y%m%d", "%Y%m", "%Y")
-                      )
-        ),
-        period = period_from_path(path))
+
+read_faers <- function(path){
+  if (name_from_path == (c("DEMO"| "demo"))){
+    read_demo <- function(path) {
+      if ((year_from_path(path) < 14L) |
+          (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
+        readr::read_delim(path, delim = "$") %>%
+          dplyr::rename(sex = .data$gndr_cod) %>%
+          dplyr::mutate(
+            auth_num = NA_character_,
+            lit_ref = NA_character_,
+            age_grp = NA_character_,
+            period = period_from_path(path),
+            dplyr::across(
+              dplyr::all_of(c(
+                "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
+                "occp_cod"
+              )),
+              as.factor
+            ),
+            dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
+                          as.integer
+            ),
+            dplyr::across(dplyr::ends_with("dt"),
+                          ~lubridate::parse_date_time(.x,
+                                                      orders = c("%Y%m%d", "%Y%m", "%Y"))
+            )
+          ) %>%
+          dplyr::rename(, rept_dt = .data$` rept_dt`)
+      }
+      else{
+        readr::read_delim(path, delim = "$",
+                          col_types = readr::cols(
+                            auth_num = readr::col_character(),
+                            lit_ref = readr::col_character()
+                          )
+        ) %>%
+          dplyr::mutate(
+            dplyr::across(
+              dplyr::all_of(c(
+                "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
+                "occp_cod"
+              )),
+              as.factor
+            ),
+            dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
+                          as.integer
+            ),
+            dplyr::across(dplyr::ends_with("dt"),
+                          ~lubridate::parse_date_time(.x,
+                                                      orders = c("%Y%m%d", "%Y%m", "%Y")
+                          )
+            ),
+            period = period_from_path(path))
+      }
+    }
+
   }
 }
+
 
 #' @describeIn read  read DRUG db
 #' @export
@@ -239,4 +246,11 @@ quarter_from_path <- function(path) {
   start_substring <- -5L
   end_substring <- -5L
   stringr::str_sub(path, start_substring, end_substring)
+}
+
+name_from_path <- function(path) {
+  start_substring <- -12L
+  end_substring <- -9L
+  name <- stringr::str_sub(path, start_substring, end_substring)
+  stringr::str_to_lower(name)
 }
