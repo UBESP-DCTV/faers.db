@@ -24,30 +24,32 @@
 #'   }
 #'
 
-read_faers <- function(path){
-  if (name_from_path(path) == "demo"){
+read_faers <- function(path) {
+  if (name_from_path(path) == "demo") {
     read_demo(path)
   }
-  else if (name_from_path(path) == "drug"){
+  else if (name_from_path(path) == "drug") {
     read_drug(path)
   }
-  else if (name_from_path(path) == "indi"){
+  else if (name_from_path(path) == "indi") {
     read_indi(path)
   }
-  else if (name_from_path(path) == "outc"){
+  else if (name_from_path(path) == "outc") {
     read_outc(path)
   }
-  else if (name_from_path(path) == "reac"){
+  else if (name_from_path(path) == "reac") {
     read_reac(path)
   }
-  else if (name_from_path(path) == "rpsr"){
+  else if (name_from_path(path) == "rpsr") {
     read_rpsr(path)
   }
-  else if (name_from_path(path) == "ther"){
+  else if (name_from_path(path) == "ther") {
     read_ther(path)
   }
-  else {stop("path not found  or
-    incorrenct path form, path have to end as xxx/demo21q1.txt") }
+  else {
+  stop("path not found  or
+    incorrenct path form, path have to end as xxx/demo21q1.txt")
+  }
 }
 
 
@@ -70,11 +72,11 @@ read_demo <- function(path) {
             as.factor
           ),
           dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
-                        as.integer
+            as.integer
           ),
           dplyr::across(dplyr::ends_with("dt"),
-                        ~lubridate::parse_date_time(.x,
-                                                    orders = c("%Y%m%d", "%Y%m", "%Y"))
+           ~lubridate::parse_date_time(.x,
+            orders = c("%Y%m%d", "%Y%m", "%Y"))
           )
         ) %>%
         dplyr::rename(, rept_dt = .data$` rept_dt`)
@@ -95,12 +97,12 @@ read_demo <- function(path) {
             as.factor
           ),
           dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
-                        as.integer
+            as.integer
           ),
           dplyr::across(dplyr::ends_with("dt"),
-                        ~lubridate::parse_date_time(.x,
-                                                    orders = c("%Y%m%d", "%Y%m", "%Y")
-                        )
+            ~lubridate::parse_date_time(.x,
+              orders = c("%Y%m%d", "%Y%m", "%Y")
+            )
           ),
           period = period_from_path(path))
     }
