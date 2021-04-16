@@ -55,7 +55,7 @@ tibble and covert old FAERS version.
 \examples{
   \dontrun{
     demo_db <- read_demo(
-    path = "path_demo.csv"
+    path = "path_demo.txt"
     )
   }
 }

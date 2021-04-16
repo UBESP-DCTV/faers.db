@@ -615,7 +615,7 @@ test_that("read_ther works", {
 # read_faers ------------------------------------------------------
 
 test_that("read_faers works", {
-  db_test_path <- system.file("testing-data/faers20/DEMO20Q3-10.txt",
+  db_test_path <- system.file("testing-data/faers12/demo12q4.txt",
                               package = "faers.db"
   )
   res <- read_faers(db_test_path)
@@ -631,13 +631,10 @@ test_that("read_faers works", {
     init_fda_dt = "POSIXct",
     fda_dt = "POSIXct",
     rept_cod = "factor",
-    auth_num = "character",
     mfr_num = "character",
     mfr_sndr = "factor",
-    lit_ref = "character",
     age = "integer",
     age_cod = "character",
-    age_grp = "character",
     sex = "factor",
     e_sub = "factor",
     wt = "numeric",
@@ -647,6 +644,9 @@ test_that("read_faers works", {
     occp_cod = "factor",
     reporter_country = "character",
     occr_country = "character",
+    auth_num = "character",
+    lit_ref = "character",
+    age_grp = "character",
     period = "character"
   )
 

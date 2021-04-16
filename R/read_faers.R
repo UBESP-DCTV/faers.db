@@ -11,72 +11,94 @@
 #' @examples
 #'   \dontrun{
 #'     demo_db <- read_demo(
-#'     path = "path_demo.csv"
+#'     path = "path_demo.txt"
 #'     )
 #'   }
 NULL
 
+read_faers <- function(path){
+  if (name_from_path(path) == "demo"){
+    read_demo(path)
+  }
+  else if (name_from_path(path) == "drug"){
+    read_drug(path)
+  }
+  else if (name_from_path(path) == "indi"){
+    read_indi(path)
+  }
+  else if (name_from_path(path) == "outc"){
+    read_outc(path)
+  }
+  else if (name_from_path(path) == "reac"){
+    read_reac(path)
+  }
+  else if (name_from_path(path) == "rpsr"){
+    read_rpsr(path)
+  }
+  else if (name_from_path(path) == "ther"){
+    read_ther(path)
+  }
+  else {stop("path not found  or
+    incorrenct path form, path must end as xxx/demo19q2.txt") }
+}
+
+
+
 #' @describeIn read  read DEMO db
 #' @export
-
-read_faers <- function(path){
-  if (name_from_path == (c("DEMO"| "demo"))){
-    read_demo <- function(path) {
-      if ((year_from_path(path) < 14L) |
-          (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
-        readr::read_delim(path, delim = "$") %>%
-          dplyr::rename(sex = .data$gndr_cod) %>%
-          dplyr::mutate(
-            auth_num = NA_character_,
-            lit_ref = NA_character_,
-            age_grp = NA_character_,
-            period = period_from_path(path),
-            dplyr::across(
-              dplyr::all_of(c(
-                "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
-                "occp_cod"
-              )),
-              as.factor
-            ),
-            dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
-                          as.integer
-            ),
-            dplyr::across(dplyr::ends_with("dt"),
-                          ~lubridate::parse_date_time(.x,
-                                                      orders = c("%Y%m%d", "%Y%m", "%Y"))
-            )
-          ) %>%
-          dplyr::rename(, rept_dt = .data$` rept_dt`)
-      }
-      else{
-        readr::read_delim(path, delim = "$",
-                          col_types = readr::cols(
-                            auth_num = readr::col_character(),
-                            lit_ref = readr::col_character()
-                          )
+read_demo <- function(path) {
+    if ((year_from_path(path) < 14L) |
+        (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
+      readr::read_delim(path, delim = "$") %>%
+        dplyr::rename(sex = .data$gndr_cod) %>%
+        dplyr::mutate(
+          auth_num = NA_character_,
+          lit_ref = NA_character_,
+          age_grp = NA_character_,
+          period = period_from_path(path),
+          dplyr::across(
+            dplyr::all_of(c(
+              "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
+              "occp_cod"
+            )),
+            as.factor
+          ),
+          dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
+                        as.integer
+          ),
+          dplyr::across(dplyr::ends_with("dt"),
+                        ~lubridate::parse_date_time(.x,
+                                                    orders = c("%Y%m%d", "%Y%m", "%Y"))
+          )
         ) %>%
-          dplyr::mutate(
-            dplyr::across(
-              dplyr::all_of(c(
-                "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
-                "occp_cod"
-              )),
-              as.factor
-            ),
-            dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
-                          as.integer
-            ),
-            dplyr::across(dplyr::ends_with("dt"),
-                          ~lubridate::parse_date_time(.x,
-                                                      orders = c("%Y%m%d", "%Y%m", "%Y")
-                          )
-            ),
-            period = period_from_path(path))
-      }
+        dplyr::rename(, rept_dt = .data$` rept_dt`)
     }
-
+    else{
+      readr::read_delim(path, delim = "$",
+                        col_types = readr::cols(
+                          auth_num = readr::col_character(),
+                          lit_ref = readr::col_character()
+                        )
+      ) %>%
+        dplyr::mutate(
+          dplyr::across(
+            dplyr::all_of(c(
+              "i_f_code", "rept_cod", "mfr_sndr", "sex", "e_sub", "to_mfr",
+              "occp_cod"
+            )),
+            as.factor
+          ),
+          dplyr::across(dplyr::all_of(c("caseid", "caseversion", "age")),
+                        as.integer
+          ),
+          dplyr::across(dplyr::ends_with("dt"),
+                        ~lubridate::parse_date_time(.x,
+                                                    orders = c("%Y%m%d", "%Y%m", "%Y")
+                        )
+          ),
+          period = period_from_path(path))
+    }
   }
-}
 
 
 #' @describeIn read  read DRUG db
