@@ -1,20 +1,28 @@
 #' Read faers data
 #'
-#' The `read()` functions read FAERS data into a well formatted
-#' tibble and covert old FAERS version.
+#' The `read_faers()` functions read FAERS data into a well formatted
+#' tibble.
 #'
 #' @param path (chr) path to the FAERS `.txt` to read.
 #'
+#' @export
+#'
 #' @return a [tibble][tibble::tibble-package] for the FAERS table in `path`.
 #'
-#' @name read
+#' @name read_faers
+#'
+#' @details The `read_faers()` function can automaticaly read seven different
+#' FAERS dataset: demo, drug, indi, outc, reac, rpsr and ther.
+#' It convert and adapt dataset before version 2014Q4 with the new version.
+#' Moreover, it adds a new coloums called 'period', in order to identify
+#' the time release of dataset
 #' @examples
 #'   \dontrun{
-#'     demo_db <- read_demo(
-#'     path = "path_demo.txt"
+#'     faers_db <- read_faers(
+#'     path = "path_demo21Q1.txt"
 #'     )
 #'   }
-NULL
+#'
 
 read_faers <- function(path){
   if (name_from_path(path) == "demo"){
@@ -39,13 +47,11 @@ read_faers <- function(path){
     read_ther(path)
   }
   else {stop("path not found  or
-    incorrenct path form, path must end as xxx/demo19q2.txt") }
+    incorrenct path form, path have to end as xxx/demo21q1.txt") }
 }
 
 
 
-#' @describeIn read  read DEMO db
-#' @export
 read_demo <- function(path) {
     if ((year_from_path(path) < 14L) |
         (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
@@ -101,8 +107,6 @@ read_demo <- function(path) {
   }
 
 
-#' @describeIn read  read DRUG db
-#' @export
 read_drug <- function(path) {
   if ((year_from_path(path) < 14L) |
       (year_from_path(path) == 14L & quarter_from_path(path) < 4L))  {
@@ -159,8 +163,7 @@ read_drug <- function(path) {
   }
 }
 
-#' @describeIn read  read INDI db
-#' @export
+
 read_indi <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
@@ -171,8 +174,7 @@ read_indi <- function(path) {
     dplyr::mutate(period = period_from_path(path))
 }
 
-#' @describeIn read  read OUTC db
-#' @export
+
 read_outc <- function(path) {
   if ((year_from_path(path) < 14L) |
       (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
@@ -195,8 +197,6 @@ read_outc <- function(path) {
 }
 
 
-#' @describeIn read  read REAC db
-#' @export
 read_reac <- function(path) {
   if ((year_from_path(path) < 14L) |
       (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
@@ -217,8 +217,6 @@ read_reac <- function(path) {
   }
 }
 
-#' @describeIn read  read RPSR db
-#' @export
 read_rpsr <- function(path) {
   readr::read_delim(path, delim = "$") %>%
     dplyr::mutate(
@@ -228,8 +226,6 @@ read_rpsr <- function(path) {
     )
 }
 
-#' @describeIn read  read THER db
-#' @export
 read_ther <- function(path) {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(

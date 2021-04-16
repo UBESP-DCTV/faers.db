@@ -612,7 +612,8 @@ test_that("read_ther works", {
 
 
 
-# read_faers ------------------------------------------------------
+
+# read_faers function---------------------------------------------------
 
 test_that("read_faers works", {
   db_test_path <- system.file("testing-data/faers12/demo12q4.txt",
@@ -656,3 +657,13 @@ test_that("read_faers works", {
   )
 
 })
+
+
+# errore
+test_that("read_faers works", {
+  db_test_path <- system.file("testing-data/faers12/erro12q4.txt",
+                              package = "faers.db"
+  )
+  expect_error(read_faers(db_test_path))
+})
+
