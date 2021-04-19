@@ -27,7 +27,7 @@
 #'     )
 #'
 #'     identical(faers_db, demo_db)
-#'     TRUE
+#'     #TRUE
 #'   }
 #'
 
