@@ -21,35 +21,29 @@
 #'     faers_db <- read_faers(
 #'     path = "path_demo21Q1.txt"
 #'     )
+#'
+#'     demo_db <- read_demo(
+#'     path = "path_demo21Q1.txt"
+#'     )
+#'
+#'     identical(faers_db, demo_db)
+#'     TRUE
 #'   }
 #'
 
 read_faers <- function(path) {
-  if (name_from_path(path) == "demo") {
-    read_demo(path)
-  }
-  else if (name_from_path(path) == "drug") {
-    read_drug(path)
-  }
-  else if (name_from_path(path) == "indi") {
-    read_indi(path)
-  }
-  else if (name_from_path(path) == "outc") {
-    read_outc(path)
-  }
-  else if (name_from_path(path) == "reac") {
-    read_reac(path)
-  }
-  else if (name_from_path(path) == "rpsr") {
-    read_rpsr(path)
-  }
-  else if (name_from_path(path) == "ther") {
-    read_ther(path)
-  }
-  else {
-  stop("path not found  or
-    incorrenct path form, path have to end as xxx/demo21q1.txt")
-  }
+  switch(name_from_path(path),
+    demo = read_demo(path),
+    drug = read_drug(path),
+    indi = read_indi(path),
+    outc = read_outc(path),
+    reac = read_reac(path),
+    rpsr = read_rpsr(path),
+    ther = read_ther(path),
+    stop(paste0("Path not found or incorrect form.",
+               "Path must end as xxx/demo21q1.txt"
+    ))
+  )
 }
 
 

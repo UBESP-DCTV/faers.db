@@ -28,6 +28,13 @@ the time release of dataset
     faers_db <- read_faers(
     path = "path_demo21Q1.txt"
     )
+
+    demo_db <- read_demo(
+    path = "path_demo21Q1.txt"
+    )
+
+    identical(faers_db, demo_db)
+    TRUE
   }
 
 }
