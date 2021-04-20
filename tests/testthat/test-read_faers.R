@@ -658,6 +658,43 @@ test_that("read_faers works", {
 
 })
 
+test_that("read drug works", {
+  db_test_path <-  system.file("testing-data/faers12/drug12q4.txt",
+                               package = "faers.db"
+  )
+
+  res <- read_faers(db_test_path)
+  expect_is(res, "tbl_df")
+
+  expected_class_names <- c(
+    primaryid = "numeric",
+    caseid = "integer",
+    drug_seq = "integer",
+    role_cod = "factor",
+    drugname = "character",
+    val_vbm = "numeric",
+    route = "character",
+    dose_vbm = "character",
+    cum_dose_chr = "numeric",
+    cum_dose_unit = "character",
+    dechal = "factor",
+    rechal = "factor",
+    lot_num = "character",
+    exp_dt = "POSIXct",
+    nda_num = "numeric",
+    dose_amt = "integer",
+    dose_unit = "character",
+    dose_form = "character",
+    dose_freq = "character",
+    period = "character",
+    prod_ai = "character"
+  )
+  expect_equal(
+    purrr::map_chr(res, ~class(.x)[[1L]]),
+    expected_class_names
+  )
+})
+
 
 # errore
 test_that("read_faers works", {

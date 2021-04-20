@@ -40,7 +40,7 @@ read_faers <- function(path) {
     reac = read_reac(path),
     rpsr = read_rpsr(path),
     ther = read_ther(path),
-    stop(paste0("Path not found or incorrect form.",
+    stop(paste("Path not found or incorrect form.",
                "Path must end as xxx/demo21q1.txt"
     ))
   )
