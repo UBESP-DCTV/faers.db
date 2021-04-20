@@ -1,5 +1,12 @@
 # faers.db (development version)
-
+* Create `read_faers()` function, which includes all `read_*()` function
+  (with * in {`demo`, `drug`, `indi`, `outc`, `reac`,`rpsr`, and `ther`})
+* Now `faers_*()` import FAERS data before 2014Q4 in the same structure
+  as FAERS data from 2014Q4
+* Now `faers_*()` create a new coloum, "period", with year and quarter
+  throught `period_from_path()`
+* create `period_from_path()` function in order to extract year and 
+  quarter from FAERS db path.
 * added `\dontrun{}` to examples with side effects.
 * rename and refactor `list_of_faers_year()` into
   `years_from_faers_html()`

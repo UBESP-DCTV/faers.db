@@ -1,0 +1,11 @@
+primaryid$caseid$pt
+34483284$3448328$Laryngomalacia
+35676563$3567656$Abdominal pain
+35676563$3567656$Dyspepsia
+35676563$3567656$Pneumonia
+35676563$3567656$White blood cell count abnormal
+36059074$3605907$Abdominal pain
+36059074$3605907$Abdominal pain upper
+36059074$3605907$Anaemia
+36059074$3605907$Asthenia
+36059074$3605907$Back pain

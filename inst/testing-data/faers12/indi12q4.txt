@@ -1,0 +1,11 @@
+primaryid$caseid$indi_drug_seq$indi_pt
+36059074$3605907$1$Dementia Alzheimer's type
+36177452$3617745$1$Dementia Alzheimer's type
+36859184$3685918$1$Multiple sclerosis
+36916633$3691663$1$Dementia Alzheimer's type
+37326272$3732627$1$Dementia Alzheimer's type
+37831703$3783170$1$Local anaesthesia
+37883263$3788326$1$HOT FLUSH
+37883263$3788326$1$MENOPAUSE
+38941784$3894178$1$Renal transplant
+38941784$3894178$4$Renal transplant
