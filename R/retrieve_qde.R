@@ -119,9 +119,11 @@ download_file <- function(download_from, download_to, download_data, filename,
                           year, quarter, type) {
   message(glue::glue("Retrieving FAERS {year} {quarter} ({type})...
                      It may take a while, please wait until it's done."))
-  downloader::download(download_from, filename,
-                       mode = "wb", quiet = TRUE,
-                       method = "libcurl")
+  download.file(url = download_from,
+                destfile = filename,
+                method = "auto",
+                mode = "wb",
+                quiet = TRUE)
   message("Done!")
   TRUE
 }
