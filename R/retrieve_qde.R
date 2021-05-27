@@ -7,7 +7,7 @@
 #' current year).
 #' @param quarter (chr) The quarter of the data to download
 #' ("q1", "q2", "q3" or "q4", default: "q1").
-#' @param type (chr) The format of the data to download,
+#' @param type (chr) The format of the data to download.
 #' @param interactive_session (lgl) Is R running in an interactive session?
 #' (default: the status of the current session).
 #' @param create_folder (lgl) Only if session is not in interactive mode.

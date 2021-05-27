@@ -27,9 +27,6 @@ what_is_missing <- function(path, faers_meta = fetch_faers_meta()) {
                                 ~tidyr::replace_na(.x, 0L))) %>%
     dplyr::transmute(.data[["year"]], .data[["quarter"]], .data[["type"]],
                      mb = .data[["ascii_zip_mb"]] + .data[["xml_zip_mb"]])
-  totmb <- sum(out[["mb"]])
-  message(glue::glue("{NROW(out)} FAERS databases are missing in your folder",
-                     " ({totmb} mb)."))
   out
 }
 
