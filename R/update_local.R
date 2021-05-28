@@ -27,12 +27,12 @@ update_local <- function(path,
   type <- match.arg(type)
   missing_metadata <- missing_data_selection(missing_metadata, type)
   totmb <- sum(missing_metadata[["mb"]])
-  typeformessage <- ifelse(type == "both", "both ascii and xml", type)
+  typeformessage <- ifelse(type == "both", "ascii and xml", type)
   message(glue::glue("{NROW(missing_metadata)} FAERS databases",
                      " {typeformessage} are missing in your folder",
                      " ({totmb} mb)."))
   if (NROW(missing_metadata) == 0L) {
-    message("No new data to download.")
+    message(glue::glue("No new {typeformessage} data to download."))
     return(invisible(FALSE))
   }
   if (permission_update(permission_to_update, path)) {
