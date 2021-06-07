@@ -23,7 +23,7 @@ current year).}
 \item{quarter}{(chr) The quarter of the data to download
 ("q1", "q2", "q3" or "q4", default: "q1").}
 
-\item{type}{(chr) The format of the data to download,}
+\item{type}{(chr) The format of the data to download.}
 
 \item{interactive_session}{(lgl) Is R running in an interactive session?
 (default: the status of the current session).}

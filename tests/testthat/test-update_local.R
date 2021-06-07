@@ -11,7 +11,6 @@ test_that("update_local works", {
   fs::dir_delete(glue::glue("{path}/faers_raw_data"))
 })
 
-
 test_that("permission_update works", {
   expect_equal(permission_update(TRUE), TRUE)
 })

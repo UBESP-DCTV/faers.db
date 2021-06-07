@@ -7,7 +7,7 @@
 #' current year).
 #' @param quarter (chr) The quarter of the data to download
 #' ("q1", "q2", "q3" or "q4", default: "q1").
-#' @param type (chr) The format of the data to download,
+#' @param type (chr) The format of the data to download.
 #' @param interactive_session (lgl) Is R running in an interactive session?
 #' (default: the status of the current session).
 #' @param create_folder (lgl) Only if session is not in interactive mode.
@@ -119,7 +119,12 @@ download_file <- function(download_from, download_to, download_data, filename,
                           year, quarter, type) {
   message(glue::glue("Retrieving FAERS {year} {quarter} ({type})...
                      It may take a while, please wait until it's done."))
-  downloader::download(download_from, filename, mode = "wb", quiet = TRUE)
+  if (type == "xml") Sys.sleep(60)
+  utils::download.file(url = download_from,
+                       destfile = filename,
+                       method = "auto",
+                       mode = "wb",
+                       quiet = TRUE)
   message("Done!")
   TRUE
 }

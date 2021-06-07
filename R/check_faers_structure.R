@@ -80,7 +80,7 @@ check_quarter_every_year <- function(path, faers_years) {
     faers_years,
     function(x) check_quarter_directory(path = path, year = x)
   )
-  sum(!purrr::map(subfolders_logical, sum) > 0) == 0
+  sum(!purrr::map(subfolders_logical, sum) > 0L) == 0L
 }
 
 
@@ -113,7 +113,7 @@ check_files <- function(path, current_filenames = all_possible_filenames()) {
                        "{toString(filelist[which(!files_logical)])}. ",
                        "Please remove the files or change directory path."))
   }
-  length(filelist[which(!files_logical)]) == 0
+  length(filelist[which(!files_logical)]) == 0L
 }
 
 

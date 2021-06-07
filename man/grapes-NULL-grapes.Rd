@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-NULL_NA.R
 \name{\%NULL\%}
 \alias{\%NULL\%}
-\title{Default for NULL (or NA) values}
+\title{Default for NULL values}
 \usage{
 x \%NULL\% y
 }
@@ -16,7 +16,7 @@ The parameter or the default value
 }
 \description{
 These two functions assign a default value to a parameter if it was
-previously set to NULL (or NA)
+previously set to NULL
 }
 \examples{
 NULL \%NULL\% 3 # = 3

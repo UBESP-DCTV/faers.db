@@ -7,6 +7,7 @@
 update_local(
   path,
   missing_metadata = what_is_missing(path),
+  type = c("both", "ascii", "xml"),
   permission_to_update = NULL
 )
 }
@@ -18,6 +19,8 @@ update_local(
 quarter and type of FAERS dataset currently missing in the selected folder,
 usually an output of what_is_missing() function
 (default: what_is_missing(path)).}
+
+\item{type}{(chr) The format of the data to download: ascii, xml or both.}
 
 \item{permission_to_update}{(lgl) Only if session is not in interactive mode.
 TRUE: permission to download files, FALSE: deny permission to download files.}

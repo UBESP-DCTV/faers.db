@@ -1,7 +1,7 @@
-#' Default for NULL (or NA) values
+#' Default for NULL values
 #'
 #' These two functions assign a default value to a parameter if it was
-#' previously set to NULL (or NA)
+#' previously set to NULL
 #'
 #' @param x Parameter
 #' @param y Chosen default value
