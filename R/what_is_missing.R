@@ -24,7 +24,7 @@ what_is_missing <- function(path, faers_meta = fetch_faers_meta()) {
     dplyr::filter(!(.data[["unq"]] %in% local[["unq"]])) %>%
     dplyr::select(-.data[["unq"]]) %>%
     dplyr::mutate(dplyr::across(dplyr::everything(),
-                                ~tidyr::replace_na(.x, 0))) %>%
+                                ~tidyr::replace_na(.x, 0L))) %>%
     dplyr::transmute(.data[["year"]], .data[["quarter"]], .data[["type"]],
                      mb = .data[["ascii_zip_mb"]] + .data[["xml_zip_mb"]])
   totmb <- sum(out[["mb"]])
