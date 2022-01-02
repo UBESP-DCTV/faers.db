@@ -1,6 +1,6 @@
-#' Update local FAERS data
+#' Update local FAERS data (ascii files only)
 #'
-#' This function downloads the FAERS data missing in the selected folder.
+#' This function downloads the FAERS ascii data missing in the selected folder.
 #'
 #' @param path (chr) The path of the folder containing a subfolder (named
 #' "faers_raw_data") with FAERS data inside, sorted by year and quarter.
@@ -22,17 +22,25 @@ update_local <- function(path,
                          missing_metadata = what_is_missing(path),
                          permission_to_update = NULL) {
   if (!check_faers_structure(path)) return(invisible(FALSE))
+  missing_metadata <- missing_metadata %>%
+    dplyr::filter(.data[["type"]] == "ascii")
   if (NROW(missing_metadata) == 0L) {
-    message("No new data to download.")
+    message("No new ascii data to download.")
     return(invisible(FALSE))
   }
+  nmiss <- NROW(missing_metadata)
+  mbmiss <- sum(missing_metadata[["mb"]])
+  message(
+    glue::glue(
+      "{nmiss} FAERS ascii databases are missing in your folder ({mbmiss} mb)."
+    )
+  )
   if (permission_update(permission_to_update, path)) {
     mapply(
-      function(x, y, z) retrieve_qde(path, year = x, quarter = y, type = z,
-                                     interactive_session = FALSE),
+      function(x, y) retrieve_qde(path, year = x, quarter = y, type = "ascii",
+                                  interactive_session = FALSE),
       missing_metadata[["year"]],
-      missing_metadata[["quarter"]],
-      missing_metadata[["type"]]
+      missing_metadata[["quarter"]]
     )
     return(invisible(TRUE))
   } else {

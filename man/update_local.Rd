@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_local.R
 \name{update_local}
 \alias{update_local}
-\title{Update local FAERS data}
+\title{Update local FAERS data (ascii files only)}
 \usage{
 update_local(
   path,
@@ -26,7 +26,7 @@ TRUE: permission to download files, FALSE: deny permission to download files.}
 (lgl) TRUE if the download was successful, FALSE otherwise.
 }
 \description{
-This function downloads the FAERS data missing in the selected folder.
+This function downloads the FAERS ascii data missing in the selected folder.
 }
 \examples{
 \dontrun{
