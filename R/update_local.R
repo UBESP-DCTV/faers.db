@@ -59,7 +59,10 @@ permission_update <- function(permission, path) {
         with the online FAERS database.
 
         If your FAERS data exists elsewhere on this computer, you shold change",
-        " the 'path' parameter of this function to point to your existing data."
+        " the 'path' parameter of this function to point to your existing data.
+
+        Do you agree to proceed using {path}/faers_raw_data?
+        "
       )
     )
   }
