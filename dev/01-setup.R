@@ -152,7 +152,7 @@ spelling::update_wordlist()
 
 
 #'
-#' Add pipe (`%>%`) support
+#' Add pipe (`|>`) support
 #' --------------------------------------------------------------------
 #'
 usethis::use_pipe()

@@ -7,11 +7,29 @@ simulate_faers_structure <- function(path) {
   for (i in seq_len(nrow(faers_meta))) {
     cyear <- faers_meta[[i, "year"]]
     cquarter <- faers_meta[[i, "quarter"]]
-    dir.create(glue::glue("{path}/faers_raw_data/{cyear}/{cquarter}"),
-               recursive = TRUE)
-    file.create(glue::glue("{path}/faers_raw_data/{cyear}/{cquarter}/",
-                           "faers_ascii_{cyear}{cquarter}.zip"))
-    file.create(glue::glue("{path}/faers_raw_data/{cyear}/{cquarter}/",
-                           "faers_xml_{cyear}{cquarter}.zip"))
+    dir.create(
+      file.path(
+        glue::glue("{path}"),
+        "faers_raw_data",
+        glue::glue("{cyear}/{cquarter}")
+      ),
+      recursive = TRUE
+    )
+    file.create(
+      file.path(
+        glue::glue("{path}"),
+        "faers_raw_data",
+        glue::glue("{cyear}/{cquarter}"),
+        glue::glue("faers_ascii_{cyear}{cquarter}.zip")
+      )
+    )
+    file.create(
+      file.path(
+        glue::glue("{path}"),
+         "faers_raw_data",
+        glue::glue("{cyear}/{cquarter}"),
+        glue::glue("faers_xml_{cyear}{cquarter}.zip")
+      )
+    )
   }
 }

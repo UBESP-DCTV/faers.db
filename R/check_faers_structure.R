@@ -42,13 +42,15 @@ check_root_folder <- function(path) {
   if (sum(is_faers_folder) > 1L) {
     warning("Too Many folders named 'faers_raw_data' (or similar).")
     return(FALSE)
-  } else TRUE
+  } else {
+    TRUE
+  }
 }
 
 
 check_years_directory <- function(path, faers_years) {
   subfolders <- list.dirs(
-    paste0(path, "/faers_raw_data"),
+    file.path(path, "faers_raw_data"),
     recursive = FALSE, full.names = FALSE
   )
   subfolders_logical <- purrr::map(
@@ -58,18 +60,20 @@ check_years_directory <- function(path, faers_years) {
   bad_folders <- subfolders[which(purrr::map(subfolders_logical, sum) == 0L)]
   if (length(bad_folders) > 0L) {
     warning(glue::glue("The following folders do not match a FAERS year: ",
-                       ".../faers_raw_data/{toString(bad_folders)}. ",
+                       "faers_raw_data/{toString(bad_folders)}. ",
                        "Please remove the folders or change directory path."))
     return(FALSE)
-  } else TRUE
+  } else {
+    TRUE
+  }
 }
 
 
 faers_folder_structure <- function(path) {
-  folders <- list.dirs(path) %>%
+  folders <- list.dirs(path) |>
     stringr::str_remove(path)
   folders[[1L]] <- "faers_raw_data"
-  files <- list.files(path, full.names = TRUE, recursive = TRUE) %>%
+  files <- list.files(path, full.names = TRUE, recursive = TRUE) |>
     stringr::str_remove(path)
   data.tree::as.Node(data.frame(pathString = c(folders, files)))
 }
@@ -87,7 +91,7 @@ check_quarter_every_year <- function(path, faers_years) {
 check_quarter_directory <- function(path, year) {
   quarterslist <- c("q1", "q2", "q3", "q4")
   subfolders <- list.dirs(
-    paste0(path, "/faers_raw_data/", year),
+    file.path(path, "faers_raw_data", year),
     recursive = FALSE, full.names = FALSE
   )
   subfolders_logical <- purrr::map(
@@ -97,15 +101,17 @@ check_quarter_directory <- function(path, year) {
   bad_folders <- subfolders[which(purrr::map(subfolders_logical, sum) == 0L)]
   if (length(bad_folders) > 0L) {
     warning(glue::glue("The following folders do not match a FAERS quarter: ",
-                       ".../faers_raw_data/{year}/{toString(bad_folders)}. ",
+                       "faers_raw_data/{year}/{toString(bad_folders)}. ",
                        "Please remove the folders or change directory path."))
     return(FALSE)
-  } else TRUE
+  } else {
+    TRUE
+  }
 }
 
 
 check_files <- function(path, current_filenames = all_possible_filenames()) {
-  filelist <- list.files(glue::glue("{path}/faers_raw_data"),
+  filelist <- list.files(path, "faers_raw_data",
                          full.names = FALSE, recursive = TRUE)
   files_logical <- filelist %in% current_filenames
   if (sum(!files_logical) > 0L) {

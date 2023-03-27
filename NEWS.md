@@ -34,7 +34,7 @@
 
 # faers.db 0.0.0.9000
 
-* Added support to use the __pipe__ (`%>%`) operator.
+* Added support to use the __pipe__ (`|>`) operator.
 * Added GitHub action for CI/CD automating lint, coverage, tests, and
   checks.
 * Added support from `{renv}` package management system for

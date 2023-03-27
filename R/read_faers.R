@@ -49,10 +49,11 @@ read_faers <- function(path) {
 
 
 read_demo <- function(path) {
-    if ((year_from_path(path) < 14L) |
-        (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
-      readr::read_delim(path, delim = "$") %>%
-        dplyr::rename(sex = .data$gndr_cod) %>%
+    if ((year_from_path(path) < 14L) ||
+        (year_from_path(path) == 14L && quarter_from_path(path) < 4L)
+    ) {
+      readr::read_delim(path, delim = "$") |>
+        dplyr::rename(sex = "gndr_cod") |>
         dplyr::mutate(
           auth_num = NA_character_,
           lit_ref = NA_character_,
@@ -72,16 +73,15 @@ read_demo <- function(path) {
            ~lubridate::parse_date_time(.x,
             orders = c("%Y%m%d", "%Y%m", "%Y"))
           )
-        ) %>%
-        dplyr::rename(, rept_dt = .data$` rept_dt`)
-    }
-    else{
+        ) |>
+        dplyr::rename(rept_dt = " rept_dt")
+    } else {
       readr::read_delim(path, delim = "$",
                         col_types = readr::cols(
                           auth_num = readr::col_character(),
                           lit_ref = readr::col_character()
                         )
-      ) %>%
+      ) |>
         dplyr::mutate(
           dplyr::across(
             dplyr::all_of(c(
@@ -104,8 +104,8 @@ read_demo <- function(path) {
 
 
 read_drug <- function(path) {
-  if ((year_from_path(path) < 14L) |
-      (year_from_path(path) == 14L & quarter_from_path(path) < 4L))  {
+  if ((year_from_path(path) < 14L) ||
+      (year_from_path(path) == 14L && quarter_from_path(path) < 4L))  {
     readr::read_delim(path, delim = "$",
                       col_types = readr::cols(
                         exp_dt = readr::col_double(),
@@ -113,8 +113,8 @@ read_drug <- function(path) {
                         lot_nbr = readr::col_character(),
                         nda_num = readr::col_double()
       )
-    ) %>%
-      dplyr::rename(lot_num = .data[["lot_nbr"]]) %>%
+    ) |>
+      dplyr::rename(lot_num = "lot_nbr") |>
       dplyr::mutate(
         dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
                       as.factor
@@ -131,8 +131,7 @@ read_drug <- function(path) {
         period = period_from_path(path),
         prod_ai = NA_character_
       )
-  }
-  else{
+  } else {
   readr::read_delim(path, delim = "$",
     col_types = readr::cols(
       exp_dt = readr::col_double(),
@@ -140,7 +139,7 @@ read_drug <- function(path) {
       lot_num = readr::col_character(),
       nda_num = readr::col_double()
     )
-  ) %>%
+  ) |>
     dplyr::mutate(
       dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
         as.factor
@@ -161,29 +160,28 @@ read_drug <- function(path) {
 
 
 read_indi <- function(path) {
-  readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$") |>
     dplyr::mutate(
       dplyr::across(dplyr::all_of(c("caseid", "indi_drug_seq")),
         as.integer
       )
-    ) %>%
+    ) |>
     dplyr::mutate(period = period_from_path(path))
 }
 
 
 read_outc <- function(path) {
-  if ((year_from_path(path) < 14L) |
-      (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
-  readr::read_delim(path, delim = "$") %>%
-    dplyr::rename(outc_cod = .data[["outc_code"]]) %>%
+  if ((year_from_path(path) < 14L) ||
+      (year_from_path(path) == 14L && quarter_from_path(path) < 4L)) {
+  readr::read_delim(path, delim = "$") |>
+    dplyr::rename(outc_cod = "outc_code") |>
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
       dplyr::across(dplyr::all_of("caseid"), as.integer),
       period = period_from_path(path)
     )
-  }
-  else {
-    readr::read_delim(path, delim = "$") %>%
+  } else {
+    readr::read_delim(path, delim = "$") |>
       dplyr::mutate(
         dplyr::across("outc_cod", as.factor),
         dplyr::across(dplyr::all_of("caseid"), as.integer),
@@ -194,18 +192,17 @@ read_outc <- function(path) {
 
 
 read_reac <- function(path) {
-  if ((year_from_path(path) < 14L) |
-      (year_from_path(path) == 14L & quarter_from_path(path) < 4L)) {
-    readr::read_delim(path, delim = "$") %>%
+  if ((year_from_path(path) < 14L) ||
+      (year_from_path(path) == 14L && quarter_from_path(path) < 4L)) {
+    readr::read_delim(path, delim = "$") |>
       dplyr::mutate(
         dplyr::across(dplyr::all_of("caseid"), as.integer),
         drug_rec_act = NA_character_,
         period = period_from_path(path)
       )
-  }
-  else {
+  } else {
     readr::read_delim(path, delim = "$",
-      col_types = readr::cols(drug_rec_act = readr::col_character())) %>%
+      col_types = readr::cols(drug_rec_act = readr::col_character())) |>
       dplyr::mutate(
         dplyr::across(dplyr::all_of("caseid"), as.integer),
         period = period_from_path(path)
@@ -214,7 +211,7 @@ read_reac <- function(path) {
 }
 
 read_rpsr <- function(path) {
-  readr::read_delim(path, delim = "$") %>%
+  readr::read_delim(path, delim = "$") |>
     dplyr::mutate(
       dplyr::across("rpsr_cod", as.factor),
       dplyr::across("caseid", as.integer),
@@ -228,7 +225,7 @@ read_ther <- function(path) {
       dur = readr::col_double(),
       dur_cod =  readr::col_character()
     )
-  ) %>%
+  ) |>
     dplyr::mutate(
       dplyr::across(dplyr::all_of(c("caseid", "dsg_drug_seq")),
         as.integer

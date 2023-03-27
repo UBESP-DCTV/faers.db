@@ -1,3 +1,5 @@
+utils::globalVariables(".data")
+
 #' List of FAERS data
 #'
 #' The function lists the metadata for the FAERS databases currently
@@ -5,14 +7,15 @@
 #'
 #' @return A [tibble][tibble::tibble-package] reporting years, period,
 #' quarter, and dimension for available FAERS data.
+#' @importFrom rlang .data
 #' @export
 #'
 #' @examples
 #' fetch_faers_meta()
 fetch_faers_meta <- function() {
   faers_html <- current_faers_html()
-  years_from_faers_html(faers_html) %>%
-    purrr::map_dfr(extract_meta_for_year, faers_html = faers_html) %>%
+  years_from_faers_html(faers_html) |>
+    purrr::map_dfr(extract_meta_for_year, faers_html = faers_html) |>
     tidy_raw_faers_meta()
 }
 
@@ -31,20 +34,20 @@ years_from_faers_html <- function(faers_html = current_faers_html()) {
   n_years <- n_years_of_faers(faers_html)
 
   years_raw_tags <- purrr::map_dfr(seq_len(n_years), ~ {
-    faers_html %>%
-      rvest::html_node(css = compose_year_css(.x)) %>%
+    faers_html |>
+      rvest::html_element(css = compose_year_css(.x)) |>
       xml2::xml_attrs()
   })
 
-  years_raw_tags[["href"]] %>%
+  years_raw_tags[["href"]] |>
     stringr::str_remove("#collapse")
 }
 
 
 n_years_of_faers <- function(faers_html) {
-  faers_html %>%
-    rvest::xml_node(css = "#accordion") %>%
-    xml2::xml_children() %>%
+  faers_html |>
+    rvest::html_element(css = "#accordion") |>
+    xml2::xml_children() |>
     length()
 }
 
@@ -61,10 +64,10 @@ compose_year_css <- function(yearnumber) {
 
 extract_meta_for_year <- function(faers_html = current_faers_html(),
                                   year) {
-  faers_html %>%
-    rvest::html_node(css = compose_table_css(year)) %>%
-    rvest::html_table(header = FALSE, fill = TRUE) %>%
-    dplyr::filter(dplyr::row_number() %% 2L == 1L) %>%
+  faers_html |>
+    rvest::html_node(css = compose_table_css(year)) |>
+    rvest::html_table(header = FALSE, fill = TRUE) |>
+    dplyr::filter(dplyr::row_number() %% 2L == 1L) |>
     tibble::as_tibble()
 }
 
@@ -73,9 +76,8 @@ compose_table_css <- function(year) {
   glue::glue("#collapse{year} > div > div > table")
 }
 
-
 tidy_raw_faers_meta <- function(meta_raw_tbl) {
-  meta_raw_tbl %>%
+  meta_raw_tbl |>
     dplyr::transmute(
       year = extract_upload_year(.data[["X1"]]),
       period = extract_period(.data[["X1"]]),

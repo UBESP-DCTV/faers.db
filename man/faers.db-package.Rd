@@ -6,8 +6,7 @@
 \alias{faers.db-package}
 \title{faers.db: FAERS database in R}
 \description{
-Provide an R interface to retrieve, merge, and tidy
-    the FAERS database.
+Provide an R interface to retrieve, merge, and tidy the FAERS database.
 }
 \seealso{
 Useful links:

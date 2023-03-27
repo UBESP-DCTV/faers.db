@@ -148,7 +148,7 @@ and comment the line with `usethis::use_data(...)` in it until it
 will be used.
 
 
-Add pipe (`%>%`) support
+Add pipe (`|>`) support
 --------------------------------------------------------------------
 
 
