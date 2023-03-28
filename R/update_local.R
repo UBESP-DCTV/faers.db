@@ -22,7 +22,7 @@ update_local <- function(path,
                          missing_metadata = what_is_missing(path),
                          permission_to_update = NULL) {
   if (!check_faers_structure(path)) return(invisible(FALSE))
-  missing_metadata <- missing_metadata %>%
+  missing_metadata <- missing_metadata |>
     dplyr::filter(.data[["type"]] == "ascii")
   if (NROW(missing_metadata) == 0L) {
     message("No new ascii data to download.")
@@ -37,8 +37,15 @@ update_local <- function(path,
   )
   if (permission_update(permission_to_update, path)) {
     mapply(
-      function(x, y) retrieve_qde(path, year = x, quarter = y, type = "ascii",
-                                  interactive_session = FALSE),
+      function(x, y) {
+        retrieve_qde(
+          path,
+          year = x,
+          quarter = y,
+          type = "ascii",
+          interactive_session = FALSE
+        )
+      },
       missing_metadata[["year"]],
       missing_metadata[["quarter"]]
     )
@@ -59,7 +66,10 @@ permission_update <- function(permission, path) {
         with the online FAERS database.
 
         If your FAERS data exists elsewhere on this computer, you shold change",
-        " the 'path' parameter of this function to point to your existing data."
+        " the 'path' parameter of this function to point to your existing data.
+
+        Do you agree to proceed using {path}/faers_raw_data?
+        "
       )
     )
   }

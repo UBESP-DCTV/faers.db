@@ -14,11 +14,11 @@
 #' is_year_quarter_available(2013, "q1")  # TRUE
 #' is_year_quarter_available(2012, "q1")  # FALSE
 is_year_quarter_available <- function(.year, .quarter) {
-  n_data <- fetch_faers_meta() %>%
+  n_data <- fetch_faers_meta() |>
     dplyr::filter(
       .data[["year"]] == as.character(.year),
       .data[["quarter"]] == .quarter
-    ) %>%
+    ) |>
     nrow()
 
   n_data > 0L

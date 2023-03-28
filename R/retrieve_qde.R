@@ -48,7 +48,10 @@ retrieve_qde <- function(path,
       return(invisible(FALSE))
     }
   }
-  filename <- glue::glue("{download_to}/faers_{type}_{year}{quarter}.zip")
+  filename <- file.path(
+    download_to,
+    glue::glue("faers_{type}_{year}{quarter}.zip")
+  )
   if (file.exists(filename)) {
     warning(glue::glue("Data already in folder {download_to}"))
     return(invisible(FALSE))
@@ -70,7 +73,7 @@ checkyear <- function(year) {
     warning("Year must be character")
     return(FALSE)
   }
-  if (as.numeric(year) < 2012L |
+  if (as.numeric(year) < 2012L ||
       as.numeric(year) > lubridate::year(Sys.Date())) {
     warning("Use a year after 2012 up to the current year")
     return(FALSE)
@@ -92,8 +95,10 @@ compose_faers_link <- function(year, quarter, type) {
   if (!is_year_quarter_available(year, quarter)) {
     warning("Data not available")
   }
-  glue::glue("https://fis.fda.gov/content/Exports/faers_{type}",
-             "_{year}{quarter}.zip")
+  paste0(
+    "https://fis.fda.gov/content/Exports/",
+    glue::glue("faers_{type}_{year}{quarter}.zip")
+  )
 }
 
 
