@@ -74,7 +74,7 @@ read_demo <- function(path) {
             orders = c("%Y%m%d", "%Y%m", "%Y"))
           )
         ) |>
-        dplyr::rename(dplyr::any_of(rept_dt = " rept_dt"))
+        dplyr::rename(dplyr::any_of(c(rept_dt = " rept_dt")))
     } else {
       readr::read_delim(path, delim = "$",
                         col_types = readr::cols(
@@ -114,7 +114,7 @@ read_drug <- function(path) {
                         nda_num = readr::col_double()
       )
     ) |>
-      dplyr::rename(dplyr::any_of(lot_num = "lot_nbr")) |>
+      dplyr::rename(dplyr::any_of(c(lot_num = "lot_nbr"))) |>
       dplyr::mutate(
         dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
                       as.factor
@@ -174,7 +174,7 @@ read_outc <- function(path) {
   if ((year_from_path(path) < 14L) ||
       (year_from_path(path) == 14L && quarter_from_path(path) < 4L)) {
   readr::read_delim(path, delim = "$") |>
-    dplyr::rename(dplyr::any_of(outc_cod = "outc_code")) |>
+    dplyr::rename(dplyr::any_of(c(outc_cod = "outc_code"))) |>
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
       dplyr::across(dplyr::all_of("caseid"), as.integer),
