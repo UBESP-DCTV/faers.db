@@ -74,7 +74,7 @@ read_demo <- function(path) {
             orders = c("%Y%m%d", "%Y%m", "%Y"))
           )
         ) |>
-        dplyr::rename(rept_dt = " rept_dt")
+        dplyr::rename(rept_dt = "rept_dt")
     } else {
       readr::read_delim(path, delim = "$",
                         col_types = readr::cols(
