@@ -74,7 +74,7 @@ read_demo <- function(path) {
             orders = c("%Y%m%d", "%Y%m", "%Y"))
           )
         ) |>
-        dplyr::rename(rept_dt = "rept_dt")
+        dplyr::rename(dplyr::any_of(rept_dt = " rept_dt"))
     } else {
       readr::read_delim(path, delim = "$",
                         col_types = readr::cols(
@@ -114,7 +114,7 @@ read_drug <- function(path) {
                         nda_num = readr::col_double()
       )
     ) |>
-      dplyr::rename(lot_num = "lot_nbr") |>
+      dplyr::rename(dplyr::any_of(lot_num = "lot_nbr")) |>
       dplyr::mutate(
         dplyr::across(dplyr::all_of(c("role_cod",  "dechal", "rechal")),
                       as.factor
