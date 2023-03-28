@@ -174,7 +174,7 @@ read_outc <- function(path) {
   if ((year_from_path(path) < 14L) ||
       (year_from_path(path) == 14L && quarter_from_path(path) < 4L)) {
   readr::read_delim(path, delim = "$") |>
-    dplyr::rename(outc_cod = "outc_code") |>
+    dplyr::rename(dplyr::any_of(outc_cod = "outc_code")) |>
     dplyr::mutate(
       dplyr::across("outc_cod", as.factor),
       dplyr::across(dplyr::all_of("caseid"), as.integer),
