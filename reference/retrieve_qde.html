@@ -53,49 +53,64 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">retrieve_qde</span><span class="op">(</span>
-  <span class="va">path</span>,
-  <span class="va">year</span>,
-  quarter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q1"</span>, <span class="st">"q2"</span>, <span class="st">"q3"</span>, <span class="st">"q4"</span><span class="op">)</span>,
-  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ascii"</span>, <span class="st">"xml"</span><span class="op">)</span>,
-  interactive_session <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span>,
-  create_folder <span class="op">=</span> <span class="cn">NULL</span>,
-  download_data <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">retrieve_qde</span><span class="op">(</span></span>
+<span>  <span class="va">path</span>,</span>
+<span>  <span class="va">year</span>,</span>
+<span>  quarter <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"q1"</span>, <span class="st">"q2"</span>, <span class="st">"q3"</span>, <span class="st">"q4"</span><span class="op">)</span>,</span>
+<span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ascii"</span>, <span class="st">"xml"</span><span class="op">)</span>,</span>
+<span>  interactive_session <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  create_folder <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  download_data <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>path</dt>
 <dd><p>(chr) Path of the directory where you want to download the data.</p></dd>
+
+
 <dt>year</dt>
 <dd><p>(chr) The year of the data to download (after 2012 up to the
 current year).</p></dd>
+
+
 <dt>quarter</dt>
 <dd><p>(chr) The quarter of the data to download
 ("q1", "q2", "q3" or "q4", default: "q1").</p></dd>
+
+
 <dt>type</dt>
 <dd><p>(chr) The format of the data to download,</p></dd>
+
+
 <dt>interactive_session</dt>
 <dd><p>(lgl) Is R running in an interactive session?
 (default: the status of the current session).</p></dd>
+
+
 <dt>create_folder</dt>
 <dd><p>(lgl) Only if session is not in interactive mode.
 TRUE: permission to create folders, FALSE: deny permission to create folders.</p></dd>
+
+
 <dt>download_data</dt>
 <dd><p>(lgl) Only if session is not in interactive mode.
 TRUE: permission to download data, FALSE: deny permission to download data.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(lgl) TRUE if the download was successful, FALSE otherwise.</p>
+    
+
+<p>(lgl) TRUE if the download was successful, FALSE otherwise.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="fu">retrieve_qde</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, year <span class="op">=</span> <span class="st">"2018"</span>, quarter <span class="op">=</span> <span class="st">"q4"</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="fu">retrieve_qde</span><span class="op">(</span>path <span class="op">=</span> <span class="st">"."</span>, year <span class="op">=</span> <span class="st">"2018"</span>, quarter <span class="op">=</span> <span class="st">"q4"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -110,7 +125,7 @@ TRUE: permission to download data, FALSE: deny permission to download data.</p><
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

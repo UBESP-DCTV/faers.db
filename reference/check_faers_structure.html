@@ -55,7 +55,7 @@ the folder is correct.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">check_faers_structure</span><span class="op">(</span><span class="va">path</span>, faersyears <span class="op">=</span> <span class="fu">years_from_faers_html</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check_faers_structure</span><span class="op">(</span><span class="va">path</span>, faersyears <span class="op">=</span> <span class="fu">years_from_faers_html</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,19 +63,24 @@ the folder is correct.</p>
     <dl><dt>path</dt>
 <dd><p>(chr) The path of the folder containing a subfolder (named
 "faers_raw_data") with FAERS data inside, sorted by year and quarter.</p></dd>
+
+
 <dt>faersyears</dt>
 <dd><p>(chr) A vector of characters with the list of the years of
 FAERS data (defaults: all years available).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(lgl) TRUE (invisible) if the "faers_raw_data" exists and it is
+    
+
+<p>(lgl) TRUE (invisible) if the "faers_raw_data" exists and it is
 structured correctly, FALSE (invisible) otherwise.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">check_faers_structure</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">check_faers_structure</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>I can't find a folder named 'faers_raw_data'.</span>
 </code></pre></div>
     </div>
@@ -91,7 +96,7 @@ structured correctly, FALSE (invisible) otherwise.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

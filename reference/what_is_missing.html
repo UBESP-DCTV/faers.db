@@ -55,7 +55,7 @@ folder.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">what_is_missing</span><span class="op">(</span><span class="va">path</span>, faers_meta <span class="op">=</span> <span class="fu"><a href="fetch_faers_meta.html">fetch_faers_meta</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">what_is_missing</span><span class="op">(</span><span class="va">path</span>, faers_meta <span class="op">=</span> <span class="fu"><a href="fetch_faers_meta.html">fetch_faers_meta</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,19 +63,24 @@ folder.</p>
     <dl><dt>path</dt>
 <dd><p>(chr) The path of the folder containing a subfolder (named
 "faers_raw_data") with FAERS data inside, sorted by year and quarter.</p></dd>
+
+
 <dt>faers_meta</dt>
 <dd><p>A <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> with the metadata of
 of FAERS data currently online (default: all the FAERS data).</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> reporting year, quarter and type
+    
+
+<p>A <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> reporting year, quarter and type
 of FAERS dataset currently missing in the selected folder (invisible).</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">what_is_missing</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">what_is_missing</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>I can't find a folder named 'faers_raw_data'.</span>
 </code></pre></div>
     </div>
@@ -91,7 +96,7 @@ of FAERS dataset currently missing in the selected folder (invisible).</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

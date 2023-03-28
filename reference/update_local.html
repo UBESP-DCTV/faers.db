@@ -53,11 +53,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">update_local</span><span class="op">(</span>
-  <span class="va">path</span>,
-  missing_metadata <span class="op">=</span> <span class="fu"><a href="what_is_missing.html">what_is_missing</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span>,
-  permission_to_update <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">update_local</span><span class="op">(</span></span>
+<span>  <span class="va">path</span>,</span>
+<span>  missing_metadata <span class="op">=</span> <span class="fu"><a href="what_is_missing.html">what_is_missing</a></span><span class="op">(</span><span class="va">path</span><span class="op">)</span>,</span>
+<span>  permission_to_update <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,25 +65,32 @@
     <dl><dt>path</dt>
 <dd><p>(chr) The path of the folder containing a subfolder (named
 "faers_raw_data") with FAERS data inside, sorted by year and quarter.</p></dd>
+
+
 <dt>missing_metadata</dt>
 <dd><p>A <a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a> reporting year,
 quarter and type of FAERS dataset currently missing in the selected folder,
 usually an output of what_is_missing() function
 (default: what_is_missing(path)).</p></dd>
+
+
 <dt>permission_to_update</dt>
 <dd><p>(lgl) Only if session is not in interactive mode.
 TRUE: permission to download files, FALSE: deny permission to download files.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>(lgl) TRUE if the download was successful, FALSE otherwise.</p>
+    
+
+<p>(lgl) TRUE if the download was successful, FALSE otherwise.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"> <span class="fu">update_local</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span> <span class="fu">update_local</span><span class="op">(</span><span class="st">"."</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -98,7 +105,7 @@ TRUE: permission to download files, FALSE: deny permission to download files.</p
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
