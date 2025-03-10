@@ -19,6 +19,7 @@ Imports:
     data.tree,
     downloader,
     dplyr,
+    fs,
     glue,
     lubridate,
     purrr,
@@ -28,18 +29,17 @@ Imports:
     stringr,
     tibble,
     tidyr,
+    usethis,
     xml2
 Suggests: 
     devtools,
-    fs,
     goodpractice,
     lintr,
     roxygen2,
     spelling,
-    testthat,
-    usethis
+    testthat
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2

@@ -1,4 +1,5 @@
 # faers.db (development version)
+* add unzip_faers()
 * Create `read_faers()` function, which includes all `read_*()` function
   (with * in {`demo`, `drug`, `indi`, `outc`, `reac`,`rpsr`, and `ther`})
 * Now `faers_*()` import FAERS data before 2014Q4 in the same structure
